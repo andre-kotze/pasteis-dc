@@ -40,13 +40,13 @@ Structure
 <!-- DATABASE -->
 <h2 id = "database">3. Database</h2>
 
-Rules:</a></li>
-· Clients can have zero to multiple orders.</a></li>
-· Orders belong to one and only one client.</a></li>
-· Orders can be distributed in one or more vehicles.</a></li>
-· A vehicle can distribute zero to multple orders.</a></li>
-· A vehicle belons to one and only one warehouse.</a></li>
-· Warehouses can hold one to multiple vehicles.</a></li>
+Rules:<br>
+· Clients can have zero to multiple orders.<br>
+· Orders belong to one and only one client.<br>
+· Orders can be distributed in one or more vehicles.<br>
+· A vehicle can distribute zero to multple orders.<br>
+· A vehicle belons to one and only one warehouse.<br>
+· Warehouses can hold one to multiple vehicles.<br>
 
 
 <hr>
@@ -66,7 +66,7 @@ BSc (Agronomy)<br>
 Master's degree in Geospatial Technologies at <a href ="https://www.novaims.unl.pt/" target = "_blank">NOVA University of Lisbon</a>, <a href ="https://www.uni-muenster.de/en/" target = "_blank">WWU Münster</a> and <a href ="https://www.uji.es/" target = "_blank">UJI</a><br>
 </p>
 
-<b>Guillem Ulldemolins</b><br>
+<b>Guillem Ulldemolins Jornet</b><br>
 BSc (Geography)<br>
 Master's degree in Geospatial Technologies at <a href ="https://www.novaims.unl.pt/" target = "_blank">NOVA University of Lisbon</a>, <a href ="https://www.uni-muenster.de/en/" target = "_blank">WWU Münster</a> and <a href ="https://www.uji.es/" target = "_blank">UJI</a><br>
 </p>
