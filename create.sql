@@ -9,7 +9,8 @@ CREATE TABLE warehouses (
 	city VARCHAR(50) DEFAULT 'Lisboa',
 	country VARCHAR(50) DEFAULT 'Portugal',
 	postalcode VARCHAR(8) NOT NULL,
-	geom POINT
+	geom POINT,
+	stock INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE vehicles (
