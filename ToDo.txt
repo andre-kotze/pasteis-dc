@@ -6,6 +6,11 @@ Prepare test data:
   
 Create and populate database
 
+  Pastelarias
+    Locations extracted from OSM and stored in a DB
+    Generate a python program to randomly select the number of pastelarias and the quantities to be delivered daily.
+    Store this selection in a json doc (https://github.com/VROOM-Project/vroom/blob/master/docs/API.md), compatible to VROOM.
+
 Check out open-source routing algorithms
 OSRM - http://project-osrm.org/
 Openrouteservice - https://openrouteservice.org/
