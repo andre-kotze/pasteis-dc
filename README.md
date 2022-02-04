@@ -12,7 +12,7 @@
     <li><a href = "#introduction">Introduction</a></li>
     <li><a href = "#structure">Structure</a></li>
     <li><a href = "#database">Database</a></li>
-    <li><a href = "#workflow">Workflow</a></li>
+    <li><a href = "#api">API</a></li>
     <li><a href = "#authors">Authors</a></li>
   </ol>
 </details>
