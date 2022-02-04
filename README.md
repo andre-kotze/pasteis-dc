@@ -40,13 +40,13 @@ Structure
 <!-- DATABASE -->
 <h2 id = "database">3. Database</h2>
 
-Rules:
-· Clients can have zero to multiple orders.
-· Orders belong to one and only one client.
-· Orders can be distributed in one or more vehicles.
-· A vehicle can distribute zero to multple orders.
-· A vehicle belons to one and only one warehouse.
-· Warehouses can hold one to multiple vehicles.
+Rules:</a></li>
+· Clients can have zero to multiple orders.</a></li>
+· Orders belong to one and only one client.</a></li>
+· Orders can be distributed in one or more vehicles.</a></li>
+· A vehicle can distribute zero to multple orders.</a></li>
+· A vehicle belons to one and only one warehouse.</a></li>
+· Warehouses can hold one to multiple vehicles.</a></li>
 
 
 <hr>
