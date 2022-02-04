@@ -40,8 +40,13 @@ Structure
 <!-- DATABASE -->
 <h2 id = "database">3. Database</h2>
 
-Database desc
-
+Rules:
+· Clients can have zero to multiple orders.
+· Orders belong to one and only one client.
+· Orders can be distributed in one or more vehicles.
+· A vehicle can distribute zero to multple orders.
+· A vehicle belons to one and only one warehouse.
+· Warehouses can hold one to multiple vehicles.
 
 
 <hr>
