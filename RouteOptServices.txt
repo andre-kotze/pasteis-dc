@@ -1,0 +1,12 @@
+//// Grasshopper (DE)
+site: https://www.graphhopper.com/open-source/
+git rep: https://github.com/graphhopper/jsprit (Java)
+
+//// Mapotempo (FR)
+site: https://www.mapotempo.com/en/
+git rep: https://github.com/Mapotempo/optimizer-api (Ruby/JavaScript)
+
+//// VROOM
+site: http://vroom-project.org/
+git rep: https://github.com/VROOM-Project/vroom (C++)
+
