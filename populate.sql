@@ -1,5 +1,6 @@
 -- Insert into warehouses tables
 INSERT INTO warehouses (
+<<<<<<< HEAD
     id, name, addressline1, addressline2, postalcode, stock) 
 VALUES ('1', 'Armazem das Docas Locas', 'Rua da Cintura do Porto de Lisboa, 230', 'Lisboa - Portugal', '1950-323', 400000);
 
@@ -17,3 +18,7 @@ ALTER TABLE "public"."hqdenata" ADD COLUMN "vehiclesqt" NUMERIC(10,0);
 INSERT INTO "public"."hqdenata" ("wkb_geometry" , "id", "hq_number", "vehiclesqt") 
 VALUES ('0101000020E6100000CE54D13C5F3822C0DC321BEBEF5C4340', 1, NULL, NULL);
 COMMIT;
+=======
+    id, name, addressline1, addressline2, city, country, postalcode, geom, stock) 
+VALUES ('1', 'Armazem das Docas Locas', 'Rua da Cintura do Porto de Lisboa, 230', ,'Lisboa', 'Portugal', '1950-323', '',400000);
+>>>>>>> a71c83c6ee40c6f899b4230f935cab2d508511b1
