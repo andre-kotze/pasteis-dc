@@ -52,3 +52,12 @@ CREATE TABLE streets (
 	avg_velocity REAL NOT NULL,
 	wkb_geometry geometry(LINESTRING,4326)
 );
+
+
+CREATE TABLE route ( -- this needs improvements 
+	id INTEGER PRIMARY KEY,
+	length REAL NOT NULL,
+	type VARCHAR(50) NOT NULL,
+    	location INTEGER REFERENCES vehicles(id),--foreign key to vehicles
+	customer_name VARCHAR(50) NOT NULL,
+    geom geometry(POINT,4326)
