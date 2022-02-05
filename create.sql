@@ -26,10 +26,11 @@ CREATE TABLE vehicles (
 
 CREATE TABLE clients (
 	id INTEGER PRIMARY KEY,
-	customername VARCHAR(50) NOT NULL,
+	osm_node VARCHAR(50) NOT NULL,
+	customer_name VARCHAR(50) NOT NULL,
     addressline1 VARCHAR(50) NOT NULL,
     addressline2 VARCHAR(50) DEFAULT NULL,
-    city VARCHAR(50) NOT NULL,
+    city VARCHAR(50) NOT NULL DEFAULT 'Lisboa',
     postalcode VARCHAR(8) DEFAULT NULL,
     country VARCHAR(50) DEFAULT 'Portugal',
     nif INTEGER,
@@ -49,5 +50,5 @@ CREATE TABLE streets (
 	direction VARCHAR(3),
 	length REAL NOT NULL,
 	avg_velocity REAL NOT NULL,
-	geom geometry(LINESTRING,4326)
+	wkb_geometry geometry(LINESTRING,4326)
 );
