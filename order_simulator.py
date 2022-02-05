@@ -1,7 +1,7 @@
 # random selection of orders (initial program)
 import random
 import numpy
-import matplotlib.pyplot as mpl
+import pandas
 
 # will be passed as an argument later
 PADARIA_IDS = numpy.arange(80).tolist()
@@ -24,5 +24,10 @@ ORDERS_DICT = {padaria: random.randint(1, MAX_ORDER_SIZE) for padaria in daily_o
 print(ORDERS_DICT)
 print(f'Total packages {sum(ORDERS_DICT.values())}')
 
-# plot order distribution
-mpl.hist(ORDERS_DICT.values()).plot()
+# Import clients DB
+clients = SOMEHOW WE WILL CONNECT IT
+
+# Concatenate the clients db with the quantities for the randomly selected padarias
+pandas.DataFrame.from_dict(ORDERS_DICT)
+ORDERS_DICT.set_index([0])
+orders = pandas.concat([clients, ORDERS_DICT], axis=1, join="inner")
