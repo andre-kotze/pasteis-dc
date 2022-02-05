@@ -58,6 +58,6 @@ CREATE TABLE route ( -- this needs improvements
 	id INTEGER PRIMARY KEY,
 	length REAL NOT NULL,
 	type VARCHAR(50) NOT NULL,
-    	location INTEGER REFERENCES vehicles(id),--foreign key to vehicles
+    vehicle INTEGER REFERENCES vehicles(id),--foreign key to vehicles
 	customer_name VARCHAR(50) NOT NULL,
-    geom geometry(POINT,4326)
+    geom geometry(MULTILINESTRING,4326)
