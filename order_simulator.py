@@ -2,6 +2,7 @@
 import random
 import numpy
 import pandas
+import json
 
 # will be passed as an argument later
 PADARIA_IDS = numpy.arange(80).tolist()
@@ -23,7 +24,7 @@ daily_order = random.sample(PADARIA_IDS, daily_orders_count)
 ORDERS_DICT = {padaria: random.randint(1, MAX_ORDER_SIZE) for padaria in daily_order}
 print(ORDERS_DICT)
 print(f'Total packages {sum(ORDERS_DICT.values())}')
-
+'''
 # Import clients DB
 clients = SOMEHOW WE WILL CONNECT IT
 
@@ -31,10 +32,10 @@ clients = SOMEHOW WE WILL CONNECT IT
 pandas.DataFrame.from_dict(ORDERS_DICT)
 ORDERS_DICT.set_index([0])
 orders = pandas.concat([clients, ORDERS_DICT], axis=1, join="inner")
-
+'''
 # json part
-import json
-def save_result(data: ORDERS_DICT, outfile: OrdersLX) -> None:
+
+def save_result(data , outfile) -> None:
     """ Saves a dictionary in JSON file
 
     Args:
@@ -42,8 +43,9 @@ def save_result(data: ORDERS_DICT, outfile: OrdersLX) -> None:
         outfile (str): the name of the file (.json)
     """
     try:
-        with open(OrdersLX, 'w') as fp:
-            json.dump(ORDERS_DICT, fp)
+        with open(outfile, 'w') as fp:
+            json.dump(data, fp)
     except Exception as e:
-        LOGGER.error(e)
+        print(e)
 
+save_result(ORDERS_DICT, 'ordersLX.json')
