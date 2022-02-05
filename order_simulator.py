@@ -31,3 +31,19 @@ clients = SOMEHOW WE WILL CONNECT IT
 pandas.DataFrame.from_dict(ORDERS_DICT)
 ORDERS_DICT.set_index([0])
 orders = pandas.concat([clients, ORDERS_DICT], axis=1, join="inner")
+
+# json part
+import json
+def save_result(data: ORDERS_DICT, outfile: OrdersLX) -> None:
+    """ Saves a dictionary in JSON file
+
+    Args:
+        data (dict): the data to save
+        outfile (str): the name of the file (.json)
+    """
+    try:
+        with open(OrdersLX, 'w') as fp:
+            json.dump(ORDERS_DICT, fp)
+    except Exception as e:
+        LOGGER.error(e)
+
