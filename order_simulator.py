@@ -20,7 +20,7 @@ print(f'Bomdia. Today will have {daily_orders_count} orders to deliver:')
 daily_order = random.sample(PADARIA_IDS, daily_orders_count)
 
 # generate dict of padaria_id : order_quantity
-ORDERS_DICT = {padaria: random.randint(1, MAX_ORDERS_SIZE) for padaria in daily_order}
+ORDERS_DICT = {padaria: random.randint(1, MAX_ORDER_SIZE) for padaria in daily_order}
 print(ORDERS_DICT)
 print(f'Total packages {sum(ORDERS_DICT.values())}')
 
