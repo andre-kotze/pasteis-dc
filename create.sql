@@ -9,7 +9,7 @@ CREATE TABLE warehouses (
 	city VARCHAR(50) DEFAULT 'Lisboa',
 	country VARCHAR(50) DEFAULT 'Portugal',
 	postalcode VARCHAR(8) NOT NULL,
-	wkb_geometry geometry(POINT,4326),
+	geom geometry(POINT,4326),
 	stock INTEGER NOT NULL DEFAULT 0
 );
 
@@ -26,11 +26,11 @@ CREATE TABLE vehicles (
 
 CREATE TABLE clients (
 	id INTEGER PRIMARY KEY,
-	osm_node VARCHAR(50) NOT NULL
+	osm_node VARCHAR(50) NOT NULL,
 	customer_name VARCHAR(50) NOT NULL,
     addressline1 VARCHAR(50) NOT NULL,
     addressline2 VARCHAR(50) DEFAULT NULL,
-    city VARCHAR(50) NOT NULL DEFAULT 'Portugal',
+    city VARCHAR(50) NOT NULL DEFAULT 'Lisboa',
     postalcode VARCHAR(8) DEFAULT NULL,
     country VARCHAR(50) DEFAULT 'Portugal',
     nif INTEGER,
