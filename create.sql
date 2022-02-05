@@ -9,7 +9,7 @@ CREATE TABLE warehouses (
 	city VARCHAR(50) DEFAULT 'Lisboa',
 	country VARCHAR(50) DEFAULT 'Portugal',
 	postalcode VARCHAR(8) NOT NULL,
-	geom geometry(POINT,4326),
+	wkb_geometry geometry(POINT,4326),
 	stock INTEGER NOT NULL DEFAULT 0
 );
 
@@ -50,5 +50,5 @@ CREATE TABLE streets (
 	direction VARCHAR(3),
 	length REAL NOT NULL,
 	avg_velocity REAL NOT NULL,
-	geom geometry(LINESTRING,4326)
+	wkb_geometry geometry(LINESTRING,4326)
 );
