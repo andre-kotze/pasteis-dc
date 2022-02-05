@@ -1,8 +1,5 @@
-Prepare test data:
-  1 warehouse
-  5-10 clients
-  2 vehicles
-  Simulation algorithm to generate orders
+
+  
   
 Create and populate database
 
@@ -16,4 +13,9 @@ OSRM - http://project-osrm.org/
 Openrouteservice - https://openrouteservice.org/
 Valhalla - https://github.com/valhalla/valhalla
 
-
+ALMOST DONE
+- Simulation algorithm to generate orders
+- Prepare test data:
+  1 warehouse
+  40-80 clients
+  2 vehicles
