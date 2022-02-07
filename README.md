@@ -4,10 +4,18 @@
 <hr>
 
 <pre>
-ASK PROF 7/2:
-1. api with localhost, how to flask
-2. schemas, where to put
+ASK PROF 9/2:
+1.
+2.
+3.
+
+
+To Doo
+1. 
 2. running vroom
+1. create orders (in Postgres or in Py)
+3. cost matrix from pgrouting
+4.
   
 
 
