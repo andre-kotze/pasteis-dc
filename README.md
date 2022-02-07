@@ -3,6 +3,36 @@
 
 <hr>
 
+<pre>
+ASK PROF 7/2:
+1. api with localhost, how to flask
+2. schemas, where to put
+2. running vroom
+  
+
+
+  Pastelarias
+    Locations extracted from OSM and stored in a DB
+    Generate a python program to randomly select the number of pastelarias and the quantities to be delivered daily.
+    Store this selection in a json doc (https://github.com/VROOM-Project/vroom/blob/master/docs/API.md), compatible to VROOM.
+
+Check out open-source routing algorithms
+OSRM - http://project-osrm.org/
+Openrouteservice - https://openrouteservice.org/
+Valhalla - https://github.com/valhalla/valhalla
+
+ALMOST DONE
+- Simulation algorithm to generate orders
+- Prepare test data:
+  1 warehouse
+  40-80 clients
+  2 vehicles
+
+-  
+Create and populate database
+
+</pre>
+
 <!-- CONTENTS -->
 <h2 id = "contents">Contents</h2>
 
