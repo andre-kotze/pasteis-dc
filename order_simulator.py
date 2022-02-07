@@ -44,7 +44,7 @@ def save_result(data , outfile) -> None:
     """
     try:
         with open(outfile, 'w') as fp:
-            json.dump(data, fp)
+            json.dump(data, fp, indent=2)
     except Exception as e:
         print(e)
 
