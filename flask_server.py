@@ -1,3 +1,18 @@
+'''
+flask main.py from API_example.
+We will have to modify it for our thing
+
+To run it, remember to activate api_example environment
+
+
+ToDO:
+- create config file with our server settings
+- update the methods for our requirements
+
+'''
+
+
+
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 # import os
