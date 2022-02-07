@@ -16,7 +16,7 @@ CREATE TABLE warehouses (
 CREATE TABLE vehicles (
 	id INTEGER PRIMARY KEY,
 	type VARCHAR(50) NOT NULL,
-    	location INTEGER REFERENCES warehouses(id),--foreign key to warehouses
+    location INTEGER REFERENCES warehouses(id),--foreign key to warehouses
 	capacity INTEGER NOT NULL,
 	occupation INTEGER NOT NULL,
 	cost_per_time REAL NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE streets (
 );
 
 
-CREATE TABLE route ( -- this needs improvements 
+CREATE TABLE route (
 	id INTEGER PRIMARY KEY,
 	length REAL NOT NULL,
 	type VARCHAR(50) NOT NULL,
