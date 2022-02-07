@@ -16,7 +16,7 @@ CREATE TABLE pasteis.warehouses (
 CREATE TABLE pasteis.vehicles (
 	id INTEGER PRIMARY KEY,
 	type VARCHAR(50) NOT NULL,
-    location INTEGER REFERENCES warehouses(id),--foreign key to warehouses
+    location INTEGER REFERENCES pasteis.warehouses(id),--foreign key to warehouses
 	capacity INTEGER NOT NULL,
 	occupation INTEGER NOT NULL,
 	cost_per_time REAL NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE pasteis.clients (
 
 CREATE TABLE pasteis.orders (
     order_id INTEGER PRIMARY KEY,
-    client_id INTEGER REFERENCES clients(id),
+    client_id INTEGER REFERENCES pasteis.clients(id),
     quantity INTEGER NOT NULL,
     status VARCHAR(20)
 );
@@ -58,6 +58,6 @@ CREATE TABLE pasteis.routes (
 	id INTEGER PRIMARY KEY,
 	length REAL NOT NULL,
 	type VARCHAR(50) NOT NULL,
-    vehicle INTEGER REFERENCES vehicles(id),--foreign key to vehicles
+    vehicle INTEGER REFERENCES pasteis.vehicles(id),--foreign key to vehicles
     geom geometry(MULTILINESTRING,4326)
 );
