@@ -8,12 +8,15 @@ import requests
 # GET LIST OF CLIENT IDS FROM SERVER ========#
 URL = "136.159.119.20:5432/clients"
 
-
-
-
-
-
-
+def get_all() -> list:
+    # Using request with GET method
+    r = requests.get(URL)
+    print('STATUS: ', r.status_code)
+    if r.status_code == 200:
+        print('CONTENT: ', r.content)
+        print('TEXT: ', r.text)
+        print('JSON: ', r.json())
+        return r.json()
 
 
 # will be passed as an argument later
