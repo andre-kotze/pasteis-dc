@@ -47,9 +47,9 @@ CREATE TABLE orders (
 CREATE TABLE streets (
 	fid INTEGER NOT NULL,
 	streetname VARCHAR(50),
-	direction VARCHAR(3),
+	direction VARCHAR(3), -- maybe necessary, maybe not
 	length REAL NOT NULL,
-	avg_velocity REAL NOT NULL,
+	avg_velocity REAL DEFAULT 30,
 	wkb_geometry geometry(LINESTRING,4326)
 );
 
@@ -59,5 +59,5 @@ CREATE TABLE route ( -- this needs improvements
 	length REAL NOT NULL,
 	type VARCHAR(50) NOT NULL,
     vehicle INTEGER REFERENCES vehicles(id),--foreign key to vehicles
-	customer_name VARCHAR(50) NOT NULL,
     geom geometry(MULTILINESTRING,4326)
+);
