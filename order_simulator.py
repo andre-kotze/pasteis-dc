@@ -1,26 +1,28 @@
 # random selection of orders (initial program)
 import random
-import numpy
-import pandas
+# import pandas
 import json
 import requests
 
 # GET LIST OF CLIENT IDS FROM SERVER ========#
-URL = "136.159.119.20:5432/clients"
+URL = "http://localhost:5000/clientids"
 
 def get_all() -> list:
     # Using request with GET method
     r = requests.get(URL)
     print('STATUS: ', r.status_code)
     if r.status_code == 200:
-        print('CONTENT: ', r.content)
-        print('TEXT: ', r.text)
-        print('JSON: ', r.json())
+        #print('CONTENT: ', r.content)
+        #print('TEXT: ', r.text)
+        #print('JSON: ', r.json())
         return r.json()
 
 
+
 # will be passed as an argument later
-PADARIA_IDS = numpy.arange(80).tolist()
+response = get_all()
+PADARIA_IDS = [list(i.values())[0] for i in response]
+
 
 # bounding parameters
 PADARIAS_COUNT = len(PADARIA_IDS)
@@ -29,7 +31,7 @@ MIN_ORDERS, MAX_ORDERS = 10, 40
 
 # create orders for a random distribution of clients (units distributed per order = *missing*)
 daily_orders_count = random.randint(MIN_ORDERS, MAX_ORDERS)
-print(f'Bomdia. Today will have {daily_orders_count} orders to deliver:')
+print(f'Bom dia. Today will have {daily_orders_count} orders to deliver:')
 
 # ADD dictionary with clients IDs as keys and quantity of boxes as value (which also needs to be generated randomly)
 # select a subset of padaria client IDs
