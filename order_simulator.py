@@ -3,6 +3,18 @@ import random
 import numpy
 import pandas
 import json
+import requests
+
+# GET LIST OF CLIENT IDS FROM SERVER ========#
+URL = "136.159.119.20:5432/clients"
+
+
+
+
+
+
+
+
 
 # will be passed as an argument later
 PADARIA_IDS = numpy.arange(80).tolist()

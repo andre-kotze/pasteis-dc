@@ -12,12 +12,16 @@ ToDO:
 '''
 
 from configparser import ConfigParser
+
 config = ConfigParser()
-config.read('config.ini')
-last_used = config.get('last_used', 'concession')
-            config.set('last_used', 'dp', self.last_dp)
+config.read('flask_config.ini')
+
+
+
+'''config.set('pasteis', 'dp', self.last_dp)
             with open('config.ini', 'w') as f:
-                config.write(f)
+                config.write(f)'''
+            
 
 
 
@@ -31,11 +35,11 @@ from flask_sqlalchemy import SQLAlchemy
 # import os
 
 DB_CONFIG = {
-    "database": "taxidb",
-    "username": "postgres",
-    "password": "postgres",
-    "host": "localhost",
-    "port": "5432"}
+    "database": config.get('pasteis', 'database'),
+    "username": config.get('pasteis', 'username'),
+    "password": config.get('pasteis', 'password'),
+    "host": config.get('pasteis', 'host'),
+    "port": config.get('pasteis', 'port')}
 
 # Notice, normally this is set with environment variables on the server
 # machine do avoid exposing the credentials. Something like
@@ -61,6 +65,16 @@ app.config['SQLALCHEMY_DATABASE_URI'] = database_uri
 
 # Create object to control SQLAlchemy from the Flask app
 db = SQLAlchemy(app)
+
+
+
+
+
+
+
+
+
+
 
 # Create a data model object that matches our database
 # Matches rides_geojson view 
