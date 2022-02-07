@@ -11,7 +11,13 @@ ToDO:
 
 '''
 
-
+from configparser import ConfigParser
+config = ConfigParser()
+config.read('config.ini')
+last_used = config.get('last_used', 'concession')
+            config.set('last_used', 'dp', self.last_dp)
+            with open('config.ini', 'w') as f:
+                config.write(f)
 
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy

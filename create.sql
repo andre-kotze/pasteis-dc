@@ -1,7 +1,7 @@
 /*
 	To create the db anew
 */
-CREATE TABLE warehouses (
+CREATE TABLE pasteis.warehouses (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR(50) NOT NULL,
 	addressline1 VARCHAR(50) NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE warehouses (
 	stock INTEGER NOT NULL DEFAULT 0
 );
 
-CREATE TABLE vehicles (
+CREATE TABLE pasteis.vehicles (
 	id INTEGER PRIMARY KEY,
 	type VARCHAR(50) NOT NULL,
     location INTEGER REFERENCES warehouses(id),--foreign key to warehouses
@@ -24,7 +24,7 @@ CREATE TABLE vehicles (
 	avg_velocity REAL NOT NULL
 );
 
-CREATE TABLE clients (
+CREATE TABLE pasteis.clients (
 	id INTEGER PRIMARY KEY,
 	osm_node VARCHAR(50) NOT NULL,
 	customer_name VARCHAR(50) NOT NULL,
@@ -37,14 +37,14 @@ CREATE TABLE clients (
     geom geometry(POINT,4326)
 );
 
-CREATE TABLE orders (
+CREATE TABLE pasteis.orders (
     order_id INTEGER PRIMARY KEY,
     client_id INTEGER REFERENCES clients(id),
     quantity INTEGER NOT NULL,
     status VARCHAR(20)
 );
 
-CREATE TABLE streets (
+CREATE TABLE pasteis.streets (
 	fid INTEGER NOT NULL,
 	streetname VARCHAR(50),
 	direction VARCHAR(3), -- maybe necessary, maybe not
@@ -54,7 +54,7 @@ CREATE TABLE streets (
 );
 
 
-CREATE TABLE route (
+CREATE TABLE pasteis.routes (
 	id INTEGER PRIMARY KEY,
 	length REAL NOT NULL,
 	type VARCHAR(50) NOT NULL,
