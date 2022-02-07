@@ -1,6 +1,7 @@
-ASK PROF:
-1. api with localhost
-2. vroom or ?
+ASK PROF 7/2:
+1. api with localhost, how to flask
+2. 
+2. running vroom
   
 
 
