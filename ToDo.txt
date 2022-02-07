@@ -1,4 +1,6 @@
-add routes table to create.sql
+ASK PROF:
+1. api with localhost
+2. vroom or ?
   
 
 
