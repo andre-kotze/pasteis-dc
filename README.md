@@ -17,7 +17,10 @@ To Doo
 3. cost matrix from pgrouting
 4.
   
-
+Start looking at
+1. PG Routing vehicle routing optimization options
+2. Possible issues with the capacities, numer of vehicles...
+3. Html, Leaflet and API
 
   Pastelarias
     [OK] Locations extracted from OSM and stored in a DB
@@ -31,6 +34,13 @@ ALMOST DONE
   1 warehouse
   40-80 clients
   2 vehicles
+  
+  
+  
+PORTS
+3000  Vroom
+3080  Flask
+5000  OSRM
 
 -  
 Create and populate database
