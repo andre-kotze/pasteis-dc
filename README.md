@@ -4,17 +4,19 @@
 <hr>
 
 <pre>
-ASK PROF 9/2:
-1. Post from postman json, invalid response
+ASK PROF email:
+1. 
 2.
 3.
 
 
 To Doo
-1. 
+1. fix PadariasLX.sql
+2. test postman for posting Orders
+3. then can ask prof to get client details into orders
 2. running vroom
-1. create orders (in Postgres or in Py)
-3. cost matrix from pgrouting
+1. 
+3. .....cost matrix from pgrouting?
 4.
   
 Start looking at
