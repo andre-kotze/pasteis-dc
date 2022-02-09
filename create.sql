@@ -38,7 +38,7 @@ CREATE TABLE pasteis.clients (
 );
 
 CREATE TABLE pasteis.orders (
-    order_id INTEGER PRIMARY KEY,
+    order_id SERIAL PRIMARY KEY,
     client_id INTEGER REFERENCES pasteis.clients(id),
     quantity INTEGER NOT NULL,
     status VARCHAR(20)
