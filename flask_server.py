@@ -71,6 +71,22 @@ class clientsJSON(db.Model):
     __table_args__ = {"schema": "pasteis"}
     id = db.Column(db.Integer, primary_key=True)
 
+class ordersJSON(db.Model):
+    __tablename__ = "orders"
+    __table_args__ = {"schema": "pasteis"}
+    id = db.Column(db.Integer, primary_key=True)
+    client_id = db.Column(db.Integer)
+    quantity = db.Column(db.Integer)
+    delivery_datetime = db.Column(db.Integer)
+    geometry = db.Column(db.Text)
+
+    def __init__ (self, client_id, quantity, delivery_datetime, geometry):
+      self.client_id = client_id
+      self.quantity = quantity
+      self.delivery_datetime = delivery_datetime
+      self.geometry = geometry
+
+
 
 
 ## If the tables are not created yet, we can use the create_all() method from SQLAlchemy to
@@ -86,6 +102,13 @@ def get_clients():
     del client.__dict__['_sa_instance_state']
     clients.append(client.__dict__)
   return jsonify(clients)
+
+@app.route('/orders', methods =['POST'])
+def create_order():
+  body = request.get_json()
+  db.session.add(ordersJSON(body['client_id'], body['quantity'], body['delivery_datetime'], body['geometry']))
+  db.session.commit()
+  return "Order created"
 
 
 
