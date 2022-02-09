@@ -34,22 +34,17 @@ Start looking at
     [..] Store this selection in a json doc (https://github.com/VROOM-Project/vroom/blob/master/docs/API.md), compatible to VROOM.
 
 
-ALMOST DONE
-- Simulation algorithm to generate orders
-- Prepare test data:
-  1 warehouse
-  40-80 clients
-  2 vehicles
+[DONE] Simulation algorithm to generate orders
+[DONE] Prepare test data
+[DONE] Create and populate database
   
-  
-  
+ ==== REFERENCE ====
 PORTS
 3000  Vroom
 3080  Flask
 5000  OSRM
 
--  
-Create and populate database
+
 
 </pre>
 
