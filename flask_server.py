@@ -106,7 +106,11 @@ def get_clients():
 @app.route('/orders', methods =['POST'])
 def create_order():
   body = request.get_json()
-  db.session.add(ordersJSON(body['client_id'], body['quantity'], body['delivery_datetime'], body['geometry']))
+  db.session.add(ordersJSON(
+    body['client_id'], 
+    body['quantity'], 
+    body['delivery_datetime'], 
+    body['geometry']))
   db.session.commit()
   return "Order created"
 
@@ -114,4 +118,4 @@ def create_order():
 
 if __name__ == '__main__':
     
-    app.run(debug=True)
+    app.run(port=3080, debug=True)
