@@ -77,14 +77,14 @@ class ordersJSON(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer)
     quantity = db.Column(db.Integer)
-    #delivery_datetime = db.Column(db.Integer)
-    geometry = db.Column(db.Text)
+    delivery_datetime = db.Column(db.Integer)
+    geom = db.Column(db.Text)
 
-    def __init__ (self, client_id, quantity, delivery_datetime, geometry):
+    def __init__ (self, client_id, quantity, delivery_datetime, geom):
       self.client_id = client_id
       self.quantity = quantity
-      #self.delivery_datetime = delivery_datetime
-      self.geometry = geometry
+      self.delivery_datetime = delivery_datetime
+      self.geom = geom
 
 
 
@@ -109,8 +109,8 @@ def create_order():
   db.session.add(ordersJSON(
     body['client_id'], 
     body['quantity'], 
-    #body['delivery_datetime'], 
-    body['geometry']))
+    body['delivery_datetime'], 
+    body['geom']))
   db.session.commit()
   return "Order created"
 

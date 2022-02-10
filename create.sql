@@ -26,22 +26,21 @@ CREATE TABLE pasteis.vehicles (
 
 CREATE TABLE pasteis.clients (
 	id INTEGER PRIMARY KEY,
-	osm_node VARCHAR(50) NOT NULL,
-	customer_name VARCHAR(50) NOT NULL,
+	client_name VARCHAR(50) NOT NULL,
     addressline1 VARCHAR(50) NOT NULL,
     addressline2 VARCHAR(50) DEFAULT NULL,
     city VARCHAR(50) NOT NULL DEFAULT 'Lisboa',
     postalcode VARCHAR(8) DEFAULT NULL,
     country VARCHAR(50) DEFAULT 'Portugal',
-    nif INTEGER,
+    nif VARCHAR,
     geom geometry(POINT,4326)
 );
 
 CREATE TABLE pasteis.orders (
-    order_id SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     client_id INTEGER REFERENCES pasteis.clients(id),
     quantity INTEGER NOT NULL,
-    status VARCHAR(20)
+    geom geometry(POINT,4326)
 );
 
 CREATE TABLE pasteis.streets (
