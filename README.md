@@ -1,25 +1,31 @@
 <h1 align="center"><b>Optimised Vehicle Routing for Deliveries of Pasteis de Nata</b></h1>
 
+<p align="center"> 
+  <img src = "caralho.jpg" alt = "Pasteis do Ceu" width = "100%">
+</p>
+
 
 <hr>
 
 <pre>
-ASK PROF 9/2:
-1. Post from postman json, invalid response
+ASK PROF email:
+1. 
 2.
 3.
 
 
 To Doo
-1. 
+1. fix PadariasLX.sql
+2. test postman for posting Orders
+3. then can ask prof to get client details into orders
 2. running vroom
-1. create orders (in Postgres or in Py)
-3. cost matrix from pgrouting
+1. 
+3. .....cost matrix from pgrouting?
 4.
   
 Start looking at
 1. PG Routing vehicle routing optimization options
-2. Possible issues with the capacities, numer of vehicles...
+2. Possible issues with the capacities, number of vehicles...
 3. Html, Leaflet and API
 
   Pastelarias
@@ -28,22 +34,26 @@ Start looking at
     [..] Store this selection in a json doc (https://github.com/VROOM-Project/vroom/blob/master/docs/API.md), compatible to VROOM.
 
 
-ALMOST DONE
-- Simulation algorithm to generate orders
-- Prepare test data:
-  1 warehouse
-  40-80 clients
-  2 vehicles
+[DONE] Simulation algorithm to generate orders
+[DONE] Prepare test data
+[DONE] Create and populate database
   
-  
-  
+ ==== REFERENCE ====
 PORTS
-3000  Vroom
-3080  Flask
-5000  OSRM
+127.0.0.1:3000  Vroom
+127.0.0.1:3080  Flask
+127.0.0.1:5000  OSRM
 
--  
-Create and populate database
+ ==== VROOM SERVER ====
+vroom-docker = vroom-express on top of vroom on top of orsm-backend
+
+### start osrm server, passing the ROI data as an argument: 
+      docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/berlin-latest.osrm
+    requests can now be sent to OSRM
+    
+### start vroom server:
+      docker start -a vroom
+
 
 </pre>
 
