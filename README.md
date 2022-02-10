@@ -9,34 +9,34 @@
 
 <pre>
 ASK PROF email:
-1. 
+1. get client details into orders
 2.
 3.
 
 
 To Doo
-1. fix PadariasLX.sql
-2. test postman for posting Orders
 3. then can ask prof to get client details into orders
+    POST via sql to create order table, then JOIN
 2. running vroom
 1. 
 3. .....cost matrix from pgrouting?
-4.
+4. Store this selection in a json doc (https://github.com/VROOM-Project/vroom/blob/master/docs/API.md), compatible to VROOM.
   
 Start looking at
 1. PG Routing vehicle routing optimization options
 2. Possible issues with the capacities, number of vehicles...
 3. Html, Leaflet and API
 
-  Pastelarias
-    [OK] Locations extracted from OSM and stored in a DB
-    [OK] Generate a python program to randomly select the number of pastelarias and the quantities to be delivered daily.
-    [..] Store this selection in a json doc (https://github.com/VROOM-Project/vroom/blob/master/docs/API.md), compatible to VROOM.
 
 
+ ==== DONE THINGS ====
+[DONE] Locations extracted from OSM and stored in a DB
+[DONE] Generate a python program to randomly select the number of pastelarias and the quantities to be delivered daily.
 [DONE] Simulation algorithm to generate orders
 [DONE] Prepare test data
 [DONE] Create and populate database
+[DONE] fix PadariasLX.sql
+[DONE] test postman for posting Orders
   
  ==== REFERENCE ====
 PORTS
