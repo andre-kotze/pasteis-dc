@@ -30,7 +30,7 @@ CREATE TABLE pasteis.clients (
     addressline1 VARCHAR(50) NOT NULL,
     addressline2 VARCHAR(50) DEFAULT NULL,
     city VARCHAR(50) NOT NULL DEFAULT 'Lisboa',
-    postalcode VARCHAR(8) DEFAULT NULL,
+    postalcode VARCHAR(20) DEFAULT NULL,
     country VARCHAR(50) DEFAULT 'Portugal',
     nif VARCHAR,
     geom geometry(POINT,4326)
@@ -40,6 +40,7 @@ CREATE TABLE pasteis.orders (
     id SERIAL PRIMARY KEY,
     client_id INTEGER REFERENCES pasteis.clients(id),
     quantity INTEGER NOT NULL,
+	delivery_datetime VARCHAR(50), 
     geom geometry(POINT,4326)
 );
 
