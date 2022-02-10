@@ -2,18 +2,20 @@ SET standard_conforming_strings = OFF;
 DROP TABLE IF EXISTS "pasteis"."clients" CASCADE;
 DELETE FROM geometry_columns WHERE f_table_name = 'clients' AND f_table_schema = 'pasteis';
 BEGIN;
-CREATE TABLE "pasteis"."clients" ( "ogc_fid" SERIAL, CONSTRAINT "clients_pk" PRIMARY KEY ("ogc_fid") );
-SELECT AddGeometryColumn('pasteis','clients','wkb_geometry',4326,'POINT',2);
+--CREATE TABLE "pasteis"."clients" ( "id" SERIAL, CONSTRAINT "clients_pk" PRIMARY KEY ("id") );
+CREATE TABLE "pasteis"."clients" ( "id" INTEGER, CONSTRAINT "clients_pk" PRIMARY KEY ("id") );
+SELECT AddGeometryColumn('pasteis','clients','geom',4326,'POINT',2);
 CREATE INDEX "clients_wkb_geometry_geom_idx" ON "pasteis"."clients" USING GIST ("wkb_geometry");
-ALTER TABLE "pasteis"."clients" ADD COLUMN "fid" NUMERIC(20,0);
+--ALTER TABLE "pasteis"."clients" ADD COLUMN "fid" NUMERIC(20,0);
 ALTER TABLE "pasteis"."clients" ADD COLUMN "client_name" VARCHAR;
-ALTER TABLE "pasteis"."clients" ADD COLUMN "osm_node" VARCHAR;
+--ALTER TABLE "pasteis"."clients" ADD COLUMN "osm_node" VARCHAR;
 ALTER TABLE "pasteis"."clients" ADD COLUMN "addressline2" VARCHAR;
 ALTER TABLE "pasteis"."clients" ADD COLUMN "postalcode" VARCHAR;
 ALTER TABLE "pasteis"."clients" ADD COLUMN "addressline1" VARCHAR;
 ALTER TABLE "pasteis"."clients" ADD COLUMN "nif" VARCHAR;
 ALTER TABLE "pasteis"."clients" ADD COLUMN "id" NUMERIC(10,0);
 inseRT INTO PASTEIS, client_name, addressline2, postalcode, addressline1, nif, id ) VALUES
+-- 6 values here are: geom, name, addr2, postal, addr1, nif, id
 ('0101000020E610000038AC5F9FEF4122C0B2570EE3245B4340' , 'Pastelaria Alfama Doce' , '39-39A' , '1170' , 'Rua da Regueria' , NULL ,1),
 ('0101000020E6100000743D76BC6E4222C0DBF74D06EC5B4340' , 'A Padaria Portuguesa' , '14' , NULL , 'Rua da Graça' , 'Mo-Su 07:30-20:00' ,2),
 ('0101000020E6100000AA40D24C9C5522C0096D3997E25C4340' , 'Padaria Pao Duro' , NULL , NULL , NULL , NULL ,3),
