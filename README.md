@@ -25,7 +25,7 @@ To Doo
   
 Start looking at
 1. PG Routing vehicle routing optimization options
-2. Possible issues with the capacities, numer of vehicles...
+2. Possible issues with the capacities, number of vehicles...
 3. Html, Leaflet and API
 
   Pastelarias
@@ -40,10 +40,19 @@ Start looking at
   
  ==== REFERENCE ====
 PORTS
-3000  Vroom
-3080  Flask
-5000  OSRM
+127.0.0.1:3000  Vroom
+127.0.0.1:3080  Flask
+127.0.0.1:5000  OSRM
 
+ ==== VROOM SERVER ====
+vroom-docker = vroom-express on top of vroom on top of orsm-backend
+
+### start osrm server, passing the ROI data as an argument: 
+      docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/berlin-latest.osrm
+    requests can now be sent to OSRM
+    
+### start vroom server:
+      docker start -a vroom
 
 
 </pre>
