@@ -1,4 +1,9 @@
 # postman order
+new:
+{"client_id":"6",
+"quantity":"20"}
+
+old:
 {"client_id":"6",
 "quantity":"20",
 "delivery_datetime":"2022-02-01 01:01:01",
