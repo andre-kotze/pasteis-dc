@@ -67,6 +67,9 @@ vroom-docker = vroom-express on top of vroom on top of orsm-backend
   Paraíso Pasteleiro
   Marquês dos Pastéis
   Pastéis Pecaminosos; ou, Pastéis de Pecado
+  Pastéis de Sade
+  Natéis Inc.
+  O Pastel Alarife
  
 </pre>
 
