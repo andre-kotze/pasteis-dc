@@ -54,7 +54,21 @@ vroom-docker = vroom-express on top of vroom on top of orsm-backend
 ### start vroom server:
       docker start -a vroom
 
-
+ ==== OSRM SERVER ====
+ docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/car.lua /data/portugal-latest.osm.pbf
+ docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/portugal-latest.osrm
+ docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/portugal-latest.osrm
+ docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/portugal-latest.osrm
+ 
+ ==== NOMES ALTERNATIVES ====
+  Palácio dos Pastéis
+  Pastéis que sim senhor
+  Trinidad Pastéis
+  Paraíso Pasteleiro
+  Marquês dos Pastéis
+  Pastéis Pecaminosos; ou, Pastéis de Pecado
+  Planeta Pasteleiro
+ 
 </pre>
 
 <!-- CONTENTS -->
@@ -126,7 +140,7 @@ Master's degree in Geospatial Technologies at <a href ="https://www.novaims.unl.
 </p>
 
 <b>Andre Kotze</b><br>
-BSc (Earth Science)<br>
-Postgraduate Diploma (Geotechnical Engineering)<br>
+BSc (Earth Science) at <a href="https://www.sun.ac.za/" target="_blank">Stellenbosch University</a><br>
+Postgraduate Diploma (Geotechnical Engineering) at <a href="https://www.sun.ac.za/" target="_blank">Stellenbosch University</a><br>
 Master's degree in Geospatial Technologies at <a href ="https://www.novaims.unl.pt/" target = "_blank">NOVA University of Lisbon</a>, <a href ="https://www.uni-muenster.de/en/" target = "_blank">WWU Münster</a> and <a href ="https://www.uji.es/" target = "_blank">UJI</a><br>
 </p>
