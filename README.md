@@ -59,6 +59,15 @@ vroom-docker = vroom-express on top of vroom on top of orsm-backend
  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/portugal-latest.osrm
  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/portugal-latest.osrm
  docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/portugal-latest.osrm
+ 
+ ==== NOMES ALTERNATIVES ====
+  Palácio dos Pastéis
+  Pastéis que sim senhor
+  Trinidad Pastéis
+  Paraíso Pasteleiro
+  Marquês dos Pastéis
+ 
+ 
 </pre>
 
 <!-- CONTENTS -->
