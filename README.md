@@ -10,16 +10,15 @@
 <pre>
 ASK PROF email:
 1. get client details into orders
-2.
+2. 
 3.
 
 
 To Doo
+1. parse argument FORMAT=GEOJSON to vroom
 3. then can ask prof to get client details into orders
     POST via sql to create order table, then JOIN
-2. running vroom
-1. 
-3. .....cost matrix from pgrouting?
+3. .....cost matrix from pgrouting? No...
 4. Store this selection in a json doc (https://github.com/VROOM-Project/vroom/blob/master/docs/API.md), compatible to VROOM.
   
 Start looking at
@@ -39,6 +38,7 @@ After confirmation, generate an order ID to save to our control and the client's
 [DONE] Create and populate database
 [DONE] fix PadariasLX.sql
 [DONE] test postman for posting Orders
+[DONE] running vroom
   
  ==== REFERENCE ====
 PORTS
@@ -51,7 +51,7 @@ vroom-docker = vroom-express on top of vroom on top of orsm-backend
 
 ### start osrm server, passing the ROI data as an argument: 
       docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/berlin-latest.osrm
-    requests can now be sent to OSRM
+    #requests can now be sent to OSRM
     
 ### start vroom server:
       docker start -a vroom
@@ -69,13 +69,12 @@ vroom-docker = vroom-express on top of vroom on top of orsm-backend
   Paraíso Pasteleiro
   Marquês dos Pastéis
   Pastéis Pecaminosos; ou, Pastéis de Pecado
-<<<<<<< HEAD
   Pastéis de Sade
   Natéis Inc.
   O Pastel Alarife
-=======
   Planeta Pasteleiro
->>>>>>> 610866963603e396840b350aeb91222ba9198bf3
+  Pastéis Macios Redondos e Grandes
+  610866963603e396840b350aeb91222ba9198bf3
  
 </pre>
 
