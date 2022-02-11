@@ -16,6 +16,7 @@ ASK PROF email:
 
 To Doo
 1. parse argument FORMAT=GEOJSON to vroom
+2. let flask post multiple orders
 3. then can ask prof to get client details into orders
     POST via sql to create order table, then JOIN
 3. .....cost matrix from pgrouting? No...
