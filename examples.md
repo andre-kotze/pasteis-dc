@@ -13,10 +13,3 @@ curl -w "%{http_code}" http://localhost:3000/health
 
 # VROOM request
 curl --header "Content-Type:application/json" --data '{"vehicles":[{"id":0,"start":[-9.1513,38.7107],"end":[-9.1513,38.7107]}],"jobs":[{"id":0,"location":[-9.1373,38.7169]},{"id":1,"location":[-9.1462,38.7254]}],"options":{"g":true}}' http://localhost:3000
-
-
-
-# postgis geometry query
-select r.id, st_linefromencodedpolyline(r.geom, 5) as route
-from pasteis.routes as r
-where r.id = 0

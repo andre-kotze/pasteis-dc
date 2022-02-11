@@ -15,23 +15,24 @@ CREATE TABLE pasteis.warehouses (
 
 CREATE TABLE pasteis.vehicles (
 	id INTEGER PRIMARY KEY,
-	type VARCHAR(50),
+	type VARCHAR(50) NOT NULL,
     location INTEGER REFERENCES pasteis.warehouses(id),--foreign key to warehouses
 	capacity INTEGER NOT NULL,
-	occupation INTEGER default 0,
-	--cost_per_time REAL NOT NULL,
-	--cost_per_delivery REAL NOT NULL,
-	avg_velocity REAL default 30
+	occupation INTEGER NOT NULL,
+	cost_per_time REAL NOT NULL,
+	cost_per_delivery REAL NOT NULL,
+	avg_velocity REAL NOT NULL
 );
 
 CREATE TABLE pasteis.clients (
 	id INTEGER PRIMARY KEY,
-	client_name VARCHAR(50),
-    addressline1 VARCHAR(50),
+	client_name VARCHAR(50) NOT NULL,
+    addressline1 VARCHAR(50) NOT NULL,
     addressline2 VARCHAR(50) DEFAULT NULL,
     city VARCHAR(50) NOT NULL DEFAULT 'Lisboa',
     postalcode VARCHAR(20) DEFAULT NULL,
     country VARCHAR(50) DEFAULT 'Portugal',
+    nif VARCHAR,
     geom geometry(POINT,4326)
 );
 
@@ -43,7 +44,7 @@ CREATE TABLE pasteis.orders (
 	status VARCHAR(50) CHECK (status IN ('To deliver','Delivered','Canceled','Delivery failed','To pick up','To return')) DEFAULT 'To deliver',
     geom geometry(POINT,4326)
 );
-/*
+
 CREATE TABLE pasteis.streets (
 	fid INTEGER NOT NULL,
 	streetname VARCHAR(50),
@@ -52,10 +53,12 @@ CREATE TABLE pasteis.streets (
 	avg_velocity REAL DEFAULT 30,
 	wkb_geometry geometry(LINESTRING,4326)
 );
-*/
+
 
 CREATE TABLE pasteis.routes (
-	id INTEGER PRIMARY KEY
+	id INTEGER PRIMARY KEY,
+	length REAL NOT NULL,
+	type VARCHAR(50) NOT NULL,
     vehicle INTEGER REFERENCES pasteis.vehicles(id),--foreign key to vehicles
-    geom varchar(256)
+    geom geometry(MULTILINESTRING,4326)
 );

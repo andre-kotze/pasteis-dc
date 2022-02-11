@@ -26,6 +26,8 @@ Start looking at
 1. PG Routing vehicle routing optimization options
 2. Possible issues with the capacities, number of vehicles...
 3. Html, Leaflet and API
+4. Interface for clients to log in w/ pass (after that, ID will be automatically assigned to the order) and select date and quantity.
+After confirmation, generate an order ID to save to our control and the client's (exportable as pdf).
 
 
 
@@ -67,7 +69,13 @@ vroom-docker = vroom-express on top of vroom on top of orsm-backend
   Paraíso Pasteleiro
   Marquês dos Pastéis
   Pastéis Pecaminosos; ou, Pastéis de Pecado
+<<<<<<< HEAD
+  Pastéis de Sade
+  Natéis Inc.
+  O Pastel Alarife
+=======
   Planeta Pasteleiro
+>>>>>>> 610866963603e396840b350aeb91222ba9198bf3
  
 </pre>
 
