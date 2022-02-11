@@ -26,6 +26,8 @@ Start looking at
 1. PG Routing vehicle routing optimization options
 2. Possible issues with the capacities, number of vehicles...
 3. Html, Leaflet and API
+4. Interface for clients to log in w/ pass (after that, ID will be automatically assigned to the order) and select date and quantity.
+After confirmation, generate an order ID to save to our control and the client's (exportable as pdf).
 
 
 
