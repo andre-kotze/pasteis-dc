@@ -54,7 +54,11 @@ vroom-docker = vroom-express on top of vroom on top of orsm-backend
 ### start vroom server:
       docker start -a vroom
 
-
+ ==== OSRM SERVER ====
+ docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/car.lua /data/portugal-latest.osm.pbf
+ docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/portugal-latest.osrm
+ docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/portugal-latest.osrm
+ docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/portugal-latest.osrm
 </pre>
 
 <!-- CONTENTS -->
