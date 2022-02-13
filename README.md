@@ -29,6 +29,25 @@ Start looking at
 After confirmation, generate an order ID to save to our control and the client's (exportable as pdf).
 
 
+ ==== API STRUCTURE ====
+0 HOMEPAGE
+  Choose: Client, Manager or Carrier
+  Imput username an pwd
+  
+1 Client
+  The main page is the data of your business. + You can update it.
+  There is a list with all the orders + You can add, modify or cancel the orders for the incoming days.
+  Save and exit
+  
+2 Manager
+  You select a date.
+  Tha main view is a map of that day deliveries.
+  At right there is the list of each place, quantities, status and delivery time. + You can download a pdf report of the day deliveries.
+  
+3 Carrier // Nicer if it's an APP
+  Tha main view is a map of today's delivery route for your vehicle.
+  At right there is the list of each place, quantities and status / the description of the route.
+  You can update the status of each delivery once it is done.
 
  ==== DONE THINGS ====
 [DONE] Locations extracted from OSM and stored in a DB
