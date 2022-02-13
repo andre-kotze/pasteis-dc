@@ -77,14 +77,12 @@ class ordersJSON(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer)
     quantity = db.Column(db.Integer)
-    delivery_datetime = db.Column(db.Integer)
-    geom = db.Column(db.Text)
 
-    def __init__ (self, client_id, quantity, delivery_datetime, geom):
+
+    def __init__ (self, client_id, quantity):
       self.client_id = client_id
       self.quantity = quantity
-      self.delivery_datetime = delivery_datetime
-      self.geom = geom
+
 
 
 
@@ -106,13 +104,13 @@ def get_clients():
 @app.route('/orders', methods =['POST'])
 def create_order():
   body = request.get_json()
-  db.session.add(ordersJSON(
-    body['client_id'], 
-    body['quantity'], 
-    body['delivery_datetime'], 
-    body['geom']))
+  print(body)
+  for order in body:
+    db.session.add(ordersJSON(
+      order['client_id'], 
+      order['quantity'])) 
   db.session.commit()
-  return "Order created"
+  return f"{len(body)} Orders created"
 
 
 
