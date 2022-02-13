@@ -8,17 +8,16 @@
 <hr>
 
 <pre>
-ASK PROF email:
-1. get client details into orders
+ASK PROF valentino:
+1. postgres trigger
 2. 
 3.
 
 
 To Doo
 1. parse argument FORMAT=GEOJSON to vroom
-2. let flask post multiple orders
-3. then can ask prof to get client details into orders
-    POST via sql to create order table, then JOIN
+2. 
+3. 
 3. .....cost matrix from pgrouting? No...
 4. Store this selection in a json doc (https://github.com/VROOM-Project/vroom/blob/master/docs/API.md), compatible to VROOM.
   
@@ -40,6 +39,7 @@ After confirmation, generate an order ID to save to our control and the client's
 [DONE] fix PadariasLX.sql
 [DONE] test postman for posting Orders
 [DONE] running vroom
+[DONE[ let flask post multiple orders
   
  ==== REFERENCE ====
 PORTS
