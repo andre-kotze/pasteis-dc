@@ -77,6 +77,9 @@ class ordersJSON(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer)
     quantity = db.Column(db.Integer)
+    status = db.Column(db.Text)
+    geom = db.Column(db.Text)
+    delivery_date = db.Column(db.Text)
 
 
     def __init__ (self, client_id, quantity):
@@ -111,6 +114,14 @@ def create_order():
       order['quantity'])) 
   db.session.commit()
   return f"{len(body)} Orders created"
+
+@app.route('/orders', methods =['GET'])
+def get_orders():
+  orders = []
+  for order in db.session.query(ordersJSON).all():
+    del order.__dict__['_sa_instance_state']
+    orders.append(order.__dict__)
+  return jsonify(orders)
 
 
 
