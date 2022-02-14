@@ -10,7 +10,7 @@ function loadTable() {
       for (let object of objects) {
         trHTML += '<tr>'; 
         trHTML += '<td>'+object['id']+'</td>';
-        trHTML += '<td>'+object['client_id']+'</td>';
+        trHTML += '<td>'+object['client_name']+'</td>';
         trHTML += '<td>'+object['quantity']+'</td>';
         trHTML += '<td>'+object['status']+'</td>';
         trHTML += '<td>'+object['delivery_date']+'</td>';
@@ -27,13 +27,12 @@ loadTable();
 
 function showUserCreateBox() {
   Swal.fire({
-    title: 'Create user',
+    title: 'Create order',
     html:
       '<input id="id" type="hidden">' +
-      '<input id="fname" class="swal2-input" placeholder="First">' +
-      '<input id="lname" class="swal2-input" placeholder="Last">' +
-      '<input id="username" class="swal2-input" placeholder="Username">' +
-      '<input id="email" class="swal2-input" placeholder="Email">',
+      '<input id="client_id" class="swal2-input" placeholder="Client ID">' +
+      '<input id="quantity" class="swal2-input" placeholder="Quantity (in boxes)">' +
+      '<input id="delivery_date" class="swal2-input" placeholder="Delivery date">' ,
     focusConfirm: false,
     preConfirm: () => {
       userCreate();
@@ -48,7 +47,7 @@ function userCreate() {
   const email = document.getElementById("email").value;
     
   const xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "https://www.mecallapi.com/api/users/create");
+  xhttp.open("POST", "http://localhost:3080/orders");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(JSON.stringify({ 
     "fname": fname, "lname": lname, "username": username, "email": email, 
@@ -65,7 +64,7 @@ function userCreate() {
 
 function userDelete(id) {
   const xhttp = new XMLHttpRequest();
-  xhttp.open("DELETE", "https://www.mecallapi.com/api/users/delete");
+  xhttp.open("DELETE", "http://localhost:3080/orders");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(JSON.stringify({ 
     "id": id
@@ -82,7 +81,7 @@ function userDelete(id) {
 function showUserEditBox(id) {
   console.log(id);
   const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "https://www.mecallapi.com/api/users/"+id);
+  xhttp.open("GET", "http://localhost:3080/orders"+id);
   xhttp.send();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -114,7 +113,7 @@ function userEdit() {
   const email = document.getElementById("email").value;
     
   const xhttp = new XMLHttpRequest();
-  xhttp.open("PUT", "https://www.mecallapi.com/api/users/update");
+  xhttp.open("PUT", "http://localhost:3080/orders");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(JSON.stringify({ 
     "id": id, "fname": fname, "lname": lname, "username": username, "email": email, 
