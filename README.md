@@ -16,8 +16,11 @@ ASK PROF valentino:
 
 To Doo
 1. parse argument FORMAT=GEOJSON to vroom
-2. 
-3. 
+2. incorporate Leaflet into website
+3. separate Orders and Jobs (for POST and GET)
+
+
+
 3. .....cost matrix from pgrouting? No...
 4. Store this selection in a json doc (https://github.com/VROOM-Project/vroom/blob/master/docs/API.md), compatible to VROOM.
   
@@ -93,8 +96,7 @@ vroom-docker = vroom-express on top of vroom on top of orsm-backend
   Natéis Inc.
   O Pastel Alarife
   Planeta Pasteleiro
-  Pastéis Macios Redondos e Grandes
-  610866963603e396840b350aeb91222ba9198bf3
+  <del>Pastéis Macios Redondos e Grandes</del>
  
 </pre>
 
