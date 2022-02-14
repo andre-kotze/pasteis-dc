@@ -1,0 +1,35 @@
+curl --header "Content-Type:application/json" --data 
+'{
+    "vehicles": [
+        {
+            "id": 0,
+            "start": [
+                -9.15138,
+                38.73365
+            ],
+            "end": [
+                -9.15138,
+                38.73365
+            ]
+        }
+    ],
+    "jobs": [
+        {
+            "id": 0,
+            "location": [
+                -9.12878,
+                38.71206
+            ]
+        },
+        {
+            "id": 1,
+            "location": [
+                -9.12975,
+                38.71814
+            ]
+        }
+    ],
+    "options": {
+        "g": true
+    }
+}' http: //localhost:3000
