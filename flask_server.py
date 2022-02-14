@@ -78,6 +78,7 @@ class ordersJSON(db.Model):
     __table_args__ = {"schema": "pasteis"}
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer)
+    client_name = db.Column(db.Text)
     quantity = db.Column(db.Integer)
     status = db.Column(db.Text)
     geom = db.Column(db.Text)
