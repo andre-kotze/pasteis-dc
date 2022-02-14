@@ -27,6 +27,7 @@ config.read('flask_config.ini')
 
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 # import os
 
 DB_CONFIG = {
@@ -43,8 +44,9 @@ DB_CONFIG = {
 # DB_CONFIG['username'] = os.environ.get('USERNAME')
 # ...
 
-# Create a flask application
+# Create a flask application. Run the CORS to able server connections from the browser
 app = Flask(__name__)
+CORS(app)
 
 # Set the database connection URI in the app configuration
 
