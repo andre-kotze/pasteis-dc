@@ -25,3 +25,6 @@ curl --header "Content-Type:application/json" --data '{"vehicles":[{"id":0,"star
 
 # output encoded polylines
 gugkFvjzv@@PD^@R?HCPCPQb@EJOPGDCBKFEFKf@ENq@nBc@jAyAsBOGGCOGEAGAEAG?IBgAXo@Nk@Ra@HI@aB^MDaAb@aDtBMHWPCBWNi@^OHs@^IBKB[DaAPcAPI@QFcB`@aB`@}@TK@y@BaCHW?[BKSGUAKOs@CQAKIs@K}@ISGQOa@[[EIQa@EKy@kBi@oA[u@i@kAQc@g@kAu@cBO_@Qa@u@cBIQO_@_@{@Q_@IUMe@m@sAIQQc@Qc@Sc@Sc@GOo@wAEMGMk@qAEKO]o@uAEGYEOCg@AkACW?G?g@ASCSIIGOSkAaBIMRSxCmCJI~@w@f@a@zAqAHIxBiBfB_BDINY@C`@{@P[\\o@N[R_@L_@Ji@DYBS@c@@UVCdAMlC`@VBj@SnAc@FODIBWGYKWAK?IBGn@w@X]FIBK?E?ICQGQ^QRMvAu@RMhCyAPKDAF@ZrADDB?`DgAf@Ov@[DGBMAQIa@Kg@FCNANBT?EWCWoAoCBCB?D@D@VPZN@@b@RD@TJb@Pr@XTJNFPFHD\\Lz@ZPNLHPRNLTLH@F@J?JAHAPEj@M@?B?@?@@FB@@B?@?VV@?@?@?x@WDAB?D?B?@@B@@@BB@@@B?BJp@@HBH@B?BBB@DBD^p@?@@@?@Lv@?B?B?D?BADADABCBABCBEBG@MDi@N{@VIBgAZc@PC@A@EDCF?DAF?F@HBNHZBD@BBB@@@B@?@@@@@?B?LB\\Kb@OTIJC|Ag@FA\\CH?HAJADAjCw@~Bq@HCjCu@|@WjA]~Bq@JC@HPfAL`ABRBLDNBLDJDHFLFHFFFHLLHHHFFDJFNFHDNDLDF@B@B@@@BBBDBB@@D@F@F@DB@@BB@BBF?@?D@D?DAH?T?HAP@RB~AAj@?t@@r@@\\?LG?U?UAMAk@AaBGW?uBJ_@?M?qAFABCBABABADA@ADEXCFGTAHEdAGJCFC@ABGJMNCH?F@ZDf@@Z@F?BB`@HvA@`@?VATE`@AJGp@AFGz@Eh@CZAFEj@CRK~ACh@AXCfAA`@ANC`BGlBAR?FJ|AB^@XBf@FjA?NB^@V@RBNRpADT
+
+# an example from PostGIS, with polyline encoded from geojson:
+}{hkFfswv@Ke@|@AIo@kAsCxJ`EvAhArBSr@^`AYTDZzAj@dALjAU^wFdBIl@b@bA~GyAvToGh@tD^`A~@`AfClAHlKgFMuFRa@tAGnAk@~@ZfH}@fL[hLd@fJ\zB
