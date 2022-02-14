@@ -40,7 +40,7 @@ CREATE TABLE pasteis.orders (
     id SERIAL PRIMARY KEY,
     client_id INTEGER REFERENCES pasteis.clients(id),
     quantity INTEGER NOT NULL,
-	delivery_datetime VARCHAR(50), 
+	delivery_date DATE DEFAULT CURRENT_DATE + 1, 
 	status VARCHAR(50) CHECK (status IN ('To deliver','Delivered','Canceled','Delivery failed','To pick up','To return')) DEFAULT 'To deliver',
     geom geometry(POINT,4326)
 );
