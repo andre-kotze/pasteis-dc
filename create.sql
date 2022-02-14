@@ -39,6 +39,7 @@ CREATE TABLE pasteis.clients (
 CREATE TABLE pasteis.orders (
     id SERIAL PRIMARY KEY,
     client_id INTEGER REFERENCES pasteis.clients(id),
+	client_name VARCHAR(50),
     quantity INTEGER NOT NULL,
 	delivery_date DATE DEFAULT CURRENT_DATE + 1, 
 	status VARCHAR(50) CHECK (status IN ('To deliver','Delivered','Canceled','Delivery failed','To pick up','To return')) DEFAULT 'To deliver',
