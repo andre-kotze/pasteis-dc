@@ -1,79 +1,81 @@
-curl --header "Content-Type:application/json" --data 
-'{
+{
     "vehicles": [
         {
-          "capacity": 100, 
-          "id": 0, 
-          "location": "0101000020E6100000CE54D13C5F3822C0DC321BEBEF5C4340"
-        }, 
+            "capacity": [100],
+            "id": 0,
+            "start": [-9.110101605,38.726071728],
+            "end": [-9.110101605,38.726071728]
+        },
         {
-          "capacity": 200, 
-          "id": 1, 
-          "location": "0101000020E6100000CE54D13C5F3822C0DC321BEBEF5C4340"
-        }, 
+            "capacity": [200],
+            "id": 1,
+            "start": [-9.110101605,38.726071728],
+            "end": [-9.110101605,38.726071728]
+        },
         {
-          "capacity": 200, 
-          "id": 2, 
-          "location": "0101000020E6100000CE54D13C5F3822C0DC321BEBEF5C4340"
+            "capacity": [200],
+            "id": 2,
+            "start": [-9.110101605,38.726071728],
+            "end": [-9.110101605,38.726071728]
         }
-      ],
+    ],
     "jobs": [
         {
-          "address": "Rua Jos\u00e9 Falc\u00e3o 57 A, 1000-184, Lisboa, Portugal", 
-          "client_id": 37, 
-          "delivery_date": "Wed, 16 Feb 2022 00:00:00 GMT", 
-          "geom": "0101000020E6100000D18B248B454522C09785C0DBCD5D4340", 
-          "id": 25, 
-          "quantity": 12, 
-          "status": "To deliver"
-        }, 
+            "address": "Rua José Falcão 57 A, 1000-184, Lisboa, Portugal",
+            "client_id": 37,
+            "delivery_date": "Wed, 16 Feb 2022 00:00:00 GMT",
+            "location": [-9.1352962,38.7328448],
+            "id": 25,
+            "delivery": [12],
+            "status": "To deliver"
+        },
         {
-          "address": " , , Lisboa, Portugal", 
-          "client_id": 38, 
-          "delivery_date": "Wed, 16 Feb 2022 00:00:00 GMT", 
-          "geom": "0101000020E6100000F01F668A944522C060C2B2E3D05D4340", 
-          "id": 26, 
-          "quantity": 80, 
-          "status": "To deliver"
-        }, 
+            "address": " , , Lisboa, Portugal",
+            "client_id": 38,
+            "delivery_date": "Wed, 16 Feb 2022 00:00:00 GMT",
+            "location": [-9.1358989,38.7329373],
+            "id": 26,
+            "delivery": [80],
+            "status": "To deliver"
+        },
         {
-          "address": "Rua Ant\u00f3nio Pereira Carrilho 1-A, , Lisboa, Portugal", 
-          "client_id": 39, 
-          "delivery_date": "Wed, 16 Feb 2022 00:00:00 GMT", 
-          "geom": "0101000020E61000001220F939F44422C0CBE08332E85D4340", 
-          "id": 27, 
-          "quantity": 40, 
-          "status": "To deliver"
-        }, 
+            "address": "Rua António Pereira Carrilho 1-A, , Lisboa, Portugal",
+            "client_id": 39,
+            "delivery_date": "Wed, 16 Feb 2022 00:00:00 GMT",
+            "location": [-9.1346758,38.7336486],
+            "id": 27,
+            "delivery": [40],
+            "status": "To deliver"
+        },
         {
-          "address": "Rua Forno do Tijolo 29, , Lisboa, Portugal", 
-          "client_id": 55, 
-          "delivery_date": "Tue, 15 Feb 2022 00:00:00 GMT", 
-          "geom": "0101000020E6100000B1CEE792604422C05F605628D25C4340", 
-          "id": 24, 
-          "quantity": 40, 
-          "status": "To deliver"
-        }, 
+            "address": "Rua Forno do Tijolo 29, , Lisboa, Portugal",
+            "client_id": 55,
+            "delivery_date": "Tue, 15 Feb 2022 00:00:00 GMT",
+            "location": [-9.1335493,38.7251635],
+            "id": 24,
+            "delivery": [40],
+            "status": "To deliver"
+        },
         {
-          "address": " , , Lisboa, Portugal", 
-          "client_id": 77, 
-          "delivery_date": "Tue, 15 Feb 2022 00:00:00 GMT", 
-          "geom": "0101000020E610000007C20424504722C0BBD97AE1295B4340", 
-          "id": 22, 
-          "quantity": 12, 
-          "status": "To deliver"
-        }, 
+            "address": " , , Lisboa, Portugal",
+            "client_id": 77,
+            "delivery_date": "Tue, 15 Feb 2022 00:00:00 GMT",
+            "location": [-9.1392833,38.7122156],
+            "id": 22,
+            "delivery": [12],
+            "status": "To deliver"
+        },
         {
-          "address": "Rua Ferreira Borges 65, , Lisboa, Portugal", 
-          "client_id": 78, 
-          "delivery_date": "Tue, 15 Feb 2022 00:00:00 GMT", 
-          "geom": "0101000020E61000008B8862F2065422C0B026AA12C05B4340", 
-          "id": 23, 
-          "quantity": 80, 
-          "status": "To deliver"
+            "address": "Rua Ferreira Borges 65, , Lisboa, Portugal",
+            "client_id": 78,
+            "delivery_date": "Tue, 15 Feb 2022 00:00:00 GMT",
+            "location": [-9.1641155,38.7167991],
+            "id": 23,
+            "delivery": [80],
+            "status": "To deliver"
         }
-      ],
+    ],
     "options": {
         "g": true
     }
-}' http: //localhost:3000
+}
