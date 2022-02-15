@@ -63,3 +63,14 @@ CREATE TABLE pasteis.routes (
     vehicle INTEGER REFERENCES pasteis.vehicles(id),--foreign key to vehicles
     geom geometry(MULTILINESTRING,4326)
 );
+
+create view pasteis.jobs as
+select o.*, 
+c.client_name,
+    c.addressline1,
+    c.addressline2,
+    c.city,
+    c.postalcode,
+    c.country,
+    c.geom
+from pasteis.orders as o join pasteis.clients as c on (c.id = o.client_id);

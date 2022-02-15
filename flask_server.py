@@ -74,11 +74,7 @@ class jobsJSON(db.Model):
     status = db.Column(db.Text)
     geom = db.Column(db.Text)
     delivery_date = db.Column(db.Date)
-    addressline1 = db.Column(db.Text)
-    addressline2 = db.Column(db.Text)
-    city = db.Column(db.Text)
-    postalcode = db.Column(db.Text)
-    country = db.Column(db.Text)
+    address = db.Column(db.Text)
 
 # vehicles_view
 class vehiclesJSON(db.Model):
