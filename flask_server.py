@@ -50,6 +50,26 @@ class clientsJSON(db.Model):
     __tablename__ = "clients"
     __table_args__ = {"schema": "pasteis"}
     id = db.Column(db.Integer, primary_key=True)
+    client_name = db.Column(db.Text)
+    addressline1 = db.Column(db.Text)
+    addressline2 = db.Column(db.Text)
+    city = db.Column(db.Text)
+    postalcode = db.Column(db.Integer)
+    country = db.Column(db.Text)
+    nif = db.Column(db.Integer)
+    geom = db.Column(db.Text)
+
+    def __init__ (self, id, client_name, addressline1, addressline2, city, postalcode, country, nif, geom):
+      self.id = id
+      self.client_name = client_name
+      self.addressline1 = addressline1
+      self.addressline2 = addressline2
+      self.city = city
+      self.postalcode = postalcode
+      self.country = country
+      self.nif = nif
+      self.geom = geom
+
 
 # Matches orders table, only clientID and quantity need to be sent for POST
 #   maybe later, clients can specify a delivery date
@@ -108,6 +128,29 @@ def create_order():
     return "Order created"
   else:
     return f"{count} orders created"
+
+# POST method to create clients
+@app.route('/clients', methods =['POST'])
+def create_client():
+  body = request.get_json()
+  for client in body:
+    db.session.add(clientsJSON(
+      client['id'],
+      client['client_name'], 
+      client['addressline1'],
+      client['addressline2'],
+      client['city'],
+      client['postalcode'],
+      client['country'],
+      client['nif'],
+      client['geom'],
+      )) 
+  db.session.commit()
+  count = len(body)
+  if count == 1:
+    return "Client created"
+  else:
+    return f"{count} clients created"
 
 # GET method to retrieve all orders.. Maybe later we can filter by date
 @app.route('/jobs', methods =['GET'])
