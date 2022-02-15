@@ -80,6 +80,15 @@ class jobsJSON(db.Model):
     postalcode = db.Column(db.Text)
     country = db.Column(db.Text)
 
+# vehicles_view
+class vehiclesJSON(db.Model):
+    __tablename__ = "vehicles_view"
+    __table_args__ = {"schema": "pasteis"}
+    id = db.Column(db.Integer, primary_key=True)
+    capacity = db.Column(db.Integer)
+    location = db.Column(db.Text)
+
+
 # GET method to get all clients from the clients table
 @app.route('/clientids', methods=['GET'])
 def get_clients():
@@ -112,6 +121,15 @@ def get_jobs():
     del job.__dict__['_sa_instance_state']
     jobs.append(job.__dict__)
   return jsonify(jobs)
+
+# GET method to retreive vehicles
+@app.route('/vehicles', methods =['GET'])
+def get_vehicles():
+  vehicles = []
+  for vehicle in db.session.query(vehiclesJSON).all():
+    del vehicle.__dict__['_sa_instance_state']
+    vehicles.append(vehicle.__dict__)
+  return jsonify(vehicles)
 
 if __name__ == '__main__':
     app.run(port=3080, debug=True)
