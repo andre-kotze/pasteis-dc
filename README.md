@@ -17,7 +17,13 @@ ASK PROF valentino:
 To Doo
 1. parse argument FORMAT=GEOJSON to vroom
 2. incorporate Leaflet into website
+<<<<<<< HEAD
 3. 
+=======
+3. separate Orders and Jobs (for POST and GET)
+3.1 create VIEW called Jobs
+3.2 create trigger to update Jobs view
+>>>>>>> c522ea9d3ef9684bdb1a4db1776830adfc48bd87
 
 
 
