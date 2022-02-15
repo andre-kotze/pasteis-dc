@@ -64,17 +64,21 @@ class orderJSON(db.Model):
       self.client_id = client_id
       self.quantity = quantity
 
-# Matches orders table. For GET, all fields are required
-class ordersJSON(db.Model):
-    __tablename__ = "orders"
+# Matches jobs view. For GET, all fields are required
+class jobsJSON(db.Model):
+    __tablename__ = "jobs"
     __table_args__ = {"schema": "pasteis"}
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer)
-    client_name = db.Column(db.Text)
     quantity = db.Column(db.Integer)
     status = db.Column(db.Text)
     geom = db.Column(db.Text)
-    delivery_date = db.Column(db.Text)
+    delivery_date = db.Column(db.Date)
+    addressline1 = db.Column(db.Text)
+    addressline2 = db.Column(db.Text)
+    city = db.Column(db.Text)
+    postalcode = db.Column(db.Text)
+    country = db.Column(db.Text)
 
 # GET method to get all clients from the clients table
 @app.route('/clientids', methods=['GET'])
@@ -101,13 +105,13 @@ def create_order():
     return f"{count} orders created"
 
 # GET method to retrieve all orders.. Maybe later we can filter by date
-@app.route('/orders', methods =['GET'])
-def get_orders():
-  orders = []
-  for order in db.session.query(ordersJSON).all():
-    del order.__dict__['_sa_instance_state']
-    orders.append(order.__dict__)
-  return jsonify(orders)
+@app.route('/jobs', methods =['GET'])
+def get_jobs():
+  jobs = []
+  for job in db.session.query(jobsJSON).all():
+    del job.__dict__['_sa_instance_state']
+    jobs.append(job.__dict__)
+  return jsonify(jobs)
 
 if __name__ == '__main__':
     app.run(port=3080, debug=True)

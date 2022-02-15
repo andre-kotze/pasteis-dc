@@ -23,7 +23,14 @@ EXECUTE PROCEDURE pasteis.update_orders();
 
 
 /* THIS IS THE SECOND OPTION MAYBE FOR IMPLEMENTING LATER......
-create view order_geom as
-select o.*, c.geom as geom
-from order as o join clients as c on (c.client_id = o.client_id)
+create view pasteis.jobs as
+select o.*, 
+c.client_name,
+    c.addressline1,
+    c.addressline2,
+    c.city,
+    c.postalcode,
+    c.country,
+    c.geom
+from pasteis.orders as o join pasteis.clients as c on (c.id = o.client_id);
 */

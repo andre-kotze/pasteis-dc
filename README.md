@@ -17,7 +17,7 @@ ASK PROF valentino:
 To Doo
 1. parse argument FORMAT=GEOJSON to vroom
 2. incorporate Leaflet into website
-3. separate Orders and Jobs (for POST and GET)
+3. 
 
 
 
@@ -61,7 +61,8 @@ After confirmation, generate an order ID to save to our control and the client's
 [DONE] fix PadariasLX.sql
 [DONE] test postman for posting Orders
 [DONE] running vroom
-[DONE[ let flask post multiple orders
+[DONE] let flask post multiple orders
+[DONE] separate Orders and Jobs (for POST and GET)
   
  ==== REFERENCE ====
 PORTS

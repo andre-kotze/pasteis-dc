@@ -32,18 +32,18 @@ CREATE TABLE pasteis.clients (
     city VARCHAR(50) NOT NULL DEFAULT 'Lisboa',
     postalcode VARCHAR(20) DEFAULT NULL,
     country VARCHAR(50) DEFAULT 'Portugal',
-    nif VARCHAR,
+    --nif VARCHAR,
     geom geometry(POINT,4326)
 );
 
 CREATE TABLE pasteis.orders (
     id SERIAL PRIMARY KEY,
     client_id INTEGER REFERENCES pasteis.clients(id),
-	client_name VARCHAR(50),
+	--client_name VARCHAR(50),
     quantity INTEGER NOT NULL,
 	delivery_date DATE DEFAULT CURRENT_DATE + 1, 
 	status VARCHAR(50) CHECK (status IN ('To deliver','Delivered','Canceled','Delivery failed','To pick up','To return')) DEFAULT 'To deliver',
-    geom geometry(POINT,4326)
+    --geom geometry(POINT,4326)
 );
 
 CREATE TABLE pasteis.streets (
