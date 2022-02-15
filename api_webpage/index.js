@@ -1,6 +1,6 @@
 function loadTable() {
   const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "http://localhost:3080/orders");
+  xhttp.open("GET", "http://localhost:3080/jobs");
   xhttp.send();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -18,12 +18,35 @@ function loadTable() {
         trHTML += '<button type="button" class="btn btn-outline-danger" onclick="userDelete('+object['id']+')">Del</button></td>';
         trHTML += "</tr>";
       }
-      document.getElementById("mytable").innerHTML = trHTML;
+      document.getElementById("OrdersTable").innerHTML = trHTML;
     }
   };
 }
 
 loadTable();
+
+function SearchFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("SearchByDate"); // Get what we search from what we write in the search bar
+  filter = input.value.toUpperCase(); // To avoid upper-lower case problems
+  table = document.getElementById("OrdersTable"); // Specify the table
+  tr = table.getElementsByTagName("tr"); // Get elements from each row
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[4]; // Specify the column in wich we want to search
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
 
 function showUserCreateBox() {
   Swal.fire({

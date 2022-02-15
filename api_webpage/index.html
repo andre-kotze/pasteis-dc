@@ -23,6 +23,7 @@
     <div class="container">
       <div class="d-flex bd-highlight mb-3">
         <div class="me-auto p-2 bd-highlight"><h2>Orders</div>
+          <input type="text" id="SearchByDate" onkeyup="SearchFunction()" placeholder="Get orders from a specific date (ex: Tue, 15 Feb 2022)">
         <div class="p-2 bd-highlight">
           <button type="button" class="btn btn-secondary" onclick="showUserCreateBox()">Create</button>
         </div>
@@ -40,7 +41,7 @@
               <th scope="col">Action</th>
             </tr>
           </thead>
-          <tbody id="mytable">
+          <tbody id="OrdersTable">
             <tr>
               <th scope="row" colspan="5">Loading...</th>
             </tr>
