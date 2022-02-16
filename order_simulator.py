@@ -15,7 +15,8 @@ def get_all(suffix) -> list:
 
 # get list of clients
 clients = get_all("clientids")
-PADARIA_IDS = [i['id'] for i in clients]
+#PADARIA_IDS = [i['id'] for i in clients]
+PADARIA_IDS = clients
 
 # bounding parameters
 PADARIAS_COUNT = len(PADARIA_IDS)

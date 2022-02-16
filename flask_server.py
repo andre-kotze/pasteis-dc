@@ -109,7 +109,9 @@ def get_clients():
   clients = []
   for client in db.session.query(clientsJSON).all():
     del client.__dict__['_sa_instance_state']
-    clients.append(client.__dict__)
+    clients.append(client.__dict__['id'])
+    #print(client.__dict__)
+    #print(type(client.__dict__))
   return jsonify(clients)
 
 # POST method to place orders
