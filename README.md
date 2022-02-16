@@ -41,6 +41,7 @@ HOMEPAGE
 Tables page
   Show all the entries to the page.
   Filter by attributes, including a nice calendar filter by date
+  https://stackoverflow.com/questions/51597582/html-js-multi-choice-table-filter
 
 Orders and Clients Map Pages
   Map display with all the clients, when selecting one in the map: display the possibility to edit it on telft handside.
