@@ -70,7 +70,7 @@ PORTS
 vroom-docker = vroom-express on top of vroom on top of orsm-backend
 
 ### start osrm server, passing the ROI data as an argument: 
-      docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/berlin-latest.osrm
+      docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/lisboa.osrm
     #requests can now be sent to OSRM
     
 ### start vroom server:
