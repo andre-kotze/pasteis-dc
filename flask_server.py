@@ -56,10 +56,9 @@ class clientsJSON(db.Model):
     city = db.Column(db.Text)
     postalcode = db.Column(db.Integer)
     country = db.Column(db.Text)
-    nif = db.Column(db.Integer)
     geom = db.Column(db.Text)
 
-    def __init__ (self, id, client_name, addressline1, addressline2, city, postalcode, country, nif, geom):
+    def __init__ (self, id, client_name, addressline1, addressline2, city, postalcode, country, geom):
       self.id = id
       self.client_name = client_name
       self.addressline1 = addressline1
@@ -67,7 +66,6 @@ class clientsJSON(db.Model):
       self.city = city
       self.postalcode = postalcode
       self.country = country
-      self.nif = nif
       self.geom = geom
 
 
@@ -142,7 +140,6 @@ def create_client():
       client['city'],
       client['postalcode'],
       client['country'],
-      client['nif'],
       client['geom'],
       )) 
   db.session.commit()
