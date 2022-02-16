@@ -5,11 +5,11 @@ import json
 import requests
 
 # GET LIST OF CLIENT IDS FROM SERVER ========#
-URL = "http://localhost:5000/clientids"
+URL = "http://localhost:3080/"
 
-def get_all() -> list:
+def get_all(suffix) -> list:
     # Using request with GET method
-    r = requests.get(URL)
+    r = requests.get(URL + suffix)
     print('STATUS: ', r.status_code)
     if r.status_code == 200:
         #print('CONTENT: ', r.content)
@@ -17,12 +17,9 @@ def get_all() -> list:
         #print('JSON: ', r.json())
         return r.json()
 
-
-
-# will be passed as an argument later
-response = get_all()
-PADARIA_IDS = [list(i.values())[0] for i in response]
-
+# get list of clients
+clients = get_all("clientids")
+PADARIA_IDS = [i['id'] for i in clients]
 
 # bounding parameters
 PADARIAS_COUNT = len(PADARIA_IDS)

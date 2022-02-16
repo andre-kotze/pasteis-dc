@@ -116,10 +116,14 @@ def get_clients():
 @app.route('/orders', methods =['POST'])
 def create_order():
   body = request.get_json()
-  for order in body:
+  print(type(body))
+  for order in list(body.keys()):
     db.session.add(orderJSON(
-      order['client_id'], 
-      order['quantity'])) 
+      order,
+      body[order]))
+      #order.value)) 
+#      order['client_id'], 
+#      order['quantity'])) 
   db.session.commit()
   count = len(body)
   if count == 1:
