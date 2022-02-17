@@ -2,6 +2,7 @@
 import random
 import json
 import requests
+from datetime import datetime
 
 # GET LIST OF CLIENT IDS FROM SERVER ========#
 URL = "http://localhost:3080/"
@@ -35,6 +36,7 @@ daily_order = random.sample(PADARIA_IDS, daily_orders_count)
 ORDERS_DICT = {padaria: random.randint(1, MAX_ORDER_SIZE) for padaria in daily_order}
 print(ORDERS_DICT)
 print(f'Total packages {sum(ORDERS_DICT.values())}')
+filename = 'requests/orders_' + datetime.now().strftime('%Y%m%d%H%M%S') + '.json'
 
 ## json part
 def save_result(data , outfile) -> None:
@@ -50,4 +52,4 @@ def save_result(data , outfile) -> None:
     except Exception as e:
         print(e)
 
-save_result(ORDERS_DICT, 'ordersLX.json')
+save_result(ORDERS_DICT, filename)
