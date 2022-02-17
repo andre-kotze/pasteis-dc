@@ -21,8 +21,8 @@ PADARIA_IDS = clients
 
 # bounding parameters
 PADARIAS_COUNT = len(PADARIA_IDS)
-MAX_ORDER_SIZE = 40
-MIN_ORDERS, MAX_ORDERS = 10, 40
+MAX_ORDER_SIZE = 70
+MIN_ORDERS, MAX_ORDERS = 25, 70
 
 # create orders for a random distribution of clients (units distributed per order = *missing*)
 daily_orders_count = random.randint(MIN_ORDERS, MAX_ORDERS)
