@@ -10,7 +10,6 @@ function ClientCreateBox() {
         '<input id="city" class="swal2-input" placeholder="City">' +
         '<input id="postalcode" class="swal2-input" placeholder="Postal Code">' +
         '<input id="country" class="swal2-input" placeholder="Country">' +
-        '<input id="nif" class="swal2-input" placeholder="NIF">' +
         '<input id="password" class="swal2-input" placeholder="Password">' ,
       focusConfirm: false,
       preConfirm: () => {
@@ -26,7 +25,6 @@ function saveUser() {
     const city = document.getElementById("city").value;
     const postalcode = document.getElementById("postalcode").value;
     const country = document.getElementById("country").value;
-    const nif = document.getElementById("nif").value;
     const password = document.getElementById("password").value;
       
     const xhttp = new XMLHttpRequest();
