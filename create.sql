@@ -17,10 +17,7 @@ CREATE TABLE pasteis.vehicles (
 	id INTEGER PRIMARY KEY,
 	type VARCHAR(50) NOT NULL,
     location INTEGER REFERENCES pasteis.warehouses(id),--foreign key to warehouses
-	start geometry(POINT,4326),
 	capacity INTEGER NOT NULL,
-	cost_per_time REAL NOT NULL,
-	cost_per_delivery REAL NOT NULL,
 	avg_velocity REAL NOT NULL
 );
 
