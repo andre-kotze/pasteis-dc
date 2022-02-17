@@ -11,3 +11,10 @@ COMMIT;
 INSERT INTO pasteis.vehicles ("id", "type", "warehouse", "capacity", "avg_velocity") 
 VALUES ('3', 'limousine', 0, 160, 30);
 COMMIT;
+<<<<<<< HEAD
+=======
+
+INSERT INTO pasteis.vehicles ("id", "type", "warehouse", "capacity", "avg_velocity") 
+VALUES ('4', 'hoverboard', 0, 80, 30);
+COMMIT;
+>>>>>>> 55f9405bc356419492b16a294ea9d7fe350a95e2
