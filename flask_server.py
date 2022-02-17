@@ -56,10 +56,9 @@ class clientsJSON(db.Model):
     city = db.Column(db.Text)
     postalcode = db.Column(db.Integer)
     country = db.Column(db.Text)
-    nif = db.Column(db.Integer)
     geom = db.Column(db.Text)
 
-    def __init__ (self, id, client_name, addressline1, addressline2, city, postalcode, country, nif, geom):
+    def __init__ (self, id, client_name, addressline1, addressline2, city, postalcode, country, geom):
       self.id = id
       self.client_name = client_name
       self.addressline1 = addressline1
@@ -67,7 +66,6 @@ class clientsJSON(db.Model):
       self.city = city
       self.postalcode = postalcode
       self.country = country
-      self.nif = nif
       self.geom = geom
 
 
@@ -111,17 +109,23 @@ def get_clients():
   clients = []
   for client in db.session.query(clientsJSON).all():
     del client.__dict__['_sa_instance_state']
-    clients.append(client.__dict__)
+    clients.append(client.__dict__['id'])
+    #print(client.__dict__)
+    #print(type(client.__dict__))
   return jsonify(clients)
 
 # POST method to place orders
 @app.route('/orders', methods =['POST'])
 def create_order():
   body = request.get_json()
-  for order in body:
+  print(type(body))
+  for order in list(body.keys()):
     db.session.add(orderJSON(
-      order['client_id'], 
-      order['quantity'])) 
+      order,
+      body[order]))
+      #order.value)) 
+#      order['client_id'], 
+#      order['quantity'])) 
   db.session.commit()
   count = len(body)
   if count == 1:
@@ -142,7 +146,6 @@ def create_client():
       client['city'],
       client['postalcode'],
       client['country'],
-      client['nif'],
       client['geom'],
       )) 
   db.session.commit()

@@ -1,0 +1,289 @@
+{
+  "vehicles": [
+    {
+      "id": 0,
+      "capacity": [
+        100
+      ],
+      "start": [
+        -9.110101605,
+        38.726071728
+      ],
+      "end": [
+        -9.110101605,
+        38.726071728
+      ]
+    },
+    {
+      "id": 1,
+      "capacity": [
+        200
+      ],
+      "start": [
+        -9.110101605,
+        38.726071728
+      ],
+      "end": [
+        -9.110101605,
+        38.726071728
+      ]
+    },
+    {
+      "id": 2,
+      "capacity": [
+        200
+      ],
+      "start": [
+        -9.110101605,
+        38.726071728
+      ],
+      "end": [
+        -9.110101605,
+        38.726071728
+      ]
+    }
+  ],
+  "jobs": [
+    {
+      "id": 40,
+      "client_id": 3,
+      "address": " , , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        22
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1672081,
+        38.725665
+      ]
+    },
+    {
+      "id": 30,
+      "client_id": 4,
+      "address": " , , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        28
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1537778,
+        38.7336503
+      ]
+    },
+    {
+      "id": 31,
+      "client_id": 16,
+      "address": " , , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        16
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1292954,
+        38.7107425
+      ]
+    },
+    {
+      "id": 28,
+      "client_id": 18,
+      "address": " , , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        10
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1458177,
+        38.7234864
+      ]
+    },
+    {
+      "id": 35,
+      "client_id": 26,
+      "address": "Rua Pascoal de Melo 56, , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        13
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1351536,
+        38.7313698
+      ]
+    },
+    {
+      "id": 29,
+      "client_id": 28,
+      "address": "Avenida Duque de Loul\u00e9 117/9, , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        15
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1480151,
+        38.7256991
+      ]
+    },
+    {
+      "id": 41,
+      "client_id": 31,
+      "address": "Rua Serpa Pinto 15, , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        17
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1417013,
+        38.7101747
+      ]
+    },
+    {
+      "id": 37,
+      "client_id": 35,
+      "address": "Avenida Ant\u00f3nio Augusto Aguiar , , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        13
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1518103,
+        38.7321594
+      ]
+    },
+    {
+      "id": 39,
+      "client_id": 46,
+      "address": " , , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        7
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1426926,
+        38.7066749
+      ]
+    },
+    {
+      "id": 36,
+      "client_id": 49,
+      "address": " , , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        30
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1450171,
+        38.7108169
+      ]
+    },
+    {
+      "id": 38,
+      "client_id": 52,
+      "address": " , , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        20
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1348071,
+        38.7255256
+      ]
+    },
+    {
+      "id": 32,
+      "client_id": 53,
+      "address": " , , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        28
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1482719,
+        38.7213084
+      ]
+    },
+    {
+      "id": 34,
+      "client_id": 56,
+      "address": " , , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        39
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1491751,
+        38.7259268
+      ]
+    },
+    {
+      "id": 42,
+      "client_id": 58,
+      "address": " , , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        5
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1688085,
+        38.7047807
+      ]
+    },
+    {
+      "id": 33,
+      "client_id": 68,
+      "address": " , , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        27
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1625081,
+        38.7289334
+      ]
+    },
+    {
+      "id": 44,
+      "client_id": 72,
+      "address": " , , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        17
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1659677,
+        38.716348
+      ]
+    },
+    {
+      "id": 43,
+      "client_id": 80,
+      "address": " , , Lisboa, Portugal",
+      "delivery_date": "Thu, 17 Feb 2022 00:00:00 GMT",
+      "delivery": [
+        11
+      ],
+      "status": "To deliver",
+      "location": [
+        -9.1253305,
+        38.7134191
+      ]
+    }
+  ],
+  "options": {
+    "g": true
+  }
+}

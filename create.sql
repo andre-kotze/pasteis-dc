@@ -17,10 +17,7 @@ CREATE TABLE pasteis.vehicles (
 	id INTEGER PRIMARY KEY,
 	type VARCHAR(50) NOT NULL,
     location INTEGER REFERENCES pasteis.warehouses(id),--foreign key to warehouses
-	start geometry(POINT,4326),
 	capacity INTEGER NOT NULL,
-	cost_per_time REAL NOT NULL,
-	cost_per_delivery REAL NOT NULL,
 	avg_velocity REAL NOT NULL
 );
 
@@ -32,21 +29,18 @@ CREATE TABLE pasteis.clients (
     city VARCHAR(50) NOT NULL DEFAULT 'Lisboa',
     postalcode VARCHAR(20) DEFAULT NULL,
     country VARCHAR(50) DEFAULT 'Portugal',
-    --nif VARCHAR,
     geom geometry(POINT,4326)
 );
 
 CREATE TABLE pasteis.orders (
     id SERIAL PRIMARY KEY,
     client_id INTEGER REFERENCES pasteis.clients(id),
-	--client_name VARCHAR(50),
     quantity INTEGER NOT NULL,
 	delivery_date DATE DEFAULT CURRENT_DATE + 1, 
-	status VARCHAR(50) CHECK (status IN ('To deliver','Delivered','Canceled','Delivery failed','To pick up','To return')) DEFAULT 'To deliver',
-    --geom geometry(POINT,4326)
+	status VARCHAR(50) CHECK (status IN ('To deliver','Delivered','Canceled','Delivery failed','To pick up','To return')) DEFAULT 'To deliver'
 );
 
-CREATE TABLE pasteis.streets (
+CREATE TABLE pasteis.streets ( --NOT BEING USED AGORA.....
 	fid INTEGER NOT NULL,
 	streetname VARCHAR(50),
 	direction VARCHAR(3), -- maybe necessary, maybe not
@@ -56,7 +50,7 @@ CREATE TABLE pasteis.streets (
 );
 
 
-CREATE TABLE pasteis.routes (
+CREATE TABLE pasteis.routes ( --NOT BEING USED AGORA.....
 	id INTEGER PRIMARY KEY,
 	length REAL NOT NULL,
 	type VARCHAR(50) NOT NULL,

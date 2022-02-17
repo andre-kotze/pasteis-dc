@@ -1,28 +1,23 @@
 # random selection of orders (initial program)
 import random
-# import pandas
 import json
 import requests
+from datetime import datetime
 
 # GET LIST OF CLIENT IDS FROM SERVER ========#
-URL = "http://localhost:5000/clientids"
+URL = "http://localhost:3080/"
 
-def get_all() -> list:
+def get_all(suffix) -> list:
     # Using request with GET method
-    r = requests.get(URL)
+    r = requests.get(URL + suffix)
     print('STATUS: ', r.status_code)
     if r.status_code == 200:
-        #print('CONTENT: ', r.content)
-        #print('TEXT: ', r.text)
-        #print('JSON: ', r.json())
         return r.json()
 
-
-
-# will be passed as an argument later
-response = get_all()
-PADARIA_IDS = [list(i.values())[0] for i in response]
-
+# get list of clients
+clients = get_all("clientids")
+#PADARIA_IDS = [i['id'] for i in clients]
+PADARIA_IDS = clients
 
 # bounding parameters
 PADARIAS_COUNT = len(PADARIA_IDS)
@@ -41,17 +36,9 @@ daily_order = random.sample(PADARIA_IDS, daily_orders_count)
 ORDERS_DICT = {padaria: random.randint(1, MAX_ORDER_SIZE) for padaria in daily_order}
 print(ORDERS_DICT)
 print(f'Total packages {sum(ORDERS_DICT.values())}')
-'''
-# Import clients DB
-clients = SOMEHOW WE WILL CONNECT IT
+filename = 'requests/orders_' + datetime.now().strftime('%Y%m%d%H%M%S') + '.json'
 
-# Concatenate the clients db with the quantities for the randomly selected padarias
-pandas.DataFrame.from_dict(ORDERS_DICT)
-ORDERS_DICT.set_index([0])
-orders = pandas.concat([clients, ORDERS_DICT], axis=1, join="inner")
-'''
 ## json part
-
 def save_result(data , outfile) -> None:
     """ Saves a dictionary in JSON file
 
@@ -65,4 +52,4 @@ def save_result(data , outfile) -> None:
     except Exception as e:
         print(e)
 
-save_result(ORDERS_DICT, 'ordersLX.json')
+save_result(ORDERS_DICT, filename)

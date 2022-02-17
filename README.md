@@ -8,30 +8,22 @@
 <hr>
 
 <pre>
-ASK PROF valentino:
-1. postgres trigger
+ASK PROF today:
+1. in flask, use only one field (id) for clients get
 2. 
 3.
 
 
 To Doo
-1. parse argument FORMAT=GEOJSON to vroom
-2. incorporate Leaflet into website
-<<<<<<< HEAD
-3. 
-=======
-3. separate Orders and Jobs (for POST and GET)
-3.1 create VIEW called Jobs
-3.2 create trigger to update Jobs view
->>>>>>> c522ea9d3ef9684bdb1a4db1776830adfc48bd87
-
-
-
-3. .....cost matrix from pgrouting? No...
+1. <del>parse argument FORMAT=GEOJSON to vroom</del>
+1. INSTEAD implement and use vroom-frontend
+2. <del>incorporate Leaflet into website</del>
+3. SEND more requests to vroom to test it
+3. <del>cost matrix from pgrouting?</del>
 4. Store this selection in a json doc (https://github.com/VROOM-Project/vroom/blob/master/docs/API.md), compatible to VROOM.
   
 Start looking at
-1. PG Routing vehicle routing optimization options
+1. <del>PG Routing vehicle routing optimization options</del>
 2. Possible issues with the capacities, number of vehicles...
 3. Html, Leaflet and API
 4. Interface for clients to log in w/ pass (after that, ID will be automatically assigned to the order) and select date and quantity.
@@ -39,24 +31,21 @@ After confirmation, generate an order ID to save to our control and the client's
 
 
  ==== API STRUCTURE ====
-0 HOMEPAGE
-  Choose: Client, Manager or Carrier
-  Imput username an pwd
+ 
+ Is hard to create separated user sessions as it has to be in PHP and connected to the servers...
+ Maybe the API can be just for the management. Then the structure would be:
+ 
+HOMEPAGE
+  Different buttons to access all the tables in the database.
   
-1 Client
-  The main page is the data of your business. + You can update it.
-  There is a list with all the orders + You can add, modify or cancel the orders for the incoming days.
-  Save and exit
-  
-2 Manager
-  You select a date.
-  Tha main view is a map of that day deliveries.
-  At right there is the list of each place, quantities, status and delivery time. + You can download a pdf report of the day deliveries.
-  
-3 Carrier // Nicer if it's an APP
-  Tha main view is a map of today's delivery route for your vehicle.
-  At right there is the list of each place, quantities and status / the description of the route.
-  You can update the status of each delivery once it is done.
+Tables page
+  Show all the entries to the page.
+  Filter by attributes, including a nice calendar filter by date
+  https://stackoverflow.com/questions/51597582/html-js-multi-choice-table-filter
+
+Orders and Clients Map Pages
+  Map display with all the clients, when selecting one in the map: display the possibility to edit it on telft handside.
+  Map display with all the orders, 
 
  ==== DONE THINGS ====
 [DONE] Locations extracted from OSM and stored in a DB
@@ -69,6 +58,7 @@ After confirmation, generate an order ID to save to our control and the client's
 [DONE] running vroom
 [DONE] let flask post multiple orders
 [DONE] separate Orders and Jobs (for POST and GET)
+[DONE] create VIEW called Jobs
   
  ==== REFERENCE ====
 PORTS
@@ -80,7 +70,7 @@ PORTS
 vroom-docker = vroom-express on top of vroom on top of orsm-backend
 
 ### start osrm server, passing the ROI data as an argument: 
-      docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/berlin-latest.osrm
+      docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/lisboa.osrm
     #requests can now be sent to OSRM
     
 ### start vroom server:
