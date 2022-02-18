@@ -87,7 +87,7 @@ vroom-docker = vroom-express on top of vroom on top of orsm-backend
   Pastéis de Sade
   Natéis Inc.
   O Pastel Alarife
-  Planeta Pasteleiro.
+  Planeta Pasteleiro
   <del>Pastéis Macios Redondos e Grandes</del>
  
 </pre>
