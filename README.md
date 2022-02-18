@@ -9,22 +9,16 @@
 
 <pre>
 ASK PROF today:
-1. in flask, use only one field (id) for clients get
+1. 
 2. 
 3.
 
 
 To Doo
-1. <del>parse argument FORMAT=GEOJSON to vroom</del>
-1. INSTEAD implement and use vroom-frontend
-2. <del>incorporate Leaflet into website</del>
-3. SEND more requests to vroom to test it
-3. <del>cost matrix from pgrouting?</del>
-4. Store this selection in a json doc (https://github.com/VROOM-Project/vroom/blob/master/docs/API.md), compatible to VROOM.
+1. construct front-end for optimisation engine
+2. interpret VROOM results and display user-friendly output
   
 Start looking at
-1. <del>PG Routing vehicle routing optimization options</del>
-2. Possible issues with the capacities, number of vehicles...
 3. Html, Leaflet and API
 4. Interface for clients to log in w/ pass (after that, ID will be automatically assigned to the order) and select date and quantity.
 After confirmation, generate an order ID to save to our control and the client's (exportable as pdf).
