@@ -1,17 +1,20 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset=utf-8 />
-  <title>Pasteis do Caralho - Delivery Optimisation Machine</title>
-    <meta name="viewport" content="initial-scale=1.0 maximum-scale=1.0">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/OpenSans.css" />
-    <link rel="stylesheet" href="./node_modules/leaflet/dist/leaflet.css">
-    <link rel="stylesheet" href="./node_modules/leaflet-control-geocoder/dist/Control.Geocoder.css">
-    <link rel="stylesheet" href="./css/vroom.css" />
+
+    <title>Pasteis do Caralho - ORDERS</title>
+
     <link href="style.css" rel="stylesheet">
+    <script src="orders.js"></script>
   </head>
   <body>
+    
     <nav class="navbar navbar-dark bg-mynav"> <!-- The navbar on top of the page -->
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Pasteis do Caralho</a>
@@ -73,21 +76,32 @@
 
     <div class="container"> <!-- Objects placed in the central part of the page  -->
 
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Order ID</th>
+              <th scope="col">Client ID</th>
+              <th scope="col">Client Name</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Status</th>
+              <th scope="col">Delivery day</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody id="Table">
+            <tr>
+              <th scope="row" colspan="5">Loading...</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
+    <div class="clearfix"></div>
 
-
-    <div id="map"></div>
-    <script src="src/map.js"></script>
-
-  </div>
-
-  <div class="clearfix"></div>
-
-  <script src="orders.html"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-
-
-
+    <script src="orders.html"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   </body>
 </html>

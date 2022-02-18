@@ -10,7 +10,7 @@ import json
 import requests
 
 # datetime for manipulating dates and times
-from datetime import datetime
+from datetime import datetime, timedelta, date
 
 # put server address into a variable
 URL = "http://localhost:3080/"
@@ -45,10 +45,23 @@ print(f'Bom dia. Today will have {daily_orders_count} orders to deliver:')
 # select a subset of padaria client IDs
 daily_order = random.sample(PADARIA_IDS, daily_orders_count)
 
-# generate dictionary of padaria_id : order_quantity
-ORDERS_DICT = {padaria: random.randint(1, MAX_ORDER_SIZE) for padaria in daily_order}
-print(ORDERS_DICT)
-print(f'Total packages {sum(ORDERS_DICT.values())}')
+# YYYY-MM-DD
+TOMORROW = (datetime.today() + timedelta(days=1)).strftime("%Y-%m-%d")
+#YESTERDAY = (dt.datetime.now().date() - dt.timedelta(days = 1)).strftime("%Y-%m-%d")
+
+# generate list of dictionaries in ordersJSON format
+orders_list = []
+for padaria in daily_order:
+    orders_list.append({"client_id" : padaria,
+        "quantity": random.randint(1, MAX_ORDER_SIZE),
+        "delivery_date" : TOMORROW})
+
+
+
+
+
+#print(ORDERS_DICT)
+#print(f'Total packages {sum(ORDERS_DICT.values())}')
 
 # variable containing file with the date and time set for display
 filename = 'requests/orders_' + datetime.now().strftime('%Y%m%d%H%M%S') + '.json'

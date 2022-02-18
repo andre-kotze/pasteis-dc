@@ -1,0 +1,50 @@
+.bg-mynav {
+  background-color: #75370d;
+}
+
+body {
+  font-size: 1.25rem;
+  background-color: #f6f8fa;
+}
+
+td {
+    line-height: 3rem;
+}
+.SearchBy {
+  width: 97%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 5px; /* Add some padding */
+  border: 1px solid rgb(75, 23, 14); /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
+.SearchByS {
+  width: 47.5%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 5px; /* Add some padding */
+  border: 1px solid rgb(75, 23, 14); /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
+.half {
+  width: 47.5%;
+}
+
+.sidebar{
+  width: 15%;
+  margin-left:5%;
+  margin-top: 2%;
+  float: left;
+}
+.container {
+  width:70%;
+  margin-left:5%;
+  margin-top: 2%;
+  float: left;
+}
+.footer{
+ width:100%;
+}
+.clearfix{
+  clear:both;
+}
