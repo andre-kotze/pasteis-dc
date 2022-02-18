@@ -1,19 +1,24 @@
+# GENERATE ORDERS RANDOMLY FOR TESTING THE WORKFLOW
+
 # random for selection of orders (initial program)
 import random
+
 # json for decoding and encoding
 import json
+
 # requests for accessing server info
 import requests
+
 # datetime for manipulating dates and times
 from datetime import datetime
 
-# put server direction into a variable
+# put server address into a variable
 URL = "http://localhost:3080/"
 
-# function to get list of clients from the server
+# function to get list of clients from the database
 def get_all(suffix) -> list:
     # Using request with GET method
-    """ Get list of clients from the server
+    """ Get list of clients from the database (hosted in server)
 
     Args:
         suffix = makes the function flexible (for orders, clients, etc)
@@ -23,7 +28,7 @@ def get_all(suffix) -> list:
     if r.status_code == 200:
         return r.json()
 
-# get list of clients
+# get list of clients from the database using function
 clients = get_all("clientids")
 PADARIA_IDS = clients
 
