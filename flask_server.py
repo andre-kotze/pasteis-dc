@@ -129,13 +129,12 @@ def get_clients():
 def create_order():
   body = request.get_json()
   print(type(body))
-  for order in list(body.keys()):
+  print(body)
+  for order in body.values():
     db.session.add(orderJSON(
-      order['id'],
-      order['client_id'], 
-      order['quantity'],
-      order['delivery_date'],
-      ))
+      order[0],
+      order[1],
+      order[2]))
   db.session.commit()
   count = len(body)
   if count == 1:
