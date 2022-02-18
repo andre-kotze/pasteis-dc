@@ -157,7 +157,7 @@ def create_client():
 def get_jobs():
   jobs = []
   # wrap in a wrapper, for optional
-  filter_date = 'Sat, 19 Feb 2022 00:00:00 GMT'
+  filter_date = 'Sat, 19 Feb 2022 00:00:00 GMT' # search_created = datetime.strptime('2017-01-05 17:22:43', '%Y-%m-%d %H:%M:%S')
   for job in db.session.query(jobsJSON).filter(jobsJSON.delivery_date == filter_date).all():
     del job.__dict__['_sa_instance_state']
     jobs.append(job.__dict__)
