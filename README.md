@@ -17,6 +17,13 @@ To Doo
 4. Interface for clients to log in w/ pass (after that, ID will be automatically assigned to the order) and select date and quantity.
 After confirmation, generate an order ID to save to our control and the client's (exportable as pdf).
 
+# JSON FORMAT FOR ORDERS POST
+{
+  "client_id" : 0,
+  "quantity" : 10,
+  "delivery_date" : "2022-02-22"
+ }
+
 
  ==== API STRUCTURE ====
  
