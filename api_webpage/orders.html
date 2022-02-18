@@ -33,35 +33,44 @@
         <div class="me-auto p-0 bd-highlight"><h5>Filter by:</div>
       </section>
       <section>
+        <div class="me-auto p-0 bd-highlight"><h6>Order ID</div>
+        <div>  
+          <input type="text" class="SearchBy" id="SearchByID" onkeyup="OrderIdSearch()" placeholder="Get unique order ID">
+        </div>
         <div class="me-auto p-0 bd-highlight"><h6>Client ID</div>
         <div>  
-          <input type="text" class="SearchBy" id="SearchByID" onkeyup="SearchFunction()" placeholder="Get unique ID">
+          <input type="text" class="SearchBy" id="SearchByCID" onkeyup="ClientIdSearch()" placeholder="Get unique client ID">
+        </div>
+        <div class="me-auto p-0 bd-highlight"><h6>Client Name</div>
+        <div>  
+          <input type="text" class="SearchBy" id="SearchByCN" onkeyup="ClientNameSearch()" placeholder="Get unique Name">
         </div>
         <div class="me-auto p-0 bd-highlight"><h6>Quantity</div>
-        <div class="slider-price d-flex align-items-center">
-          <span class="font-weight-normal small text-muted">0</span>
-          <form class="multi-range-field w-99 mb-0">
-            <input id="multi" class="multi-range" type="range" />
-          </form>
-          <span class="font-weight-normal small text-muted ml-2">100</span>
-        </div>
+          <div>  
+            <input type="text" class="SearchByS" id="LowTreshold" onkeyup="LowTreshold()" placeholder="Between">
+            <input type="text" class="SearchByS" id="HighTreshold" onkeyup="HighTreshold()" placeholder="Higher">
+          </div>
         <div class="me-auto p-0 bd-highlight"><h6>Status</div>
         <div class="form-check pl-0 mb-3">
-          <input type="radio" class="form-check-input" id="200above" name="materialExampleRadios">
-          <label class="form-check-label small card-link-secondary" for="200above">To deliver</label>
+          <input type="radio" class="form-check-input" id="todeliver" name="materialExampleRadios">
+          <label class="form-check-label small card-link-secondary" for="todeliver">To deliver</label>
         </div>
         <div class="form-check pl-0 mb-3">
-          <input type="radio" class="form-check-input" id="200above" name="materialExampleRadios">
-          <label class="form-check-label small card-link-secondary" for="200above">Delivered</label>
+          <input type="radio" class="form-check-input" id="delivered" name="materialExampleRadios">
+          <label class="form-check-label small card-link-secondary" for="delivered">Delivered</label>
         </div>
         <div class="form-check pl-0 mb-3">
-          <input type="radio" class="form-check-input" id="200above" name="materialExampleRadios">
-          <label class="form-check-label small card-link-secondary" for="200above">All status</label>
+          <input type="radio" class="form-check-input" id="allstatus" name="materialExampleRadios">
+          <label class="form-check-label small card-link-secondary" for="allstatus">All status</label>
         </div>
         <div class="me-auto p-0 bd-highlight"><h6>Delivery day</div>
         <div>  
-          <input type="date" class="SearchBy" id="SearchByDate" onkeyup="SearchFunction()" value=today>
+          <input type="text" class="SearchBy" id="SearchByDate" onkeyup="CalendarSearch()" placeholder="Set date">
         </div>
+      </section>
+      <section>
+        <button type="button" class="btn half btn-secondary" onclick="showCreateBox()">Filter</button>
+        <button type="button" class="btn half btn-outline-secondary" onclick="showCreateBox()">Clear</button>
       </section>
     </div>
 
@@ -72,6 +81,7 @@
           <thead>
             <tr>
               <th scope="col">Order ID</th>
+              <th scope="col">Client ID</th>
               <th scope="col">Client Name</th>
               <th scope="col">Quantity</th>
               <th scope="col">Status</th>

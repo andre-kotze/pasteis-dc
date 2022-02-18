@@ -18,6 +18,18 @@ td {
   margin-bottom: 12px; /* Add some space below the input */
 }
 
+.SearchByS {
+  width: 47.5%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 5px; /* Add some padding */
+  border: 1px solid rgb(75, 23, 14); /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
+.half {
+  width: 47.5%;
+}
+
 .sidebar{
   width: 15%;
   margin-left:5%;
