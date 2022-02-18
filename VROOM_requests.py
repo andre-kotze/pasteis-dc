@@ -56,15 +56,14 @@ for job in jobs:
     jobs_dict['location'] = json.loads(job['geom'])['coordinates']
     jobs_list.append(jobs_dict)
 
-# make vroom request
+# make vroom dictionary request format using the previoulsy populated lists and the options variable that contains the geometry
 options = {"g":  True}
 vroom = {'vehicles': vehicles_list, 'jobs': jobs_list, 'options': options}
 
-# variable for 
+# variable for setting the display name of the file
 filename = 'requests/vroom' + datetime.now().strftime('%Y%m%d%H%M%S') + '.json'
 
-# json part
-
+# function to save dictionary in JSON file
 def save_result(data , outfile) -> None:
     """ Saves a dictionary in JSON file
 
@@ -78,4 +77,5 @@ def save_result(data , outfile) -> None:
     except Exception as e:
         print(e)
 
+# calling the function using vroom dictionary and the filename variable for naming the outcome
 save_result(vroom, filename)
