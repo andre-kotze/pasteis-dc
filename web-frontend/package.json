@@ -1,0 +1,37 @@
+{
+  "name": "vroom-frontend",
+  "version": "0.3.0",
+  "description": "Frontend demo for VROOM",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "./node_modules/.bin/beefy src/map.js --browserify ./node_modules/.bin/browserify --live",
+    "build": "./node_modules/.bin/browserify -d src/map.js -o bundle.raw.js && ./node_modules/.bin/uglifyjs bundle.raw.js -c -m -o bundle.js",
+    "dist": "./scripts/dist.sh"
+  },
+  "keywords": [
+    "VROOM",
+    "frontend",
+    "optimization",
+    "TSP",
+    "VRP",
+    "routing",
+    "OSRM",
+    "OSM"
+  ],
+  "author": "Julien Coupey",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "beefy": "^2.1.8",
+    "browserify": "^13.3.0",
+    "uglify-js": "^2.8.29"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VROOM-Project/vroom-frontend.git"
+  },
+  "dependencies": {
+    "@mapbox/polyline": "^0.2.0",
+    "leaflet": "^1.3.4",
+    "leaflet-control-geocoder": "^1.6.0"
+  }
+}
