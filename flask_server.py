@@ -86,10 +86,12 @@ class orderJSON(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer)
     quantity = db.Column(db.Integer)
+    delivery_date = db.Column(db.Integer)
 
-    def __init__ (self, client_id, quantity):
+    def __init__ (self, client_id, quantity, delivery_date):
       self.client_id = client_id
       self.quantity = quantity
+      self.delivery_date = delivery_date
 
 # Matches jobs view. For GET, all fields are required
 class jobsJSON(db.Model):
@@ -129,8 +131,10 @@ def create_order():
   print(type(body))
   for order in list(body.keys()):
     db.session.add(orderJSON(
-      order,
-      body[order]))
+      order['id'],
+      order['client_id'], 
+      order['quantity'],
+      order['delivery_date'],
   db.session.commit()
   count = len(body)
   if count == 1:
