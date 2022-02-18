@@ -2,11 +2,19 @@
 flask server for communicating between Postgres server and users, via Python
 To run it, remember to activate api_example environment
 '''
-
+# ConfigParser for reading .ini files
 from configparser import ConfigParser
+
+# Flask class for creating an instance for the web app  / request for return an object decoded from the request / jsonify for config data to JSON
 from flask import Flask, request, jsonify
+
+# SQLAlchemy for 
 from flask_sqlalchemy import SQLAlchemy
+
+
 from flask_cors import CORS
+
+
 from datetime import datetime
 
 config = ConfigParser()
