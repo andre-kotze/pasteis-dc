@@ -11,6 +11,7 @@
     <title>Pasteis do Caralho - ORDERS</title>
 
     <link href="style.css" rel="stylesheet">
+    <script src="orders.js"></script>
   </head>
   <body>
     
@@ -21,15 +22,47 @@
     </nav>
 
     <div class="sidebar"> <!-- All the objects contained in the left side of the page -->
-
-      <div class="d-flex bd-highlight mb-3">
-        <div class="me-auto p-2 bd-highlight"><h2>Orders</div>
-          
-          <div class="p-2 bd-highlight">
-            <button type="button" class="btn btn-secondary" onclick="showUserCreateBox()">Create</button>
-          </div>
-        <input type="text" id="SearchByDate" onkeyup="SearchFunction()" placeholder="Get orders from a specific date (ex: Tue, 15 Feb 2022)">
-      </div>
+      <section>
+        <div class="d-flex bd-highlight mb-3">
+          <div class="me-auto p-0 bd-highlight"><h2>Orders</div>
+        <div class="p-2 bd-highlight">
+          <button type="button" class="btn btn-secondary" onclick="showCreateBox()">Create</button>
+        </div>
+      </section>
+      <section>
+        <div class="me-auto p-0 bd-highlight"><h5>Filter by:</div>
+      </section>
+      <section>
+        <div class="me-auto p-0 bd-highlight"><h6>Client ID</div>
+        <div>  
+          <input type="text" class="SearchBy" id="SearchByID" onkeyup="SearchFunction()" placeholder="Get unique ID">
+        </div>
+        <div class="me-auto p-0 bd-highlight"><h6>Quantity</div>
+        <div class="slider-price d-flex align-items-center">
+          <span class="font-weight-normal small text-muted">0</span>
+          <form class="multi-range-field w-99 mb-0">
+            <input id="multi" class="multi-range" type="range" />
+          </form>
+          <span class="font-weight-normal small text-muted ml-2">100</span>
+        </div>
+        <div class="me-auto p-0 bd-highlight"><h6>Status</div>
+        <div class="form-check pl-0 mb-3">
+          <input type="radio" class="form-check-input" id="200above" name="materialExampleRadios">
+          <label class="form-check-label small card-link-secondary" for="200above">To deliver</label>
+        </div>
+        <div class="form-check pl-0 mb-3">
+          <input type="radio" class="form-check-input" id="200above" name="materialExampleRadios">
+          <label class="form-check-label small card-link-secondary" for="200above">Delivered</label>
+        </div>
+        <div class="form-check pl-0 mb-3">
+          <input type="radio" class="form-check-input" id="200above" name="materialExampleRadios">
+          <label class="form-check-label small card-link-secondary" for="200above">All status</label>
+        </div>
+        <div class="me-auto p-0 bd-highlight"><h6>Delivery day</div>
+        <div>  
+          <input type="date" class="SearchBy" id="SearchByDate" onkeyup="SearchFunction()" value=today>
+        </div>
+      </section>
     </div>
 
     <div class="container"> <!-- Objects placed in the central part of the page  -->

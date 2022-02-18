@@ -93,6 +93,7 @@ class jobsJSON(db.Model):
     geom = db.Column(db.Text)
     delivery_date = db.Column(db.Date)
     address = db.Column(db.Text)
+    client_name = db.Column(db.Text)
 
 # vehicles_view
 class vehiclesJSON(db.Model):
