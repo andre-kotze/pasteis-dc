@@ -135,6 +135,7 @@ def create_order():
       order['client_id'], 
       order['quantity'],
       order['delivery_date'],
+      ))
   db.session.commit()
   count = len(body)
   if count == 1:
