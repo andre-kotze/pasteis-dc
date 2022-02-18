@@ -119,9 +119,9 @@ function Create() {
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "http://localhost:3080/orders");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xhttp.send(JSON.stringify({ 
-    order:[client_id,quantity,delivery_date]
-  }));
+  xhttp.send(JSON.stringify([{ 
+    client_id:client_id, quantity:quantity, delivery_date:delivery_date
+  }]));
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       const objects = JSON.parse(this.responseText);
