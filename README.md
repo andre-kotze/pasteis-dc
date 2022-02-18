@@ -8,17 +8,11 @@
 <hr>
 
 <pre>
-ASK PROF today:
-1. how to filter by date from flask
-2. 
-3.
 
 
 To Doo
 1. construct front-end for optimisation engine
 2. interpret VROOM results and display user-friendly output
-  
-Start looking at
 3. Html, Leaflet and API
 4. Interface for clients to log in w/ pass (after that, ID will be automatically assigned to the order) and select date and quantity.
 After confirmation, generate an order ID to save to our control and the client's (exportable as pdf).
