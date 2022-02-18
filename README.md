@@ -16,6 +16,10 @@ To Doo
 3. Html, Leaflet and API
 4. Interface for clients to log in w/ pass (after that, ID will be automatically assigned to the order) and select date and quantity.
 After confirmation, generate an order ID to save to our control and the client's (exportable as pdf).
+5. API:   Link the filters and make them activate only with the button.
+          Edit and delete buttons.
+          Limit number of rows and put buttons to go to next.
+          Replciate the Orders view for Clients, Vehicles...
 
 # JSON FORMAT FOR ORDERS POST
 {
