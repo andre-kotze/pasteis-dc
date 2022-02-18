@@ -17,6 +17,13 @@ To Doo
 4. Interface for clients to log in w/ pass (after that, ID will be automatically assigned to the order) and select date and quantity.
 After confirmation, generate an order ID to save to our control and the client's (exportable as pdf).
 
+# JSON FORMAT FOR ORDERS POST
+{
+  "client_id" : 0,
+  "quantity" : 10,
+  "delivery_date" : "2022-02-22"
+ }
+
 
  ==== API STRUCTURE ====
  
@@ -114,7 +121,7 @@ Once we have a minimal working example we plan to attempt more complex problems,
 <!-- STRUCTURE -->
 <h2 id = "structure">2. Structure</h2>
 
-Structure
+![alt text](https://github.com/andre-kotze/pasteis-do-caralho/blob/main/DB-Workflow-V1.PNG)
 
 
 <hr>

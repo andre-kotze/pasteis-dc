@@ -133,11 +133,11 @@ def create_order():
   body = request.get_json()
   print(type(body))
   print(body)
-  for order in body.values():
+  for order in body:
     db.session.add(orderJSON(
-      order[0],
-      order[1],
-      order[2]))
+      order['client_id'],
+      order['quantity'],
+      order['delivery_date']))
   db.session.commit()
   count = len(body)
   if count == 1:
