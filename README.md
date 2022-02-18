@@ -121,7 +121,7 @@ Once we have a minimal working example we plan to attempt more complex problems,
 <!-- STRUCTURE -->
 <h2 id = "structure">2. Structure</h2>
 
-Structure
+![alt text](https://github.com/andre-kotze/pasteis-do-caralho/blob/main/DB-Workflow-V1.PNG)
 
 
 <hr>
