@@ -1,14 +1,23 @@
-# random selection of orders (initial program)
+# random for selection of orders (initial program)
 import random
+# json for decoding and encoding
 import json
+# requests for accessing server info
 import requests
+# datetime for manipulating dates and times
 from datetime import datetime
 
-# GET LIST OF CLIENT IDS FROM SERVER ========#
+# put server direction into a variable
 URL = "http://localhost:3080/"
 
+# function to get list of clients from the server
 def get_all(suffix) -> list:
     # Using request with GET method
+    """ Get list of clients from the server
+
+    Args:
+        suffix = makes the function flexible (for orders, clients, etc)
+    """
     r = requests.get(URL + suffix)
     print('STATUS: ', r.status_code)
     if r.status_code == 200:
@@ -16,7 +25,6 @@ def get_all(suffix) -> list:
 
 # get list of clients
 clients = get_all("clientids")
-#PADARIA_IDS = [i['id'] for i in clients]
 PADARIA_IDS = clients
 
 # bounding parameters
@@ -28,17 +36,19 @@ MIN_ORDERS, MAX_ORDERS = 25, 70
 daily_orders_count = random.randint(MIN_ORDERS, MAX_ORDERS)
 print(f'Bom dia. Today will have {daily_orders_count} orders to deliver:')
 
-# ADD dictionary with clients IDs as keys and quantity of boxes as value (which also needs to be generated randomly)
+# add dictionary with clients IDs as keys and quantity of boxes as value (which also needs to be generated randomly)
 # select a subset of padaria client IDs
 daily_order = random.sample(PADARIA_IDS, daily_orders_count)
 
-# generate dict of padaria_id : order_quantity
+# generate dictionary of padaria_id : order_quantity
 ORDERS_DICT = {padaria: random.randint(1, MAX_ORDER_SIZE) for padaria in daily_order}
 print(ORDERS_DICT)
 print(f'Total packages {sum(ORDERS_DICT.values())}')
+
+# variable containing file with the date and time set for display
 filename = 'requests/orders_' + datetime.now().strftime('%Y%m%d%H%M%S') + '.json'
 
-## json part
+# function to save dictionary in JSON file
 def save_result(data , outfile) -> None:
     """ Saves a dictionary in JSON file
 
@@ -52,4 +62,5 @@ def save_result(data , outfile) -> None:
     except Exception as e:
         print(e)
 
+# calling the function using orders dictionary and the .json 
 save_result(ORDERS_DICT, filename)
