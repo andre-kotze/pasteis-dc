@@ -7,6 +7,7 @@ from configparser import ConfigParser
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from datetime import datetime
 
 config = ConfigParser()
 config.read('flask_config.ini')
@@ -45,7 +46,7 @@ db = SQLAlchemy(app)
 
 # Create data model objects that match the database
 
-# Matches clients table, only IDs need to be retrieved
+# Matches clients table
 class clientsJSON(db.Model):
     __tablename__ = "clients"
     __table_args__ = {"schema": "pasteis"}
@@ -111,8 +112,6 @@ def get_clients():
   for client in db.session.query(clientsJSON).all():
     del client.__dict__['_sa_instance_state']
     clients.append(client.__dict__['id'])
-    #print(client.__dict__)
-    #print(type(client.__dict__))
   return jsonify(clients)
 
 # POST method to place orders
@@ -124,9 +123,6 @@ def create_order():
     db.session.add(orderJSON(
       order,
       body[order]))
-      #order.value)) 
-#      order['client_id'], 
-#      order['quantity'])) 
   db.session.commit()
   count = len(body)
   if count == 1:
@@ -160,7 +156,9 @@ def create_client():
 @app.route('/jobs', methods =['GET'])
 def get_jobs():
   jobs = []
-  for job in db.session.query(jobsJSON).all():
+  # wrap in a wrapper, for optional
+  filter_date = 'Sat, 19 Feb 2022 00:00:00 GMT' # search_created = datetime.strptime('2017-01-05 17:22:43', '%Y-%m-%d %H:%M:%S')
+  for job in db.session.query(jobsJSON).filter(jobsJSON.delivery_date == filter_date).all():
     del job.__dict__['_sa_instance_state']
     jobs.append(job.__dict__)
   return jsonify(jobs)
