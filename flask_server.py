@@ -2,24 +2,27 @@
 flask server for communicating between Postgres server and users, via Python
 To run it, remember to activate api_example environment
 '''
+
 # ConfigParser for reading .ini files
 from configparser import ConfigParser
 
 # Flask class for creating an instance for the web app  / request for return an object decoded from the request / jsonify for config data to JSON
 from flask import Flask, request, jsonify
 
-# SQLAlchemy for 
+# SQLAlchemy for SQL toolkit and ORM
 from flask_sqlalchemy import SQLAlchemy
 
-
+# CORS for make cross origin requests
 from flask_cors import CORS
 
-
+# datetime for manipulating dates and times
 from datetime import datetime
 
+# put ini reader function inside a variable to read the file afterwards
 config = ConfigParser()
 config.read('flask_config.ini')
 
+# create the dictionary that holds the database structure
 DB_CONFIG = {
     "database": config.get('pasteis', 'database'),
     "username": config.get('pasteis', 'username'),
@@ -28,17 +31,17 @@ DB_CONFIG = {
     "port": config.get('pasteis', 'port')}
 
 # Notice, normally this is set with environment variables on the server
-# machine do avoid exposing the credentials. Something like
+# machine do avoid exposing the credentials. Something like:
 # DB_CONFIG = {}
 # DB_CONFIG['database'] = os.environ.get('DATABASE')
 # DB_CONFIG['username'] = os.environ.get('USERNAME')
 # ...
 
-# Create a flask application. Run the CORS to enable server connections from the browser
+# create a flask application and run the CORS to enable server connections from the browser
 app = Flask(__name__)
 CORS(app)
 
-# Set the database connection URI in the app configuration
+# set the database connection URI in the app configuration
 username = DB_CONFIG['username']
 password = DB_CONFIG['password']
 host = DB_CONFIG['host']
@@ -49,12 +52,12 @@ database_uri = f"postgresql://{username}:{password}@{host}:{port}/{database}"
 
 app.config['SQLALCHEMY_DATABASE_URI'] = database_uri
 
-# Create object to control SQLAlchemy from the Flask app
+# create object to control SQLAlchemy from the Flask app
 db = SQLAlchemy(app)
 
-# Create data model objects that match the database
+# create data model objects that match the database
 
-# Matches clients table
+# matches clients table
 class clientsJSON(db.Model):
     __tablename__ = "clients"
     __table_args__ = {"schema": "pasteis"}
@@ -78,7 +81,7 @@ class clientsJSON(db.Model):
       self.geom = geom
 
 
-# Matches orders table, only clientID and quantity need to be sent for POST
+# matches orders table, only clientID and quantity need to be sent for POST
 #   maybe later, clients can specify a delivery date
 class orderJSON(db.Model):
     __tablename__ = "orders"
@@ -86,12 +89,14 @@ class orderJSON(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer)
     quantity = db.Column(db.Integer)
+    delivery_date = db.Column(db.Integer)
 
-    def __init__ (self, client_id, quantity):
+    def __init__ (self, client_id, quantity, delivery_date):
       self.client_id = client_id
       self.quantity = quantity
+      self.delivery_date = delivery_date
 
-# Matches jobs view. For GET, all fields are required
+# matches jobs view. For GET, all fields are required
 class jobsJSON(db.Model):
     __tablename__ = "jobs"
     __table_args__ = {"schema": "pasteis"}
@@ -104,7 +109,7 @@ class jobsJSON(db.Model):
     address = db.Column(db.Text)
     client_name = db.Column(db.Text)
 
-# vehicles_view
+# create vehicles_view
 class vehiclesJSON(db.Model):
     __tablename__ = "vehicles_view"
     __table_args__ = {"schema": "pasteis"}
@@ -127,10 +132,12 @@ def get_clients():
 def create_order():
   body = request.get_json()
   print(type(body))
-  for order in list(body.keys()):
+  print(body)
+  for order in body.values():
     db.session.add(orderJSON(
-      order,
-      body[order]))
+      order[0],
+      order[1],
+      order[2]))
   db.session.commit()
   count = len(body)
   if count == 1:
@@ -168,14 +175,17 @@ def get_days_jobs(date):
   # date format YYYY-MM-DD
   filter_date = datetime.strptime(date, '%Y-%m-%d')
   print(filter_date)
+   # populate list containing date filtered orders in a dictionary
   for job in db.session.query(jobsJSON).filter(jobsJSON.delivery_date == filter_date).all():
     del job.__dict__['_sa_instance_state']
     jobs.append(job.__dict__)
   return jsonify(jobs)
 
+# GET method to retrieve all orders without date filter
 @app.route('/jobs', methods =['GET'])
 def get_jobs():
   jobs = []
+  # populate list containing orders in a dictionary
   for job in db.session.query(jobsJSON).all():
     del job.__dict__['_sa_instance_state']
     jobs.append(job.__dict__)
@@ -190,5 +200,6 @@ def get_vehicles():
     vehicles.append(vehicle.__dict__)
   return jsonify(vehicles)
 
+# statement to run the app in the specified server
 if __name__ == '__main__':
     app.run(port=3080, debug=True)

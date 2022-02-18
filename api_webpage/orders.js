@@ -101,9 +101,9 @@ function showCreateBox() {
   Swal.fire({
     title: 'Create order',
     html:
-      '<input id="client_id" class="swal2-input" placeholder="Client ID">' +
-      '<input id="quantity" class="swal2-input" placeholder="Quantity (in boxes)">' +
-      '<input id="delivery_date" type="date" class="swal2-input" placeholder="Delivery date">' ,
+      '<input id="create0" type="number" class="swal2-input" placeholder="Client ID">' +
+      '<input id="create1" type="number" class="swal2-input" placeholder="Quantity (in boxes)">' +
+      '<input id="create2" type="date" class="swal2-input" placeholder="Delivery date">' ,
     focusConfirm: false,
     preConfirm: () => {
       Create();
@@ -112,15 +112,15 @@ function showCreateBox() {
 }
 
 function Create() {
-  const client_id = document.getElementById("client_id").value;
-  const quantity = document.getElementById("quantity").value;
-  const delivery_date = document.getElementById("delivery_date").value;
+  const client_id = document.getElementById("create0").value;
+  const quantity = document.getElementById("create1").value;
+  const delivery_date = document.getElementById("create2").value;
     
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "http://localhost:3080/orders");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(JSON.stringify({ 
-    "client_id": client_id, "quantity": quantity, "delivery_date": delivery_date
+    order:[client_id,quantity,delivery_date]
   }));
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
