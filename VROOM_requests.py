@@ -1,30 +1,38 @@
 # GENERATE VROOM COMPATIBLE ORDERS
+
+# json for decoding and encoding
 import json
-from sqlite3 import Timestamp
+
+# requests for accessing server info
 import requests
+
+# datetime for manipulating dates and times
 from datetime import datetime
 
-# GET LIST OF CLIENT IDS FROM SERVER ========#
+# put server address into a variable
 URL = "http://localhost:3080/"
 
+# function get list of clients IDs from the database
 def get_all(suffix) -> list:
-    # Using request with GET method
+    """ Get list of clients from the database (hosted in server)
+
+    Args:
+        suffix = makes the function flexible (for orders, clients, etc)
+    """
     r = requests.get(URL + suffix)
     print('STATUS: ', r.status_code)
     if r.status_code == 200:
-        #print('CONTENT: ', r.content)
-        #print('TEXT: ', r.text)
-        #print('JSON: ', r.json())
         return r.json()
 
-# get jobs from db
+# get jobs from database using function
 jobs = get_all('jobs')
 
-# get vehicles from db
+# get vehicles from database using function
 vehicles = get_all('vehicles')
 
 # generate list of vehicles
 vehicles_list = []
+# populate list with dictionary containing the features to take from the database
 for vehicle in vehicles:
     location = json.loads(vehicle['location'])['coordinates']
     vehicles_dict = {}
@@ -36,6 +44,7 @@ for vehicle in vehicles:
 
 # generate list of jobs
 jobs_list = []
+# populate list with dictionary containing the features to take from the database
 for job in jobs:
     jobs_dict = {}
     jobs_dict['id'] = job['id']
@@ -47,13 +56,14 @@ for job in jobs:
     jobs_dict['location'] = json.loads(job['geom'])['coordinates']
     jobs_list.append(jobs_dict)
 
-# vroom request
+# make vroom dictionary request format using the previoulsy populated lists and the options variable that contains the geometry
 options = {"g":  True}
 vroom = {'vehicles': vehicles_list, 'jobs': jobs_list, 'options': options}
 
+# variable for setting the display name of the file
 filename = 'requests/vroom' + datetime.now().strftime('%Y%m%d%H%M%S') + '.json'
-## json part
 
+# function to save dictionary in JSON file
 def save_result(data , outfile) -> None:
     """ Saves a dictionary in JSON file
 
@@ -67,4 +77,5 @@ def save_result(data , outfile) -> None:
     except Exception as e:
         print(e)
 
+# calling the function using vroom dictionary and the filename variable for naming the outcome
 save_result(vroom, filename)
