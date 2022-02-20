@@ -77,5 +77,6 @@ select r.id,
 	r.packages,
 	r.delivery_date,
 	st_linefromencodedpolyline(r.geom) as geom,
+	st_asGeoJSON(st_linefromencodedpolyline(r.geom)) as geojson,
     v.capacity
 from pasteis.routes as r join pasteis.vehicles as v on (v.id = r.vehicle);
