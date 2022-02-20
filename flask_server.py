@@ -200,6 +200,13 @@ def get_vehicles():
     vehicles.append(vehicle.__dict__)
   return jsonify(vehicles)
 
+# DELETE method to delete jobs (delete the order, as jobs is a view) using their id
+@app.route('/orders/<id>', methods=['DELETE'])
+def delete_jobs(id):
+  db.session.query(orderJSON).filter_by(id=id).delete()
+  db.session.commit()
+  return "ride deleted"
+
 # statement to run the app in the specified server
 if __name__ == '__main__':
     app.run(port=3080, debug=True)

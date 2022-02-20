@@ -15,8 +15,8 @@ function loadTable() {
         trHTML += '<td>'+object['quantity']+'</td>';
         trHTML += '<td>'+object['status']+'</td>';
         trHTML += '<td>'+object['delivery_date']+'</td>';
-        trHTML += '<td><button type="button" class="btn btn-outline-secondary" onclick="showEditBox()">Edit</button>';
-        trHTML += '<button type="button" class="btn btn-outline-danger" onclick="Delete('+object['id']+')">Del</button></td>';
+        trHTML += '<td><button type="button" class="btn btn-outline-secondary" onclick="showEditBox('+object['id']+')">Edit</button>';
+        trHTML += '<button type="button" class="btn btn-outline-danger" onclick="showDeleteBox('+object['id']+')">Del</button></td>';
         trHTML += "</tr>";
       }
       document.getElementById("Table").innerHTML = trHTML;
@@ -131,12 +131,34 @@ function Create() {
   };
 }
 
+function showDeleteBox(id) {
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "http://localhost:3080/jobs");
+  xhttp.send();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      const objects = JSON.parse(this.responseText);
+      const client_id = objects['id'];
+      Swal.fire({
+        title: 'You will delete the following order:',
+        html:
+          '<input id="delete_id" value='+objects['id']+'>' ,
+        focusConfirm: false,
+        preConfirm: () => {
+          Delete();
+        }
+      })
+    }
+  };
+}
+
 function Delete(id) {
+  const c_id_delete = document.getElementById("delete_id").value;
   const xhttp = new XMLHttpRequest();
   xhttp.open("DELETE", "http://localhost:3080/orders");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(JSON.stringify({ 
-    "id": id
+    c_id_delete: c_id_delete
   }));
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4) {
