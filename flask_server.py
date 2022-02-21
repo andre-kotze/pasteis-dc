@@ -18,6 +18,9 @@ from flask_cors import CORS
 # datetime for manipulating dates and times
 from datetime import datetime
 
+# 
+import json
+
 # put ini reader function inside a variable to read the file afterwards
 config = ConfigParser()
 config.read('flask_config.ini')
@@ -266,8 +269,14 @@ def get_routes():
   routes = []
   # populate list containing routes in a dictionary
   for route in db.session.query(routesGeoJSON).all():
-    del route.__dict__['_sa_instance_state']
-    routes.append(route.__dict__)
+    new_route = {}
+    new_route['type'] = 'Feature'
+    new_route['properties'] = {'id': route.__dict__['id'], 
+                                'vehicle': route.__dict__['vehicle'],
+                                'stops' : route.__dict__['stops'],
+                                'packages' : route.__dict__['packages']}
+    new_route['geometry'] = json.loads(route.__dict__['geojson'])
+    routes.append(new_route)
   return jsonify(routes)
 
 # GET method to retrieve all routes filtered by date

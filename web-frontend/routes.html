@@ -50,19 +50,6 @@
             <input type="text" class="SearchByS" id="LowTreshold" onkeyup="LowTreshold()" placeholder="Between">
             <input type="text" class="SearchByS" id="HighTreshold" onkeyup="HighTreshold()" placeholder="Higher">
           </div>
-        <div class="me-auto p-0 bd-highlight"><h6>Status</div>
-        <div class="form-check pl-0 mb-3">
-          <input type="radio" class="form-check-input" id="todeliver" name="materialExampleRadios">
-          <label class="form-check-label small card-link-secondary" for="todeliver">To deliver</label>
-        </div>
-        <div class="form-check pl-0 mb-3">
-          <input type="radio" class="form-check-input" id="delivered" name="materialExampleRadios">
-          <label class="form-check-label small card-link-secondary" for="delivered">Delivered</label>
-        </div>
-        <div class="form-check pl-0 mb-3">
-          <input type="radio" class="form-check-input" id="allstatus" name="materialExampleRadios">
-          <label class="form-check-label small card-link-secondary" for="allstatus">All status</label>
-        </div>
         <div class="me-auto p-0 bd-highlight"><h6>Delivery day</div>
         <div>  
           <input type="text" class="SearchBy" id="SearchByDate" onkeyup="CalendarSearch()" placeholder="Set date">
@@ -106,7 +93,23 @@
       //console.log(this.responseText);
       var trHTML = ''; 
       const objects = JSON.parse(this.responseText);
-      $features=[];
+      for (let object of objects) {
+        L.geoJson(object, 
+        {
+    style: function(feature) {
+        switch (feature.properties.vehicle) {
+            case 0: return {color: "#ff0000"};
+            case 1: return {color: "#0000ff"};
+            case 2: return {color: "#00ff00"};
+            case 3: return {color: "#0000f0"};
+            case 4: return {color: "#f00000"}
+        }
+    }
+}).addTo(map) 
+        
+      }
+      }}};
+      /*$features=[];
       for (let object of objects) {
             lyrRoutes=L.geoJson(object, {
                 LineString: function(latlngs) {
@@ -120,7 +123,7 @@
             });
             lyrRoutes.addTo(map);  
     }};
-}};
+}};*/
     </script>
 
   </div>
