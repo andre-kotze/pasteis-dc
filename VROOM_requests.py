@@ -1,4 +1,5 @@
-# GENERATE VROOM COMPATIBLE ORDERS
+# GENERATE AND SEND VROOM COMPATIBLE ORDERS
+#   ADD THE DATE TO THE ROUTES IN DB
 
 # json for decoding and encoding
 import json
@@ -10,25 +11,26 @@ import requests
 from datetime import datetime
 
 # put server address into a variable
-URL = "http://localhost:3080/"
+FLASK_URL = "http://localhost:3080/"
+VROOM_URL = "http://localhost:3000/"
 
 # function get list of clients IDs from the database
-def get_all(suffix) -> list:
+def get_all(url, suffix='') -> list:
     """ Get list of clients from the database (hosted in server)
 
     Args:
         suffix = makes the function flexible (for orders, clients, etc)
     """
-    r = requests.get(URL + suffix)
+    r = requests.get(url + suffix)
     print('STATUS: ', r.status_code)
     if r.status_code == 200:
         return r.json()
 
 # get jobs from database using function
-jobs = get_all('jobs/2022-02-22')
+jobs = get_all(FLASK_URL, 'jobs/2022-02-22')
 
 # get vehicles from database using function
-vehicles = get_all('vehicles')
+vehicles = get_all(FLASK_URL, 'vehicles')
 
 # generate list of vehicles
 vehicles_list = []
@@ -59,6 +61,17 @@ for job in jobs:
 # make vroom dictionary request format using the previoulsy populated lists and the options variable that contains the geometry
 options = {"g":  True}
 vroom = {'vehicles': vehicles_list, 'jobs': jobs_list, 'options': options}
+
+payload = json.dumps(vroom)
+headers = {'Content-Type': 'application/json'}
+
+response = get_all(VROOM_URL, '?Content-Type=application/json')
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+
+
 
 # variable for setting the display name of the file
 filename = 'requests/vroom' + datetime.now().strftime('%Y%m%d%H%M%S') + '.json'
