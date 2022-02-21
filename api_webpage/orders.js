@@ -155,13 +155,12 @@ function SecondEditBox(id) {
       const objects = JSON.parse(this.responseText);
       const user = objects['id'];
       Swal.fire({
-        title: 'Edit Order'+id_to_edit,
+        title: 'Edit order '+id_to_edit,
         html:
-          '<text id="id" value='+user['id']+'>' +
-          '<input id="client_id" class="swal2-input" placeholder="Client ID" value="'+user['client_id']+'">' +
-          '<input id="quantity" class="swal2-input" placeholder="Quantity" value="'+user['quantity']+'">' +
-          '<input id="status" class="swal2-input" placeholder="Status" value="'+user['status']+'">' +
-          '<input id="delivery_date" class="swal2-input" placeholder="Delivery Date" value="'+user['delivery_date']+'">',
+          '<input id="client_id" class="swal2-input" value="'+id_to_edit,'">' +
+          '<input id="client_id" class="swal2-input" value="'+user['client_id']+'">' +
+          '<input id="quantity" class="swal2-input"value="'+user['quantity']+'">' +
+          '<input id="delivery_date" class="swal2-input" value="'+user['delivery_date']+'">',
         focusConfirm: false,
         preConfirm: () => {
           Edit();
@@ -172,18 +171,16 @@ function SecondEditBox(id) {
 }
 
 function Edit() {
-  const id = document.getElementById("id").value;
-  const fname = document.getElementById("fname").value;
-  const lname = document.getElementById("lname").value;
-  const username = document.getElementById("username").value;
-  const email = document.getElementById("email").value;
+  const or_id = document.getElementById("client_id").value;
+  const cl_id = document.getElementById("order_id").value;
+  const stat = document.getElementById("quantity").value;
+  const date = document.getElementById("delivery_date").value;
     
   const xhttp = new XMLHttpRequest();
   xhttp.open("PUT", "http://localhost:3080/orders");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(JSON.stringify({ 
-    "id": id, "fname": fname, "lname": lname, "username": username, "email": email, 
-    "avatar": "https://www.mecallapi.com/users/cat.png"
+    or_id:or_id,cl_id:cl_id,stat:stat,date:date
   }));
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
