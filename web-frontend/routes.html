@@ -84,7 +84,7 @@
     </script>
 
     <script>
-      function loadRoutes(){
+function loadRoutes() {
         const xhttp = new XMLHttpRequest();
   xhttp.open("GET", "http://localhost:3080/routes");
   xhttp.send();
@@ -94,21 +94,28 @@
       var trHTML = ''; 
       const objects = JSON.parse(this.responseText);
       for (let object of objects) {
-        L.geoJson(object, 
-        {
-    style: function(feature) {
-        switch (feature.properties.vehicle) {
-            case 0: return {color: "#ff0000"};
-            case 1: return {color: "#0000ff"};
-            case 2: return {color: "#00ff00"};
-            case 3: return {color: "#0000f0"};
-            case 4: return {color: "#f00000"}
-        }
-    }
-}).addTo(map) 
-        
+        var ft = L.geoJson(object, {
+                style: function(feature) {
+                  switch (feature.properties.vehicle) {
+                    case 0: return {color: "#ff0000"};
+                    case 1: return {color: "#0000ff"};
+                    case 2: return {color: "#00ff00"};
+                    case 3: return {color: "#0000f0"};
+                    case 4: return {color: "#f00000"}
+                 }
+               }
+         });
+        var strPopup = "<h2><b>"+object.properties.id+"</b></h2><hr>";
+                    strPopup += "<h5><b>Vehicle:</b> "+object.properties.vehicle+"</h5>";
+                    strPopup += "<h5><b>Capacity:</b> "+object.properties.capacity+"</h5>";
+                    strPopup += "<h5><b>Stops:</b> "+object.properties.stops+"</h5>";
+                    strPopup += "<h5><b>Packages:</b> "+object.properties.packages+"</h5>";
+                    strPopup += "<h5><b>Date:</b> "+object.properties.to_limit+"</h5>";
+        ft.addTo(map);
+        ft.bindPopup(strPopup)};
       }
-      }}};
+    }
+};
       /*$features=[];
       for (let object of objects) {
             lyrRoutes=L.geoJson(object, {
