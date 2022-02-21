@@ -1,7 +1,7 @@
-<h1 align="center"><b>Optimised Vehicle Routing for Deliveries of Pasteis de Nata</b></h1>
+<h1 align="center"><b>Pasteis D.C. Lda: Optimised Pastel de Nata Delivery Company</b></h1>
 
 <p align="center"> 
-  <img src = "caralho.jpg" alt = "Pasteis do Ceu" width = "100%">
+  <img src = "caralho.jpg" alt = "Pasteis DC" width = "100%">
 </p>
 
 

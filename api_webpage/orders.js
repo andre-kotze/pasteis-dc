@@ -31,8 +31,6 @@ function SearchOrders() {
   var searchCN = document.getElementById("SearchByCN").value.toUpperCase();
   var searchD = document.getElementById("SearchByD").value.toUpperCase();
   var selectS = document.getElementById("SelectST").value.toUpperCase();
-  var quanlow = document.getElementById("LowTreshold").value.toUpperCase();
-  var quanhigh = document.getElementById("HighTreshold").value.toUpperCase();
 
   for (i = 1; i < tr.length; i++) {
 
@@ -152,27 +150,30 @@ function SecondEditBox(id) {
   xhttp.send();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      const objects = JSON.parse(this.responseText);
-      const user = objects['id'];
-      Swal.fire({
-        title: 'Edit order '+id_to_edit,
-        html:
-          '<input id="client_id" class="swal2-input" value="'+id_to_edit,'">' +
-          '<input id="client_id" class="swal2-input" value="'+user['client_id']+'">' +
-          '<input id="quantity" class="swal2-input"value="'+user['quantity']+'">' +
-          '<input id="delivery_date" class="swal2-input" value="'+user['delivery_date']+'">',
+      const object = JSON.parse(this.responseText);
+     
+        Swal.fire({
+          width: 800,
+          title: 'Edit order '+id_to_edit,
+          html:
+            '<div class="me-auto p-0 bd-highlight"><h5>Client ID:</div>'+
+            '<input id="client_id" class="swal2-input half" value="'+object.client_id+'">' +
+            '<div class="me-auto p-0 bd-highlight"><h5>Quantity:</div>'+
+            '<input id="quantity" class="swal2-input half"value="'+object.quantity+'">' +
+            '<div class="me-auto p-0 bd-highlight"><h5>Date:</div> <input id="delivery_date" class="swal2-input half" value="'+object.delivery_date+'">',
         focusConfirm: false,
         preConfirm: () => {
           Edit();
         }
-      })
+        })
+      
     }
   };
 }
 
-function Edit() {
-  const or_id = document.getElementById("client_id").value;
-  const cl_id = document.getElementById("order_id").value;
+function Edit(id) {
+  const or_id = document.getElementById("edit_id").value;
+  const cl_id = document.getElementById("client_id").value;
   const stat = document.getElementById("quantity").value;
   const date = document.getElementById("delivery_date").value;
     
