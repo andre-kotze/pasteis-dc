@@ -90,8 +90,6 @@ function loadRoutes() {
   xhttp.send();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      //console.log(this.responseText);
-      var trHTML = ''; 
       const objects = JSON.parse(this.responseText);
       for (let object of objects) {
         var ft = L.geoJson(object, {
@@ -105,12 +103,12 @@ function loadRoutes() {
                  }
                }
          });
-        var strPopup = "<h2><b>"+object.properties.id+"</b></h2><hr>";
-                    strPopup += "<h5><b>Vehicle:</b> "+object.properties.vehicle+"</h5>";
-                    strPopup += "<h5><b>Capacity:</b> "+object.properties.capacity+"</h5>";
-                    strPopup += "<h5><b>Stops:</b> "+object.properties.stops+"</h5>";
-                    strPopup += "<h5><b>Packages:</b> "+object.properties.packages+"</h5>";
-                    strPopup += "<h5><b>Date:</b> "+object.properties.to_limit+"</h5>";
+        var strPopup = "<h5><b>ID: "+object.properties.id+"</b></h5><hr>";
+                    strPopup += "<h6><b>Vehicle:</b> "+object.properties.vehicle+"</h6>";
+                    strPopup += "<h6><b>Capacity:</b> "+object.properties.capacity+"</h6>";
+                    strPopup += "<h6><b>Stops:</b> "+object.properties.stops+"</h6>";
+                    strPopup += "<h6><b>Packages:</b> "+object.properties.packages+"</h6>";
+                    strPopup += "<h6><b>Date:</b> "+object.properties.to_limit+"</h6>";
         ft.addTo(map);
         ft.bindPopup(strPopup)};
       }
