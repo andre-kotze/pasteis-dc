@@ -73,13 +73,15 @@ from pasteis.orders as o join pasteis.clients as c on (c.id = o.client_id);
 
 create view pasteis.routes_map as
 select r.id,
+	v.id as vehicle,
+	v.capacity,
 	r.stops,
 	r.packages,
+	r.duration,
+	r.distance,
 	r.delivery_date,
-	st_linefromencodedpolyline(r.geom) as geom,
+	--st_linefromencodedpolyline(r.geom) as geom,
 	st_asGeoJSON(st_linefromencodedpolyline(r.geom)) as geojson,
-	v.id as vehicle,
-    v.capacity
 from pasteis.routes as r 
 	join pasteis.vehicles as v on (v.id = r.vehicle)
 	join jobs as j on (r.);
