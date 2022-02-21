@@ -237,15 +237,6 @@ def edit_orders():
   db.session.commit() 
   return "item updated"
 
-# PUT method to edit existing orders
-@app.route('/orders/<id>', methods =['PUT'])
-def edit_orders():
-  body = request.get_json()
-  db.session.query(Item).filter_by(id=id).update(
-    dict(title=body['title'], content=body['content']))
-  db.session.commit()
-  return "item updated"
-
 # GET method to retreive vehicles
 @app.route('/vehicles', methods =['GET'])
 def get_vehicles():

@@ -53,15 +53,21 @@ TOMORROW = (datetime.today() + timedelta(days=1)).strftime("%Y-%m-%d")
 orders_list = []
 for padaria in daily_order:
     orders_list.append({"client_id" : padaria,
-        "quantity": random.randint(1, MAX_ORDER_SIZE),
-        "delivery_date" : TOMORROW})
+                    "quantity": random.randint(1, MAX_ORDER_SIZE),
+                    "delivery_date" : TOMORROW
+                    })
 
-
-
-
+# JSON FORMAT FOR ORDERS POST 
+'''
+{
+  "client_id" : 0,
+  "quantity" : 10,
+  "delivery_date" : "2022-02-22"
+ }
+'''
 
 #print(ORDERS_DICT)
-#print(f'Total packages {sum(ORDERS_DICT.values())}')
+print(f'Total packages {sum(dic["quantity"] for dic in orders_list)}')
 
 # variable containing file with the date and time set for display
 filename = 'requests/orders_' + datetime.now().strftime('%Y%m%d%H%M%S') + '.json'
@@ -81,4 +87,4 @@ def save_result(data , outfile) -> None:
         print(e)
 
 # calling the function using orders dictionary and the .json 
-save_result(ORDERS_DICT, filename)
+save_result(orders_list, filename)
