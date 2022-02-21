@@ -108,16 +108,13 @@
       const objects = JSON.parse(this.responseText);
       $features=[];
       for (let object of objects) {
-            lyrRoutes=L.geoJSON(JSON.parse(response), {
+            lyrRoutes=L.geoJson(object, {
                 LineString: function(latlngs) {
-                    var strPopup = "<h2><b>"+feature.id+"</b></h2><hr>";
-                    strPopup += "<h5><b>Sponsor:</b> "+feature.properties.sponsor+"</h5>";
-                    strPopup += "<h5><b>Location:</b> "+feature.properties.location+"</h5>";
-                    strPopup += "<h5><b>From:</b> "+feature.properties.from_limit+"</h5>";
+                    var strPopup = "<h2><b>"+object.id+"</b></h2><hr>";
+                    strPopup += "<h5><b>Sponsor:</b> "+object.vehicle+"</h5>";
+                    strPopup += "<h5><b>Location:</b> "+object.stops+"</h5>";
+                    strPopup += "<h5><b>From:</b> "+object.packages+"</h5>";
                     strPopup += "<h5><b>To:</b> "+feature.properties.to_limit+"</h5>";
-                    strPopup += "<h5><b>Name:</b> "+feature.properties.local_name+"</h5>";
-                    strPopup += "<h5><b>Length:</b> "+feature.properties.length_mil+"</h5>";
-                    //strPopup += "<img src='img/"+feature.properties.image+"' width='200px'>";
                     return L.polyline(latlngs).bindPopup(strPopup);
                 }
             });
