@@ -11,7 +11,7 @@ td {
     line-height: 3rem;
 }
 .SearchBy {
-  width: 97%; /* Full-width */
+  width: 100%; /* Full-width */
   font-size: 16px; /* Increase font-size */
   padding: 5px; /* Add some padding */
   border: 1px solid rgb(75, 23, 14); /* Add a grey border */
@@ -19,7 +19,7 @@ td {
 }
 
 .SearchByS {
-  width: 47.5%; /* Full-width */
+  width: 48.8%; /* Full-width */
   font-size: 16px; /* Increase font-size */
   padding: 5px; /* Add some padding */
   border: 1px solid rgb(75, 23, 14); /* Add a grey border */
@@ -27,7 +27,7 @@ td {
 }
 
 .half {
-  width: 47.5%;
+  width: 48.8%;
 }
 
 .full {
@@ -40,15 +40,17 @@ td {
 
 .sidebar{
   width: 15%;
-  margin-left:5%;
+  margin-left:2%;
   margin-top: 2%;
   float: left;
 }
 .container {
-  width:70%;
-  margin-left:5%;
-  margin-top: 2%;
+  width:75%;
+  margin-left:4%;
+  margin-top: 1%;
   float: left;
+  overflow: scroll;
+  overflow: hidden;
 }
 .footer{
  width:100%;
