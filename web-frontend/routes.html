@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="./node_modules/leaflet-control-geocoder/dist/Control.Geocoder.css">
     <link rel="stylesheet" href="./css/vroom.css" />
     <link href="style.css" rel="stylesheet">
+    <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-dark bg-mynav"> <!-- The navbar on top of the page -->
@@ -21,7 +23,7 @@
     <div class="sidebar"> <!-- All the objects contained in the left side of the page -->
       <section>
         <div class="d-flex bd-highlight mb-3">
-          <div class="me-auto p-0 bd-highlight"><h2>Orders</div>
+          <div class="me-auto p-0 bd-highlight"><h2>Routes</div>
         <div class="p-2 bd-highlight">
           <button type="button" class="btn btn-secondary" onclick="showCreateBox()">Create</button>
         </div>
@@ -30,13 +32,13 @@
         <div class="me-auto p-0 bd-highlight"><h5>Filter by:</div>
       </section>
       <section>
-        <div class="me-auto p-0 bd-highlight"><h6>Order ID</div>
+        <div class="me-auto p-0 bd-highlight"><h6>Vehicle ID</div>
         <div>  
-          <input type="text" class="SearchBy" id="SearchByID" onkeyup="OrderIdSearch()" placeholder="Get unique order ID">
+          <input type="text" class="SearchBy" id="SearchByID" onkeyup="OrderIdSearch()" placeholder="Get unique Vehicle ID">
         </div>
         <div class="me-auto p-0 bd-highlight"><h6>Client ID</div>
         <div>  
-          <input type="text" class="SearchBy" id="SearchByCID" onkeyup="ClientIdSearch()" placeholder="Get unique client ID">
+          <input type="text" class="SearchBy" id="SearchByCID" onkeyup="ClientIdSearch()" placeholder="Get unique Client ID">
         </div>
         <div class="me-auto p-0 bd-highlight"><h6>Client Name</div>
         <div>  
@@ -76,8 +78,22 @@
 
 
 
-    <div id="map"></div>
-    <script src="src/map.js"></script>
+    <div id="map" style="width:900px; height:580px"></div>
+    <script>
+  // Creating map options
+  var mapOptions = {
+            center: [38.710905, -9.150467],
+            zoom: 12
+         }
+         // Creating a map object
+         var map = new L.map('map', mapOptions);
+         
+         // Creating a Layer object
+         var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+         
+         // Adding layer to the map
+         map.addLayer(layer);      
+    </script>
 
   </div>
 

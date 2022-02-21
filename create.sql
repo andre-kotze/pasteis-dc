@@ -51,11 +51,13 @@ CREATE TABLE pasteis.streets ( --NOT BEING USED AGORA.....
 
 
 CREATE TABLE pasteis.routes ( --NOT BEING USED AGORA.....
-	id INTEGER PRIMARY KEY,
-	length REAL NOT NULL,
-	type VARCHAR(50) NOT NULL,
+	id SERIAL PRIMARY KEY,
+	stops INTEGER,
+	packages INTEGER,
+	delivery_date DATE,
     vehicle INTEGER REFERENCES pasteis.vehicles(id),--foreign key to vehicles
     geom geometry(MULTILINESTRING,4326)
+	-- add a thing for get the date
 );
 
 create view pasteis.jobs as
@@ -68,3 +70,13 @@ c.client_name,
     c.country,
     c.geom
 from pasteis.orders as o join pasteis.clients as c on (c.id = o.client_id);
+
+create view pasteis.routes_map as
+select r.id,
+	r.stops,
+	r.packages,
+	r.delivery_date,
+	st_linefromencodedpolyline(r.geom) as geom,
+	st_asGeoJSON(st_linefromencodedpolyline(r.geom)) as geojson,
+    v.capacity
+from pasteis.routes as r join pasteis.vehicles as v on (v.id = r.vehicle);

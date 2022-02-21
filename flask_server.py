@@ -109,6 +109,24 @@ class jobsJSON(db.Model):
     address = db.Column(db.Text)
     client_name = db.Column(db.Text)
 
+
+# matches routes table. For POST from vroom output
+class routesJSON(db.Model):
+    __tablename__ = "routes"
+    __table_args__ = {"schema": "pasteis"}
+    id = db.Column(db.Integer, primary_key=True)
+    vehicle = db.Column(db.Integer)
+    stops = db.Column(db.Integer)
+    packages = db.Column(db.Text)
+    geom = db.Column(db.Text)
+
+    def __init__ (self, vehicle, stops, packages, geom):
+      self.vehicle = vehicle
+      self.stops = stops
+      self.packages = packages
+      self.geom = geom
+
+
 # create vehicles_view
 class vehiclesJSON(db.Model):
     __tablename__ = "vehicles_view"
@@ -214,6 +232,23 @@ def delete_jobs(id):
   db.session.query(orderJSON).filter_by(id=id).delete()
   db.session.commit()
   return "ride deleted"
+
+# POST method to load routes from vroom into db
+@app.route('/routes', methods =['POST'])
+def create_route():
+  body = request.get_json()
+  for route in body['routes']:
+    db.session.add(routesJSON(
+      route['vehicle'],
+      len(route['steps']) - 2, # nr of stops
+      route['delivery'][0],
+      route['geometry']))
+  db.session.commit()
+  count = len(body)
+  if count == 1:
+    return "Route created"
+  else:
+    return f"{count} routes created"
 
 # statement to run the app in the specified server
 if __name__ == '__main__':
