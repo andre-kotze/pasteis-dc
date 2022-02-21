@@ -117,7 +117,7 @@ class routesJSON(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     vehicle = db.Column(db.Integer)
     stops = db.Column(db.Integer)
-    packages = db.Column(db.Text)
+    packages = db.Column(db.Integer)
     geom = db.Column(db.Text)
 
     def __init__ (self, vehicle, stops, packages, geom):
@@ -125,6 +125,16 @@ class routesJSON(db.Model):
       self.stops = stops
       self.packages = packages
       self.geom = geom
+
+# matches routes_map view. For GET from frontend
+class routesGeoJSON(db.Model):
+    __tablename__ = "routes_map"
+    __table_args__ = {"schema": "pasteis"}
+    id = db.Column(db.Integer, primary_key=True)
+    vehicle = db.Column(db.Integer)
+    stops = db.Column(db.Integer)
+    packages = db.Column(db.Integer)
+    geojson = db.Column(db.Text)
 
 
 # create vehicles_view
@@ -249,6 +259,29 @@ def create_route():
     return "Route created"
   else:
     return f"{count} routes created"
+
+# GET method to retrieve all routes without date filter
+@app.route('/routes', methods =['GET'])
+def get_routes():
+  routes = []
+  # populate list containing routes in a dictionary
+  for route in db.session.query(routesGeoJSON).all():
+    del route.__dict__['_sa_instance_state']
+    routes.append(route.__dict__)
+  return jsonify(routes)
+
+# GET method to retrieve all routes filtered by date
+@app.route('/routes/<date>', methods =['GET'])
+def get_days_routes(date):
+  routes = []
+  # date format YYYY-MM-DD
+  filter_date = datetime.strptime(date, '%Y-%m-%d')
+  print(filter_date)
+   # populate list containing date filtered routes in a dictionary
+  for route in db.session.query(routesJSON).filter(routesJSON.delivery_date == filter_date).all():
+    del route.__dict__['_sa_instance_state']
+    routes.append(route.__dict__)
+  return jsonify(routes)
 
 # statement to run the app in the specified server
 if __name__ == '__main__':
