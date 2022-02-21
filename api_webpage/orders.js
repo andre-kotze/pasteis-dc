@@ -24,74 +24,49 @@ function loadTable() {
 
 loadTable();
 
-function OrderIdSearch() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("SearchByID"); // Get what we search from what we write in the search bar
-  filter = input.value.toUpperCase(); // To avoid upper-lower case problems
-  table = document.getElementById("Table"); // Specify the table
-  tr = table.getElementsByTagName("tr"); // Get elements from each row
+function SearchOrders() {
 
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0]; // Specify the column in wich we want to search
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
+  var searchID = document.getElementById("SearchByID").value.toUpperCase();
+  var searchCID = document.getElementById("SearchByCID").value.toUpperCase();
+  var searchCN = document.getElementById("SearchByCN").value.toUpperCase();
+  var searchD = document.getElementById("SearchByD").value.toUpperCase();
+  var selectS = document.getElementById("SelectST").value.toUpperCase();
+  var quanlow = document.getElementById("LowTreshold").value.toUpperCase();
+  var quanhigh = document.getElementById("HighTreshold").value.toUpperCase();
 
-function filterClick() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("SearchByID"); // Get what we search from what we write in the search bar
-  filter = input.value.toUpperCase(); // To avoid upper-lower case problems
-  table = document.getElementById("Table"); // Specify the table
-  var subjects = document.getElementById("subjects");
-  var subject = subjects.options[subjects.selectedIndex].value;
-  var colValue;
-  if (subject == 'English') {
-      colValue = 2;
-  } else if (subject == 'Maths') {
-      colValue = 3;
-  } else if (subject == 'Science') {
-      colValue = 4;
-  } else if (subject == 'Social Science') {
-      colValue = 5;
-  }
-
-  var modes = document.getElementsByName('mode');
-  var mode;
-  for (var i = 0; i < modes.length; i++) {
-      if (modes[i].checked) {
-          mode = modes[i].value;
-          break;
-      }
-  }
-
-  table = document.getElementById("StudentTable");
-  tr = table.getElementsByTagName("tr");
   for (i = 1; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[colValue];
+
+    var rowID = tr[i].getElementsByTagName("Table")[0].textContent.toUpperCase();
+    var rowCID = tr[i].getElementsByTagName("Table")[1].textContent.toUpperCase();
+    var rowCN = tr[i].getElementsByTagName("Table")[2].textContent.toUpperCase();
+    var rowQ = tr[i].getElementsByTagName("Table")[3].textContent.toUpperCase();
+    var rowS = tr[i].getElementsByTagName("Table")[4].textContent.toUpperCase();
+    var rowD = tr[i].getElementsByTagName("Table")[5].textContent.toUpperCase();
+
+    var isDiplay = true;
+
+    if ((searchID != 'ALL' && rowID != searchID) || (searchID == null)) {
+      isDiplay = false;
+    }
+    if ((searchCID != 'ALL' && rowCID != searchCID) || (searchCID == null)) {
+      isDiplay = false;
+    }
+    if ((searchCN != 'ALL' && rowCN != searchCN) || (searchCN == null)) {
+      isDiplay = false;
+    }
+    if ((searchD != 'ALL' && rowD != searchD) || (searchD == null)) {
+      isDiplay = false;
+    }
+    if ((selectS != 'ALL' && rowS != selectS) || (selectS == null)) {
+      isDiplay = false;
+    }
+    
+    if (isDiplay) {
+      tr[i].style.display = "";
+    } else {
       tr[i].style.display = "none";
-      var cellValue = parseInt(td.innerHTML);
-      if (mode == 'above') {
-          if (cellValue > parseInt(filter)) {
-              tr[i].style.display = "";
-          }
-      } else if (mode == 'below') {
-          if (cellValue < parseInt(filter)) {
-              tr[i].style.display = "";
-          }
-      } else if (mode == 'between') {
-          if (cellValue == parseInt(filter)) {
-              tr[i].style.display = "";
-          }
-      }
+    }
+
   }
 }
 
@@ -130,24 +105,16 @@ function Create() {
 }
 
 function showDeleteBox() {
-  const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "http://localhost:3080/jobs");
-  xhttp.send();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      const objects = JSON.parse(this.responseText);
-      const client_id = objects['id'];
       Swal.fire({
-        title: 'You will delete the following order:',
+        title: 'Select the order to delete:',
         html:
-          '<input id="delete_id" value="'+user['client_id']+'" >' ,
+          '<input id="delete_id" placeholder="Order ID">' ,
         focusConfirm: false,
         preConfirm: () => {
           Delete();
         }
       })
-    }
-  };
+  
 }
 
 function Delete(id) {
@@ -165,18 +132,32 @@ function Delete(id) {
   };
 }
 
-function showEditBox(id) {
+function showEditBox() {
+  Swal.fire({
+    title: 'Select the order to edit:',
+    html:
+      '<input id="edit_id" placeholder="Order ID">' ,
+    focusConfirm: false,
+    preConfirm: () => {
+      SecondEditBox();
+    }
+  })
+
+}
+
+function SecondEditBox(id) {
+  var id_to_edit = document.getElementById("edit_id").value;
   const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "http://localhost:3080/jobs");
+  xhttp.open("GET", "http://localhost:3080/orders/"+id_to_edit, "_self");
   xhttp.send();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       const objects = JSON.parse(this.responseText);
       const user = objects['id'];
       Swal.fire({
-        title: 'Edit Order',
+        title: 'Edit Order'+id_to_edit,
         html:
-          '<input id="id" value='+user['id']+'>' +
+          '<text id="id" value='+user['id']+'>' +
           '<input id="client_id" class="swal2-input" placeholder="Client ID" value="'+user['client_id']+'">' +
           '<input id="quantity" class="swal2-input" placeholder="Quantity" value="'+user['quantity']+'">' +
           '<input id="status" class="swal2-input" placeholder="Status" value="'+user['status']+'">' +

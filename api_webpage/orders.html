@@ -17,62 +17,44 @@
     
     <nav class="navbar navbar-dark bg-mynav"> <!-- The navbar on top of the page -->
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Pasteis do Caralho</a>
+        <a class="navbar-brand" href="#">Pasteis do Caralho /Orders</a>
       </div>
     </nav>
 
     <div class="sidebar"> <!-- All the objects contained in the left side of the page -->
-      <section>
-        <div class="d-flex bd-highlight mb-3">
-          <div class="me-auto p-0 bd-highlight"><h2>Orders</div>
-        </div>
       </section>
       <section>
         <button type="button" class="btn btn-primary full" onclick="showCreateBox()">Create order</button>
         <button type="button" class="btn btn-primary full" onclick="showDeleteBox()">Delete order</button>
         <button type="button" class="btn btn-primary full" onclick="showEditBox()">Edit order</button>
+        <button type="button" class="btn btn-outline-primary full" onclick="location.reload()">Refresh table</button>
       </section>
       <section>
         <div class="me-auto p-0 bd-highlight"><h5>Filter by:</div>
       </section>
       <section>
-        <div class="me-auto p-0 bd-highlight"><h6>Order ID</div>
         <div>  
-          <input type="text" class="SearchBy" id="SearchByID" onkeyup="OrderIdSearch()" placeholder="Get unique order ID">
-        </div>
-        <div class="me-auto p-0 bd-highlight"><h6>Client ID</div>
-        <div>  
-          <input type="text" class="SearchBy" id="SearchByCID" onkeyup="ClientIdSearch()" placeholder="Get unique client ID">
-        </div>
-        <div class="me-auto p-0 bd-highlight"><h6>Client Name</div>
-        <div>  
-          <input type="text" class="SearchBy" id="SearchByCN" onkeyup="ClientNameSearch()" placeholder="Get unique Name">
-        </div>
-        <div class="me-auto p-0 bd-highlight"><h6>Quantity</div>
-          <div>  
-            <input type="text" class="SearchByS" id="LowTreshold" onkeyup="LowTreshold()" placeholder="Between">
-            <input type="text" class="SearchByS" id="HighTreshold" onkeyup="HighTreshold()" placeholder="Higher">
+          <input type="text" class="SearchBy" id="SearchByID" placeholder="Order ID">
+          <input type="text" class="SearchBy" id="SearchByCID" placeholder="Client ID">
+          <input type="text" class="SearchBy" id="SearchByCN" placeholder="Client Name">
+          <input type="text" class="SearchBy" id="SearchByD" placeholder="Date">
+          <div> 
+            <select id="selectST" class="">
+              <option value="all">Status</option>
+              <option value="TD">To deliver</option>
+              <option value="DD">Delivered</option>
+            </select>
           </div>
-        <div class="me-auto p-0 bd-highlight"><h6>Status</div>
-        <div class="form-check pl-0 mb-3">
-          <input type="radio" class="form-check-input" id="todeliver" name="materialExampleRadios">
-          <label class="form-check-label small card-link-secondary" for="todeliver">To deliver</label>
         </div>
-        <div class="form-check pl-0 mb-3">
-          <input type="radio" class="form-check-input" id="delivered" name="materialExampleRadios">
-          <label class="form-check-label small card-link-secondary" for="delivered">Delivered</label>
-        </div>
-        <div class="form-check pl-0 mb-3">
-          <input type="radio" class="form-check-input" id="allstatus" name="materialExampleRadios">
-          <label class="form-check-label small card-link-secondary" for="allstatus">All status</label>
-        </div>
-        <div class="me-auto p-0 bd-highlight"><h6>Delivery day</div>
+        <div class="me-auto p-0 bd-highlight"><h6>Quantity:</div>
         <div>  
-          <input type="text" class="SearchBy" id="SearchByDate" onkeyup="CalendarSearch()" placeholder="Set date">
+          <input type="text" class="SearchByS" id="LowTreshold" onkeyup="LowTreshold()" placeholder="Between">
+          <input type="text" class="SearchByS" id="HighTreshold" onkeyup="HighTreshold()" placeholder="Higher">
         </div>
       </section>
+
       <section>
-        <button type="button" class="btn half btn-secondary" onclick="showCreateBox()">Filter</button>
+        <button type="button" class="btn half btn-secondary" onclick="SearchOrders()">Filter</button>
         <button type="button" class="btn half btn-outline-secondary" onclick="showCreateBox()">Clear</button>
       </section>
     </div>
