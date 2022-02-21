@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset=utf-8 />
-  <title>Pasteis do Caralho - Delivery Optimisation Machine</title>
+  <title>Pasteis DC - Delivery Optimisation Machine</title>
     <meta name="viewport" content="initial-scale=1.0 maximum-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/OpenSans.css" />
@@ -16,7 +16,7 @@
   <body>
     <nav class="navbar navbar-dark bg-mynav"> <!-- The navbar on top of the page -->
       <div class="container-fluid">
-        <img src="../img/PdC.png" height="68px"><h2 class="navbar-brand" style="float: left;">Pasteis do Caralho</h2>
+        <img src="../img/PdC.png" height="68px"><h2 class="navbar-brand" style="float: left;">Pasteis DC</h2>
         <div style="width:max-content;"></div>
       </div>
     </nav>
@@ -90,8 +90,6 @@ function loadRoutes() {
   xhttp.send();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      //console.log(this.responseText);
-      var trHTML = ''; 
       const objects = JSON.parse(this.responseText);
       for (let object of objects) {
         var ft = L.geoJson(object, {
@@ -105,32 +103,19 @@ function loadRoutes() {
                  }
                }
          });
-        var strPopup = "<h2><b>"+object.properties.id+"</b></h2><hr>";
-                    strPopup += "<h5><b>Vehicle:</b> "+object.properties.vehicle+"</h5>";
-                    strPopup += "<h5><b>Capacity:</b> "+object.properties.capacity+"</h5>";
-                    strPopup += "<h5><b>Stops:</b> "+object.properties.stops+"</h5>";
-                    strPopup += "<h5><b>Packages:</b> "+object.properties.packages+"</h5>";
-                    strPopup += "<h5><b>Date:</b> "+object.properties.to_limit+"</h5>";
+        var strPopup = "<h5><b>ID: "+object.properties.id+"</b></h5><hr>";
+                    strPopup += "<h6><b>Vehicle:</b> "+object.properties.vehicle+"</h6>";
+                    strPopup += "<h6><b>Capacity:</b> "+object.properties.capacity+"</h6>";
+                    strPopup += "<h6><b>Stops:</b> "+object.properties.stops+"</h6>";
+                    strPopup += "<h6><b>Packages:</b> "+object.properties.packages+"</h6>";
+                    strPopup += "<h6><b>Duration:</b> "+object.properties.duration+"</h6>";
+                    strPopup += "<h6><b>Distance:</b> "+object.properties.distance+"</h6>";
+                    strPopup += "<h6><b>Date:</b> "+object.properties.to_limit+"</h6>";
         ft.addTo(map);
         ft.bindPopup(strPopup)};
       }
     }
 };
-      /*$features=[];
-      for (let object of objects) {
-            lyrRoutes=L.geoJson(object, {
-                LineString: function(latlngs) {
-                    var strPopup = "<h2><b>"+object.id+"</b></h2><hr>";
-                    strPopup += "<h5><b>Sponsor:</b> "+object.vehicle+"</h5>";
-                    strPopup += "<h5><b>Location:</b> "+object.stops+"</h5>";
-                    strPopup += "<h5><b>From:</b> "+object.packages+"</h5>";
-                    strPopup += "<h5><b>To:</b> "+feature.properties.to_limit+"</h5>";
-                    return L.polyline(latlngs).bindPopup(strPopup);
-                }
-            });
-            lyrRoutes.addTo(map);  
-    }};
-}};*/
     </script>
 
   </div>
