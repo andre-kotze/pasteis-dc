@@ -117,7 +117,6 @@ class vehiclesJSON(db.Model):
     capacity = db.Column(db.Integer)
     location = db.Column(db.Text)
 
-
 # GET method to get all clients from the clients table
 @app.route('/clientids', methods=['GET'])
 def get_clients():
@@ -190,6 +189,15 @@ def get_jobs():
     del job.__dict__['_sa_instance_state']
     jobs.append(job.__dict__)
   return jsonify(jobs)
+
+# PUT method to edit existing orders
+@app.route('/orders/<id>', methods =['PUT'])
+def edit_orders():
+  body = request.get_json()
+  db.session.query(Item).filter_by(id=id).update(
+    dict(title=body['title'], content=body['content']))
+  db.session.commit()
+  return "item updated"
 
 # GET method to retreive vehicles
 @app.route('/vehicles', methods =['GET'])

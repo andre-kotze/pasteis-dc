@@ -30,6 +30,11 @@ td {
   width: 47.5%;
 }
 
+.full {
+  width: 100%;
+  margin: 3px;
+}
+
 .sidebar{
   width: 15%;
   margin-left:5%;

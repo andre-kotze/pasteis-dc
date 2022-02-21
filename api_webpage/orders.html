@@ -25,9 +25,12 @@
       <section>
         <div class="d-flex bd-highlight mb-3">
           <div class="me-auto p-0 bd-highlight"><h2>Orders</div>
-        <div class="p-2 bd-highlight">
-          <button type="button" class="btn btn-secondary" onclick="showCreateBox()">Create</button>
         </div>
+      </section>
+      <section>
+        <button type="button" class="btn btn-primary full" onclick="showCreateBox()">Create order</button>
+        <button type="button" class="btn btn-primary full" onclick="showDeleteBox()">Delete order</button>
+        <button type="button" class="btn btn-primary full" onclick="showEditBox()">Edit order</button>
       </section>
       <section>
         <div class="me-auto p-0 bd-highlight"><h5>Filter by:</div>
@@ -86,7 +89,6 @@
               <th scope="col">Quantity</th>
               <th scope="col">Status</th>
               <th scope="col">Delivery day</th>
-              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody id="Table">
