@@ -18,7 +18,7 @@ from flask_cors import CORS
 # datetime for manipulating dates and times
 from datetime import datetime
 
-# 
+# json for decoding and encoding
 import json
 
 # put ini reader function inside a variable to read the file afterwards
