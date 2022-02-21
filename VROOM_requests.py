@@ -1,6 +1,8 @@
 # GENERATE AND SEND VROOM COMPATIBLE ORDERS
 #   ADD THE DATE TO THE ROUTES IN DB
 
+import argparse
+
 # json for decoding and encoding
 import json
 
@@ -67,7 +69,7 @@ headers = {'Content-Type': 'application/json'}
 
 response = get_all(VROOM_URL, '?Content-Type=application/json')
 
-response = requests.request("POST", url, headers=headers, data=payload)
+response = requests.request("POST", FLASK_URL, headers=headers, data=payload)
 
 print(response.text)
 
