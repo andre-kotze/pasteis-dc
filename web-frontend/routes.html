@@ -16,7 +16,7 @@
   <body>
     <nav class="navbar navbar-dark bg-mynav"> <!-- The navbar on top of the page -->
       <div class="container-fluid">
-        <img src="../img/PdC.png" height="68px"><h2 class="navbar-brand" style="float: left;">Pasteis DC</h2>
+        <img src="../img/PdC.png" height="68px"><h2 style="color:whitesmoke; float: left;">Pasteis DC</h2>
         <div style="width:max-content;"></div>
       </div>
     </nav>
@@ -108,8 +108,8 @@ function loadRoutes() {
                     strPopup += "<h6><b>Capacity:</b> "+object.properties.capacity+"</h6>";
                     strPopup += "<h6><b>Stops:</b> "+object.properties.stops+"</h6>";
                     strPopup += "<h6><b>Packages:</b> "+object.properties.packages+"</h6>";
-                    strPopup += "<h6><b>Duration:</b> "+object.properties.duration+"</h6>";
-                    strPopup += "<h6><b>Distance:</b> "+object.properties.distance+"</h6>";
+                    strPopup += "<h6><b>Duration (sec):</b> "+object.properties.duration+"</h6>";
+                    strPopup += "<h6><b>Distance (m):</b> "+object.properties.distance+"</h6>";
                     strPopup += "<h6><b>Date:</b> "+object.properties.to_limit+"</h6>";
         ft.addTo(map);
         ft.bindPopup(strPopup)};
