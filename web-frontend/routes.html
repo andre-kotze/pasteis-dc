@@ -16,7 +16,8 @@
   <body>
     <nav class="navbar navbar-dark bg-mynav"> <!-- The navbar on top of the page -->
       <div class="container-fluid">
-        <img src="../img/PdC.png" height="68px"><h2 class="navbar-brand" style="float-">Pasteis do Caralho</h2>
+        <img src="../img/PdC.png" height="68px"><h2 class="navbar-brand" style="float: left;">Pasteis do Caralho</h2>
+        <div style="width:max-content;"></div>
       </div>
     </nav>
 
@@ -68,7 +69,7 @@
         </div>
       </section>
       <section>
-        <button type="button" class="btn half btn-secondary" onclick="showCreateBox()">Filter</button>
+        <button type="button" class="btn half btn-secondary" onclick="loadRoutes()">Filter</button>
         <button type="button" class="btn half btn-outline-secondary" onclick="showCreateBox()">Clear</button>
       </section>
     </div>
@@ -95,11 +96,41 @@
          map.addLayer(layer);      
     </script>
 
+    <script>
+      function loadRoutes(){
+        const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "http://localhost:3080/routes");
+  xhttp.send();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      //console.log(this.responseText);
+      var trHTML = ''; 
+      const objects = JSON.parse(this.responseText);
+      $features=[];
+      for (let object of objects) {
+            lyrRoutes=L.geoJSON(JSON.parse(response), {
+                LineString: function(latlngs) {
+                    var strPopup = "<h2><b>"+feature.id+"</b></h2><hr>";
+                    strPopup += "<h5><b>Sponsor:</b> "+feature.properties.sponsor+"</h5>";
+                    strPopup += "<h5><b>Location:</b> "+feature.properties.location+"</h5>";
+                    strPopup += "<h5><b>From:</b> "+feature.properties.from_limit+"</h5>";
+                    strPopup += "<h5><b>To:</b> "+feature.properties.to_limit+"</h5>";
+                    strPopup += "<h5><b>Name:</b> "+feature.properties.local_name+"</h5>";
+                    strPopup += "<h5><b>Length:</b> "+feature.properties.length_mil+"</h5>";
+                    //strPopup += "<img src='img/"+feature.properties.image+"' width='200px'>";
+                    return L.polyline(latlngs).bindPopup(strPopup);
+                }
+            });
+            lyrRoutes.addTo(map);  
+    }};
+}};
+    </script>
+
   </div>
 
   <div class="clearfix"></div>
 
-  <script src="orders.html"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
