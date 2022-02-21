@@ -121,12 +121,16 @@ class routesJSON(db.Model):
     vehicle = db.Column(db.Integer)
     stops = db.Column(db.Integer)
     packages = db.Column(db.Integer)
+    duration = db.Column(db.Integer)
+    distance = db.Column(db.Integer)
     geom = db.Column(db.Text)
 
-    def __init__ (self, vehicle, stops, packages, geom):
+    def __init__ (self, vehicle, stops, packages, duration, distance, geom):
       self.vehicle = vehicle
       self.stops = stops
       self.packages = packages
+      self.duration = duration
+      self.distance = distance
       self.geom = geom
 
 # matches routes_map view. For GET from frontend
@@ -263,6 +267,8 @@ def create_route():
       route['vehicle'],
       len(route['steps']) - 2, # nr of stops
       route['delivery'][0],
+      route['duration'],
+      route['distance'],
       route['geometry']))
   db.session.commit()
   count = len(body)

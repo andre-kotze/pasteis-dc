@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset=utf-8 />
-  <title>Pasteis do Caralho - Delivery Optimisation Machine</title>
+  <title>Pasteis DC - Delivery Optimisation Machine</title>
     <meta name="viewport" content="initial-scale=1.0 maximum-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/OpenSans.css" />
@@ -16,7 +16,7 @@
   <body>
     <nav class="navbar navbar-dark bg-mynav"> <!-- The navbar on top of the page -->
       <div class="container-fluid">
-        <img src="../img/PdC.png" height="68px"><h2 class="navbar-brand" style="float: left;">Pasteis do Caralho</h2>
+        <img src="../img/PdC.png" height="68px"><h2 class="navbar-brand" style="float: left;">Pasteis DC</h2>
         <div style="width:max-content;"></div>
       </div>
     </nav>
@@ -108,6 +108,8 @@ function loadRoutes() {
                     strPopup += "<h6><b>Capacity:</b> "+object.properties.capacity+"</h6>";
                     strPopup += "<h6><b>Stops:</b> "+object.properties.stops+"</h6>";
                     strPopup += "<h6><b>Packages:</b> "+object.properties.packages+"</h6>";
+                    strPopup += "<h6><b>Duration:</b> "+object.properties.duration+"</h6>";
+                    strPopup += "<h6><b>Distance:</b> "+object.properties.distance+"</h6>";
                     strPopup += "<h6><b>Date:</b> "+object.properties.to_limit+"</h6>";
         ft.addTo(map);
         ft.bindPopup(strPopup)};
