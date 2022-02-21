@@ -135,6 +135,7 @@ class routesGeoJSON(db.Model):
     __table_args__ = {"schema": "pasteis"}
     id = db.Column(db.Integer, primary_key=True)
     vehicle = db.Column(db.Integer)
+    capacity = db.Column(db.Integer)
     stops = db.Column(db.Integer)
     packages = db.Column(db.Integer)
     geojson = db.Column(db.Text)
