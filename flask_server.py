@@ -142,6 +142,8 @@ class routesGeoJSON(db.Model):
     capacity = db.Column(db.Integer)
     stops = db.Column(db.Integer)
     packages = db.Column(db.Integer)
+    duration = db.Column(db.Integer)
+    distance = db.Column(db.Integer)
     geojson = db.Column(db.Text)
 
 
