@@ -289,7 +289,10 @@ def get_routes():
                                 'vehicle': route.__dict__['vehicle'],
                                 'capacity' : route.__dict__['capacity'],
                                 'stops' : route.__dict__['stops'],
-                                'packages' : route.__dict__['packages']}
+                                'packages' : route.__dict__['packages'],
+                                'duration' : route.__dict__['duration'],
+                                'distance' : route.__dict__['distance']}
+
     new_route['geometry'] = json.loads(route.__dict__['geojson'])
     routes.append(new_route)
   return jsonify(routes)
