@@ -8,6 +8,11 @@ if __name__ == "__main__":
     #parser.add_argument('--out_file', required=True, help="The output file (.json)")
     args = parser.parse_args()
 
-    analysis = vrm.analyse_set(args.song_dir)
+    # send request to vroom, with current vehicles and relevant date
+    response = vrm.#analyse_set(args.song_dir)
+
+    # 
     vrm.upload_lines(analysis, args.out_file)
+
+
     vrm.upload_points(analysis, args.out_file)

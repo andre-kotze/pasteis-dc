@@ -1,8 +1,6 @@
 # GENERATE AND SEND VROOM COMPATIBLE ORDERS
 #   ADD THE DATE TO THE ROUTES IN DB
 
-import argparse
-
 # json for decoding and encoding
 import json
 
@@ -28,55 +26,59 @@ def get_all(url, suffix='') -> list:
     if r.status_code == 200:
         return r.json()
 
-# get jobs from database using function
-jobs = get_all(FLASK_URL, 'jobs/2022-02-22')
+def make_request(date):
+    # get jobs from database using function
+    jobs = get_all(FLASK_URL, 'jobs/' + date)
 
-# get vehicles from database using function
-vehicles = get_all(FLASK_URL, 'vehicles')
+    # get vehicles from database using function
+    vehicles = get_all(FLASK_URL, 'vehicles')
 
-# generate list of vehicles
-vehicles_list = []
-# populate list with dictionary containing the features to take from the database
-for vehicle in vehicles:
-    location = json.loads(vehicle['location'])['coordinates']
-    vehicles_dict = {}
-    vehicles_dict['id'] = vehicle['id']
-    vehicles_dict['capacity'] = [vehicle['capacity']]
-    vehicles_dict['start'] = location
-    vehicles_dict['end'] = location
-    vehicles_list.append(vehicles_dict)
+    # generate list of vehicles
+    vehicles_list = []
+    # populate list with dictionary containing the features to take from the database
+    for vehicle in vehicles:
+        location = json.loads(vehicle['location'])['coordinates']
+        vehicles_dict = {}
+        vehicles_dict['id'] = vehicle['id']
+        vehicles_dict['capacity'] = [vehicle['capacity']]
+        vehicles_dict['start'] = location
+        vehicles_dict['end'] = location
+        vehicles_list.append(vehicles_dict)
 
-# generate list of jobs
-jobs_list = []
-# populate list with dictionary containing the features to take from the database
-for job in jobs:
-    jobs_dict = {}
-    jobs_dict['id'] = job['id']
-    jobs_dict['client_id'] = job['client_id']
-    jobs_dict['address'] = job['address']
-    jobs_dict['delivery_date'] = job['delivery_date']
-    jobs_dict['delivery'] = [job['quantity']]
-    jobs_dict['status'] = job['status']
-    jobs_dict['location'] = json.loads(job['geom'])['coordinates']
-    jobs_list.append(jobs_dict)
+    # generate list of jobs
+    jobs_list = []
+    # populate list with dictionary containing the features to take from the database
+    for job in jobs:
+        jobs_dict = {}
+        jobs_dict['id'] = job['id']
+        jobs_dict['client_id'] = job['client_id']
+        jobs_dict['address'] = job['address']
+        jobs_dict['delivery_date'] = job['delivery_date']
+        jobs_dict['delivery'] = [job['quantity']]
+        jobs_dict['status'] = job['status']
+        jobs_dict['location'] = json.loads(job['geom'])['coordinates']
+        jobs_list.append(jobs_dict)
 
-# make vroom dictionary request format using the previoulsy populated lists and the options variable that contains the geometry
-options = {"g":  True}
-vroom = {'vehicles': vehicles_list, 'jobs': jobs_list, 'options': options}
+    # make vroom dictionary request format using the previoulsy populated lists and the options variable that contains the geometry
+    options = {"g":  True}
+    return {'vehicles': vehicles_list, 'jobs': jobs_list, 'options': options}
 
-payload = json.dumps(vroom)
-headers = {'Content-Type': 'application/json'}
+def send_to_vroom(request):
+    payload = json.dumps(request)
+    headers = {'Content-Type': 'application/json'}
 
-response = get_all(VROOM_URL, '?Content-Type=application/json')
+    response = get_all(VROOM_URL, '?Content-Type=application/json')
 
-response = requests.request("POST", FLASK_URL, headers=headers, data=payload)
+    response = requests.request("POST", FLASK_URL, headers=headers, data=payload)
 
-print(response.text)
+    print(response.text)
+
+    return response
 
 
 
 # variable for setting the display name of the file
-filename = 'requests/vroom' + datetime.now().strftime('%Y%m%d%H%M%S') + '.json'
+#filename = 'requests/vroom' + datetime.now().strftime('%Y%m%d%H%M%S') + '.json'
 
 # function to save dictionary in JSON file
 def save_result(data , outfile) -> None:
@@ -93,4 +95,4 @@ def save_result(data , outfile) -> None:
         print(e)
 
 # calling the function using vroom dictionary and the filename variable for naming the outcome
-save_result(vroom, filename)
+#save_result(vroom, filename)
