@@ -25,7 +25,7 @@ def get_all(suffix) -> list:
         return r.json()
 
 # get jobs from database using function
-jobs = get_all('jobs')
+jobs = get_all('jobs/2022-02-22')
 
 # get vehicles from database using function
 vehicles = get_all('vehicles')

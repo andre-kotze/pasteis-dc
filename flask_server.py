@@ -280,6 +280,7 @@ def get_routes():
     new_route['type'] = 'Feature'
     new_route['properties'] = {'id': route.__dict__['id'], 
                                 'vehicle': route.__dict__['vehicle'],
+                                'capacity' : route.__dict__['capacity'],
                                 'stops' : route.__dict__['stops'],
                                 'packages' : route.__dict__['packages']}
     new_route['geometry'] = json.loads(route.__dict__['geojson'])
