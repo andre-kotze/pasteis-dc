@@ -221,6 +221,22 @@ def get_jobs():
     jobs.append(job.__dict__)
   return jsonify(jobs)
 
+# GET method to retrieve one single order 
+@app.route('/orders/<id>', methods =['GET']) 
+def get_one_order(id): 
+  ord = orderJSON.query.get(id) 
+  del ord.__dict__['_sa_instance_state'] 
+  return jsonify(ord.__dict__) 
+ 
+# PUT method to edit existing orders 
+@app.route('/orders/<id>', methods =['PUT']) 
+def edit_orders(): 
+  body = request.get_json() 
+  db.session.query(orderJSON).filter_by(id=id).update( 
+    dict(title=body['title'], content=body['content'])) 
+  db.session.commit() 
+  return "item updated"
+
 # PUT method to edit existing orders
 @app.route('/orders/<id>', methods =['PUT'])
 def edit_orders():
