@@ -6,30 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Page name and icon -->
-    <title>PASTEIS DC - CLIENTS</title>
+    <title>PASTEIS DC - WAREHOUSES</title>
     <link href="../img/favicon.ico" rel="icon">
 
     <!-- Bootstrap CSS, link to an online css document that works as a style library -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <!-- References to the css style file and the javascript scripts -->
     <link href="style.css" rel="stylesheet">
-    <script src="clients.js"></script>
+    <script src="warehouses.js"></script>
    
   </head>
   <body>
     
     <nav class="navbar navbar-dark bg-mynav"> <!-- The navbar on top of the page -->
       <div class="container-fluid">
-        <a class="navbar-brand" href="./home.html">Pasteis DC /Clients</a>
+        <a class="navbar-brand" href="./home.html">Pasteis DC /Warehouses</a>
       </div>
     </nav>
 
     <div class="sidebar"> <!-- All the objects contained in the left side of the page -->
       <section>
         <!-- Top buttons for Create, Delete, Edit and Reload -->
-        <button type="button" class="btn btn-primary full" onclick="showCreateBox()">New client</button>
-        <button type="button" class="btn btn-primary full" onclick="showDeleteBox()">Delete client</button>
-        <button type="button" class="btn btn-primary full" onclick="showEditBox()">Edit client</button>
+        <button type="button" class="btn btn-primary full" onclick="showCreateBox()">New warehouse</button>
+        <button type="button" class="btn btn-primary full" onclick="showDeleteBox()">Delete warehouse</button>
+        <button type="button" class="btn btn-primary full" onclick="showEditBox()">Edit warehouse</button>
         <button type="button" class="btn btn-outline-primary full" onclick="location.reload()">Refresh table</button>
       </section>
       <hr> <!-- Division line -->
@@ -37,8 +37,8 @@
         <div class="me-auto p-0 bd-highlight"><h5>Filter by:</div>
         <div>  
           <!-- Fliter boxes -->
-          <input type="text" class="SearchBy" id="SearchByID" placeholder="Client ID">
-          <input type="text" class="SearchBy" id="SearchByN" placeholder="Client Name">
+          <input type="text" class="SearchBy" id="SearchByID" placeholder="Warehouse ID">
+          <input type="text" class="SearchBy" id="SearchByN" placeholder="Warehouse Name">
         </div>
       </section>
       <hr>
@@ -56,8 +56,9 @@
           <thead>
             <tr>
               <!-- Table headers -->
-              <th scope="col">Client ID</th>
-              <th scope="col">Client Name</th>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Stock</th>
               <th scope="col">Adress</th>
               <th scope="col">Postal code</th>
             </tr>
