@@ -77,7 +77,7 @@ def send_to_vroom(request):
 def assign_order(job_id, data ):
     payload = json.dumps(data)
     headers = {'Content-Type': 'application/json'}
-    response = requests.request("POST", FLASK_URL + f'route_orders/{job_id}?Content-Type=application/json', headers=headers, data=payload)
+    response = requests.request("PUT", FLASK_URL + f'route_orders/{job_id}?Content-Type=application/json', headers=headers, data=payload)
 
 
 def add_date_to_vroom_result(result, delivery_date):
@@ -101,12 +101,15 @@ def upload_lines(data):
     headers = {'Content-Type': 'application/json'}
     response = requests.request("POST", FLASK_URL + 'routes?Content-Type=application/json', headers=headers, data=payload)
     print(response.status_code, response.text)
-
+'''
 def upload_points(data):
     payload = json.dumps(data)
     headers = {'Content-Type': 'application/json'}
     response = requests.request("POST", FLASK_URL + 'jobs?Content-Type=application/json', headers=headers, data=payload)
     print(response.status_code, response.text)
+
+'''
+
 
 
 

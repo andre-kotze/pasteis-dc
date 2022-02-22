@@ -84,5 +84,5 @@ select r.id,
 	--st_linefromencodedpolyline(r.geom) as geom,
 	st_asGeoJSON(st_linefromencodedpolyline(r.geom)) as geojson,
 from pasteis.routes as r 
-	join pasteis.vehicles as v on (v.id = r.vehicle)
-	join jobs as j on (r.);
+	join pasteis.vehicles as v on (v.id = r.vehicle);
+	--join jobs as j on (r.);
