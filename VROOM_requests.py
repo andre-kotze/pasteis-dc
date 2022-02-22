@@ -90,13 +90,13 @@ def upload_lines(data):
     payload = json.dumps(data)
     headers = {'Content-Type': 'application/json'}
     response = requests.request("POST", FLASK_URL + 'routes?Content-Type=application/json', headers=headers, data=payload)
-    return response.status_code
+    print(response.status_code, response.text)
 
 def upload_points(data):
     payload = json.dumps(data)
     headers = {'Content-Type': 'application/json'}
     response = requests.request("POST", FLASK_URL + 'jobs?Content-Type=application/json', headers=headers, data=payload)
-    return response.status_code   
+    print(response.status_code, response.text)
 
 
 
