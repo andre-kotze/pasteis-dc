@@ -8,12 +8,8 @@
 <hr>
 
 <pre>
-
-
 To Doo
-1. construct front-end for optimisation engine
 2. interpret VROOM results and display user-friendly output
-3. Html, Leaflet and API
 4. Interface for clients to log in w/ pass (after that, ID will be automatically assigned to the order) and select date and quantity.
 After confirmation, generate an order ID to save to our control and the client's (exportable as pdf).
 5. API:   Link the filters and make them activate only with the button.
@@ -58,6 +54,7 @@ Orders and Clients Map Pages
 [DONE] let flask post multiple orders
 [DONE] separate Orders and Jobs (for POST and GET)
 [DONE] create VIEW called Jobs
+[DONE] construct front-end for optimisation engine
   
  ==== REFERENCE ====
 PORTS
