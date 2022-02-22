@@ -271,7 +271,8 @@ def create_route():
       route['delivery'][0],
       route['duration'],
       route['distance'],
-      route['geometry']))
+      route['geometry'],
+      route['delivery_date']))
   db.session.commit()
   count = len(body)
   if count == 1:
@@ -293,7 +294,8 @@ def get_routes():
                                 'stops' : route.__dict__['stops'],
                                 'packages' : route.__dict__['packages'],
                                 'duration' : route.__dict__['duration'],
-                                'distance' : route.__dict__['distance']}
+                                'distance' : route.__dict__['distance'],
+                                'delivery_date' : route.__dict__['delivery_date']}
 
     new_route['geometry'] = json.loads(route.__dict__['geojson'])
     routes.append(new_route)
