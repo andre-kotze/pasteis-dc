@@ -12,11 +12,9 @@ function loadTable() {
         // For each row get all the columns
         trHTML += '<tr>'; 
         trHTML += '<td>'+object['id']+'</td>';
-        trHTML += '<td>'+object['client_id']+'</td>';
         trHTML += '<td>'+object['client_name']+'</td>';
-        trHTML += '<td>'+object['quantity']+'</td>';
-        trHTML += '<td>'+object['status']+'</td>';
-        trHTML += '<td>'+object['delivery_date']+'</td>';
+        trHTML += '<td>'+object['addressline1']+', '+object['addressline2']+'</td>';
+        trHTML += '<td>'+object['postalcode']+'</td>';
         trHTML += "</tr>";
       }
       document.getElementById("Table").innerHTML = trHTML; // Place the values into the table so called Table

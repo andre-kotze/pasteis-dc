@@ -6,30 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Page name and icon -->
-    <title>PASTEIS DC - ORDERS</title>
+    <title>PASTEIS DC - CLIENTS</title>
     <link href="../img/favicon.ico" rel="icon">
 
     <!-- Bootstrap CSS, link to an online css document that works as a style library -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <!-- References to the css style file and the javascript scripts -->
     <link href="style.css" rel="stylesheet">
-    <script src="orders.js"></script>
+    <script src="clients.js"></script>
    
   </head>
   <body>
     
     <nav class="navbar navbar-dark bg-mynav"> <!-- The navbar on top of the page -->
       <div class="container-fluid">
-        <a class="navbar-brand" href="./home.html">Pasteis DC /Orders</a>
+        <a class="navbar-brand" href="./home.html">Pasteis DC /Clients</a>
       </div>
     </nav>
 
     <div class="sidebar"> <!-- All the objects contained in the left side of the page -->
       <section>
         <!-- Top buttons for Create, Delete, Edit and Reload -->
-        <button type="button" class="btn btn-primary full" onclick="showCreateBox()">Create order</button>
-        <button type="button" class="btn btn-primary full" onclick="showDeleteBox()">Delete order</button>
-        <button type="button" class="btn btn-primary full" onclick="showEditBox()">Edit order</button>
+        <button type="button" class="btn btn-primary full" onclick="showCreateBox()">New client</button>
+        <button type="button" class="btn btn-primary full" onclick="showDeleteBox()">Delete client</button>
+        <button type="button" class="btn btn-primary full" onclick="showEditBox()">Edit client</button>
         <button type="button" class="btn btn-outline-primary full" onclick="location.reload()">Refresh table</button>
       </section>
       <hr> <!-- Division line -->
@@ -37,24 +37,8 @@
         <div class="me-auto p-0 bd-highlight"><h5>Filter by:</div>
         <div>  
           <!-- Fliter boxes -->
-          <input type="text" class="SearchBy" id="SearchByID" placeholder="Order ID">
           <input type="text" class="SearchBy" id="SearchByCID" placeholder="Client ID">
           <input type="text" class="SearchBy" id="SearchByCN" placeholder="Client Name">
-          <input type="text" class="SearchBy" id="SearchByD" placeholder="Date">
-        </div>
-        <div> 
-          <!-- Multiple selection status filter -->
-          <select id="selectST" class="SearchBy">
-            <option value="all">Status</option>
-            <option value="TD">To deliver</option>
-            <option value="DD">Delivered</option>
-          </select>
-        </div>
-        <div class="me-auto p-0 bd-highlight"><h6>Quantity:</div>
-        <div>  
-          <!-- Quantity filter -->
-          <input type="text" class="SearchByS" id="LowTreshold" onkeyup="LowTreshold()" placeholder="Low tr.">
-          <input type="text" class="SearchByS" id="HighTreshold" onkeyup="HighTreshold()" placeholder="High tr.">
         </div>
       </section>
       <hr>
@@ -72,12 +56,10 @@
           <thead>
             <tr>
               <!-- Table headers -->
-              <th scope="col">Order ID</th>
               <th scope="col">Client ID</th>
               <th scope="col">Client Name</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Status</th>
-              <th scope="col">Delivery day</th>
+              <th scope="col">Adress</th>
+              <th scope="col">Postal code</th>
             </tr>
           </thead>
           <!-- Table contents, accessed via the javascript -->
