@@ -75,11 +75,15 @@ function SearchOrders() {
 // When pressing the button it runs the create function.
 function showCreateBox() {
   Swal.fire({
-    title: 'Create order',
+    title: 'Create a new client',
     html:
-      '<input id="create0" type="number" class="swal2-input" placeholder="Client ID">' +
-      '<input id="create1" type="number" class="swal2-input" placeholder="Quantity (in boxes)">' +
-      '<input id="create2" type="date" class="swal2-input" placeholder="Delivery date">' ,
+      '<input id="create0" type="text" class="swal2-input" placeholder="Client Name">' +
+      '<input id="create1" type="text" class="swal2-input" placeholder="Adress">' +
+      '<input id="create2" type="text" class="swal2-input" placeholder="Adress">' +
+      '<input id="create3" type="text" class="swal2-input" placeholder="Postal code">' +
+      '<input id="create4" type="text" class="swal2-input" placeholder="City">' +
+      '<input id="create5" type="text" class="swal2-input" placeholder="Country">' +
+      '<input id="create6" type="text" class="swal2-input" placeholder="Geometry (encoded polyline 5)">' ,
     focusConfirm: false,
     preConfirm: () => {
       Create();
@@ -90,16 +94,20 @@ function showCreateBox() {
 // Gets the values introducted previously in the popup and posts them to the DB through the flask.
 function Create() {
   // Constants for each value typed in the popup
-  const client_id = document.getElementById("create0").value;
-  const quantity = document.getElementById("create1").value;
-  const delivery_date = document.getElementById("create2").value;
+  const client_name = document.getElementById("create0").value;
+  const addressline1 = document.getElementById("create1").value;
+  const addressline2 = document.getElementById("create2").value;
+  const postalcode = document.getElementById("create3").value;
+  const city = document.getElementById("create4").value;
+  const country = document.getElementById("create5").value;
+  const geom = document.getElementById("create6").value;
   
   // The request
   const xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "http://localhost:3080/orders");
+  xhttp.open("POST", "http://localhost:3080/clients");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8"); //Specifies the format of the post
   xhttp.send(JSON.stringify([{ //The format of the JSON sended
-    client_id:client_id, quantity:quantity, delivery_date:delivery_date
+    client_name:client_name, addressline1:addressline1, addressline2:addressline2, postalcode:postalcode, city:city, country:country, geom:geom,
   }]));
   // When the request and the function succeed, it stops.
   xhttp.onreadystatechange = function() {
@@ -112,9 +120,9 @@ function Create() {
 // Displays the popup asking for the order ID to delete
 function showDeleteBox() {
       Swal.fire({
-        title: 'Select the order to delete:',
+        title: 'Select the client to delete:',
         html:
-          '<input id="delete_id" placeholder="Order ID">' ,
+          '<input id="delete_id" placeholder="Client ID">' ,
         focusConfirm: false,
         preConfirm: () => {
           Delete();
@@ -127,7 +135,7 @@ function showDeleteBox() {
 function Delete(id) {
   var id_to_delete = document.getElementById("delete_id").value;
   const xhttp = new XMLHttpRequest();
-  xhttp.open("DELETE", "http://localhost:3080/orders/"+id_to_delete, "_self"); // Adds the ID to the port link
+  xhttp.open("DELETE", "http://localhost:3080/clients/"+id_to_delete, "_self"); // Adds the ID to the port link
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(JSON.stringify({}));
   xhttp.onreadystatechange = function() {

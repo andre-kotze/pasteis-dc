@@ -200,7 +200,6 @@ def create_client():
   body = request.get_json()
   for client in body:
     db.session.add(clientsJSON(
-      client['id'],
       client['client_name'], 
       client['addressline1'],
       client['addressline2'],
@@ -268,6 +267,13 @@ def get_vehicles():
 # DELETE method to delete jobs (delete the order, as jobs is a view) using their id
 @app.route('/orders/<id>', methods=['DELETE'])
 def delete_jobs(id):
+  db.session.query(orderJSON).filter_by(id=id).delete()
+  db.session.commit()
+  return "ride deleted"
+
+# DELETE method to delete clients using their id
+@app.route('/clients/<id>', methods=['DELETE'])
+def delete_clients(id):
   db.session.query(orderJSON).filter_by(id=id).delete()
   db.session.commit()
   return "ride deleted"
