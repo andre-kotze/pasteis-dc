@@ -1,9 +1,15 @@
+.homecontain{
+  width: 100%;
+}
+
 .homebut {
-  width: 20%;
-  height: 20%;
-  margin-top: 5%;
-  margin-left: 2%;
-  margin-right: 2%;
+  width: 15%;
+  height: 30%;
+  margin-top: 0.5%;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
 .bg-mynav {
