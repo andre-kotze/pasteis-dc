@@ -90,7 +90,7 @@ def add_date_to_vroom_result(result, delivery_date):
             step['delivery_date'] = delivery_date
             if step['type'] == 'job':
                 job_id = step['job']
-                assign_order(job_id, json.dumps({'vehicle': vehicle}))
+                assign_order(job_id, {'vehicle': vehicle})
         routes.append(thing)
     result['routes'] = routes
 
