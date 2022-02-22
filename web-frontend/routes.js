@@ -30,3 +30,35 @@ if (this.readyState == 4 && this.status == 200) {
   }
 }
 };
+
+function loadJobs() {
+  const xhttp = new XMLHttpRequest();
+xhttp.open("GET", "http://localhost:3080/jobs");
+xhttp.send();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+const objects = JSON.parse(this.responseText);
+for (let object of objects) {
+  var ft = L.geoJson(object, {
+          style: function(feature) {
+            switch (feature.properties.vehicle) {
+              case 0: return {color: "#ff0000"};
+              case 1: return {color: "#0000ff"};
+              case 2: return {color: "#00ff00"};
+              case 3: return {color: "#0000f0"};
+              case 4: return {color: "#f00000"}
+           }
+         }
+   });
+  var strPopup = "<h5><b>ID: "+object.properties.id+"</b></h5><hr>";
+              strPopup += "<h6><b>Vehicle:</b> "+object.properties.vehicle+"</h6>";
+              strPopup += "<h6><b>Client Name:</b> "+object.properties.client_name+"</h6>";
+              strPopup += "<h6><b>Address:</b> "+object.properties.address+"</h6>";
+              strPopup += "<h6><b>Quantity:</b> "+object.properties.quantity+"</h6>";
+              strPopup += "<h6><b>Delivery Date:</b> "+object.properties.delivery_date+"</h6>";
+              strPopup += "<h6><b>Status:</b> "+object.properties.status+"</h6>";
+  ft.addTo(map);
+  ft.bindPopup(strPopup)};
+}
+}
+};
