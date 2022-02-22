@@ -74,9 +74,17 @@ def send_to_vroom(request):
 
     return response
 
-def add_date_to_vroom_result(result, date):
-
-    return
+def add_date_to_vroom_result(result, delivery_date):
+    routes = []
+    for route in result['routes']:
+        thing = route.copy()
+        thing['delivery_date'] = delivery_date
+        for step in route['steps']:
+            step['delivery_date'] = delivery_date
+        routes.append(thing)
+    result['routes'] = routes
+    print(result)
+    return result
 
 def upload_lines():
     
