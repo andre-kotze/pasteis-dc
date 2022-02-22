@@ -112,6 +112,7 @@ class jobsJSON(db.Model):
     delivery_date = db.Column(db.Date)
     address = db.Column(db.Text)
     client_name = db.Column(db.Text)
+    vehicle = db.Column(db.Integer)
 
 
 # matches routes table. For POST from vroom output
