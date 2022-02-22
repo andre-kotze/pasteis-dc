@@ -14,7 +14,7 @@ if __name__ == "__main__":
     result_date = vrm.add_date_to_vroom_result(result.json(), args.date)
     
     # 
-    vrm.upload_lines(analysis, args.out_file)
+    vrm.upload_lines(result_date)
 
-
-    vrm.upload_points(analysis, args.out_file)
+    #
+    vrm.upload_points(result_date)

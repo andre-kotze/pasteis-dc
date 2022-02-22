@@ -83,18 +83,20 @@ def add_date_to_vroom_result(result, delivery_date):
             step['delivery_date'] = delivery_date
         routes.append(thing)
     result['routes'] = routes
-    with open('outputfile.json', 'w') as fp:
-        json.dump(result, fp, indent = 2)
 
     return result
 
-def upload_lines():
-    
-    return
+def upload_lines(data):
+    payload = json.dumps(data)
+    headers = {'Content-Type': 'application/json'}
+    response = requests.request("POST", FLASK_URL + 'routes?Content-Type=application/json', headers=headers, data=payload)
+    return response.status_code
 
-def upload_points():
-    
-    return
+def upload_points(data):
+    payload = json.dumps(data)
+    headers = {'Content-Type': 'application/json'}
+    response = requests.request("POST", FLASK_URL + 'jobs?Content-Type=application/json', headers=headers, data=payload)
+    return response.status_code   
 
 
 
