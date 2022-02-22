@@ -83,6 +83,8 @@ def add_date_to_vroom_result(result, delivery_date):
             step['delivery_date'] = delivery_date
         routes.append(thing)
     result['routes'] = routes
+    with open('outputfile.json', 'w') as fp:
+        json.dump(result, fp, indent = 2)
 
     return result
 
