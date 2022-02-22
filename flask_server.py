@@ -337,13 +337,21 @@ def get_routes():
 @app.route('/routes/<date>', methods =['GET'])
 def get_days_routes(date):
   routes = []
-  # date format YYYY-MM-DD
-  filter_date = datetime.strptime(date, '%Y-%m-%d')
-  print(filter_date)
-   # populate list containing date filtered routes in a dictionary
-  for route in db.session.query(routesJSON).filter(routesJSON.delivery_date == filter_date).all():
-    del route.__dict__['_sa_instance_state']
-    routes.append(route.__dict__)
+  # populate list containing routes in a dictionary
+  for route in db.session.query(routesGeoJSON).filter(routesGeoJSON.delivery_date == date).all():
+    new_route = {}
+    new_route['type'] = 'Feature'
+    new_route['properties'] = {'id': route.__dict__['id'], 
+                                'vehicle': route.__dict__['vehicle'],
+                                'capacity' : route.__dict__['capacity'],
+                                'stops' : route.__dict__['stops'],
+                                'packages' : route.__dict__['packages'],
+                                'duration' : route.__dict__['duration'],
+                                'distance' : route.__dict__['distance'],
+                                'delivery_date' : route.__dict__['delivery_date']}
+
+    new_route['geometry'] = json.loads(route.__dict__['geojson'])
+    routes.append(new_route)
   return jsonify(routes)
 
 # statement to run the app in the specified server
