@@ -1,7 +1,7 @@
 // The GET function to get the table jobs from the DB via the flask
 function loadTable() {
   const xhttp = new XMLHttpRequest(); // The request
-  xhttp.open("GET", "http://localhost:3080/vehicles"); // Gets the information from this port
+  xhttp.open("GET", "http://localhost:3080/warehouses"); // Gets the information from this port
   xhttp.send(); // Sends nothing back
   xhttp.onreadystatechange = function() { // Activtes every time the status of the request changes
     if (this.readyState == 4 && this.status == 200) { // Ready state 4 = done, request status 200 = success
@@ -12,8 +12,10 @@ function loadTable() {
         // For each row get all the columns
         trHTML += '<tr>'; 
         trHTML += '<td>'+object['id']+'</td>';
-        trHTML += '<td>'+object['capacity']+'</td>';
-        trHTML += '<td>'+object['location']+'</td>';
+        trHTML += '<td>'+object['name']+'</td>';
+        trHTML += '<td>'+object['stock']+'</td>';
+        trHTML += '<td>'+object['addressline1']+', '+object['addressline2']+'</td>';
+        trHTML += '<td>'+object['postalcode']+'</td>';
         trHTML += "</tr>";
       }
       document.getElementById("Table").innerHTML = trHTML; // Place the values into the table so called Table
@@ -76,8 +78,14 @@ function showCreateBox() {
   Swal.fire({
     title: 'Create a new client',
     html:
-      '<input id="create0" type="text" class="swal2-input" placeholder="Capacity">' +
-      '<input id="create1" type="text" class="swal2-input" placeholder="Location">',
+      '<input id="create0" type="text" class="swal2-input" placeholder="Warehouse Name">' +
+      '<input id="create1" type="text" class="swal2-input" placeholder="Adress">' +
+      '<input id="create2" type="text" class="swal2-input" placeholder="Adress">' +
+      '<input id="create3" type="text" class="swal2-input" placeholder="Postal code">' +
+      '<input id="create4" type="text" class="swal2-input" placeholder="City">' +
+      '<input id="create5" type="text" class="swal2-input" placeholder="Country">' +
+      '<input id="create6" type="text" class="swal2-input" placeholder="Geometry (encoded polyline 5)">' +
+      '<input id="create7" type="text" class="swal2-input" placeholder="Initial stock">' ,
     focusConfirm: false,
     preConfirm: () => {
       Create();
@@ -88,15 +96,21 @@ function showCreateBox() {
 // Gets the values introducted previously in the popup and posts them to the DB through the flask.
 function Create() {
   // Constants for each value typed in the popup
-  const capacity = document.getElementById("create0").value;
-  const location = document.getElementById("create1").value;
+  const name = document.getElementById("create0").value;
+  const addressline1 = document.getElementById("create1").value;
+  const addressline2 = document.getElementById("create2").value;
+  const postalcode = document.getElementById("create3").value;
+  const city = document.getElementById("create4").value;
+  const country = document.getElementById("create5").value;
+  const geom = document.getElementById("create6").value;
+  const stock = document.getElementById("create7").value;
   
   // The request
   const xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "http://localhost:3080/vehicles");
+  xhttp.open("POST", "http://localhost:3080/clients");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8"); //Specifies the format of the post
   xhttp.send(JSON.stringify([{ //The format of the JSON sended
-    capacity:capacity, location:location,
+    client_name:client_name, addressline1:addressline1, addressline2:addressline2, city:city, country:country, postalcode:postalcode, geom:geom, stock:stock
   }]));
   // When the request and the function succeed, it stops.
   xhttp.onreadystatechange = function() {
@@ -109,9 +123,9 @@ function Create() {
 // Displays the popup asking for the order ID to delete
 function showDeleteBox() {
       Swal.fire({
-        title: 'Select the vehicle to delete:',
+        title: 'Select the warehouse to delete:',
         html:
-          '<input id="delete_id" placeholder="Vehicle ID">' ,
+          '<input id="delete_id" placeholder="Warehouse ID">' ,
         focusConfirm: false,
         preConfirm: () => {
           Delete();
@@ -124,7 +138,7 @@ function showDeleteBox() {
 function Delete(id) {
   var id_to_delete = document.getElementById("delete_id").value;
   const xhttp = new XMLHttpRequest();
-  xhttp.open("DELETE", "http://localhost:3080/vehicles/"+id_to_delete, "_self"); // Adds the ID to the port link
+  xhttp.open("DELETE", "http://localhost:3080/warehouses/"+id_to_delete, "_self"); // Adds the ID to the port link
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(JSON.stringify({}));
   xhttp.onreadystatechange = function() {
@@ -141,7 +155,7 @@ function showEditBox() {
   Swal.fire({
     title: 'Select the order to edit:',
     html:
-      '<input id="edit_id" placeholder="Vehicle ID">' ,
+      '<input id="edit_id" placeholder="Client ID">' ,
     focusConfirm: false,
     preConfirm: () => {
       SecondEditBox();
@@ -155,7 +169,7 @@ function showEditBox() {
 function SecondEditBox(id) {
   var id_to_edit = document.getElementById("edit_id").value;
   const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "http://localhost:3080/vehicles/"+id_to_edit, "_self");
+  xhttp.open("GET", "http://localhost:3080/orders/"+id_to_edit, "_self");
   xhttp.send();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -165,8 +179,13 @@ function SecondEditBox(id) {
           width: 800,
           title: 'Edit order '+id_to_edit,
           html:
-            '<div class="me-auto p-0 bd-highlight"><h5>Client ID:</div><input id="capacity" class="swal2-input half" value="'+object.capacity+'">' +
-            '<div class="me-auto p-0 bd-highlight"><h5>Quantity:</div><input id="location" class="swal2-input half"value="'+object.location+'">' ,
+            '<div class="me-auto p-0 bd-highlight"><h5>Client ID:</div><input id="client_name" class="swal2-input half" value="'+object.client_name+'">' +
+            '<div class="me-auto p-0 bd-highlight"><h5>Quantity:</div><input id="adline1" class="swal2-input half"value="'+object.addressline1+'">' +
+            '<div class="me-auto p-0 bd-highlight"><h5>Date:</div> <input id="adline2" class="swal2-input half" value="'+object.addressline2+'">'+
+            '<div class="me-auto p-0 bd-highlight"><h5>Client ID:</div><input id="city" class="swal2-input half" value="'+object.city+'">' +
+            '<div class="me-auto p-0 bd-highlight"><h5>Quantity:</div><input id="pcode" class="swal2-input half"value="'+object.postalcode+'">' +
+            '<div class="me-auto p-0 bd-highlight"><h5>Quantity:</div><input id="country" class="swal2-input half"value="'+object.country+'">' +
+            '<div class="me-auto p-0 bd-highlight"><h5>Date:</div> <input id="geom" class="swal2-input half" value="'+object.geom+'">',
         focusConfirm: false,
         preConfirm: () => {
           Edit();
@@ -180,14 +199,19 @@ function SecondEditBox(id) {
 // Puts the edited order to the database
 function Edit(client) {
   const id = document.getElementById("edit_id").value;
-  const capacity = document.getElementById("capacity").value;
-  const location = document.getElementById("location").value;
+  const client_name = document.getElementById("client_name").value;
+  const addressline1 = document.getElementById("adline1").value;
+  const addressline2 = document.getElementById("adline2").value;
+  const city = document.getElementById("city").value;
+  const postalcode = document.getElementById("pcode").value;
+  const country = document.getElementById("country").value;
+  const geom = document.getElementById("geom").value;
     
   const xhttp = new XMLHttpRequest();
   xhttp.open("PUT", "http://localhost:3080/orders");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(JSON.stringify({ 
-    id:id, capacity:capacity, location:location,
+    id:id, client_name:client_name, addressline1:addressline1, addressline2:addressline2, postalcode:postalcode, city:city, country:country, geom:geom,
   }));
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
