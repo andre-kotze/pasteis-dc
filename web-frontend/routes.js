@@ -24,7 +24,7 @@ if (this.readyState == 4 && this.status == 200) {
                 strPopup += "<h6><b>Packages:</b> "+object.properties.packages+"</h6>";
                 strPopup += "<h6><b>Duration (sec):</b> "+object.properties.duration+"</h6>";
                 strPopup += "<h6><b>Distance (m):</b> "+object.properties.distance+"</h6>";
-                strPopup += "<h6><b>Date:</b> "+object.properties.to_limit+"</h6>";
+                strPopup += "<h6><b>Date:</b> "+object.properties.delivery_date+"</h6>";
     ft.addTo(map);
     ft.bindPopup(strPopup)};
   }
