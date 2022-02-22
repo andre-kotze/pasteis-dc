@@ -7,8 +7,9 @@ function loadTable() {
     if (this.readyState == 4 && this.status == 200) { // Ready state 4 = done, request status 200 = success
       console.log(this.responseText); // Output a message to the web console, containing the text recieved from the request
       var trHTML = ''; // Defines the variable trHTML
-      const objects = JSON.parse(this.responseText); // 
+      const objects = JSON.parse(this.responseText); // Constant that analyzes JSON objects, in this case our response
       for (let object of objects) {
+        // For each row get all the columns
         trHTML += '<tr>'; 
         trHTML += '<td>'+object['id']+'</td>';
         trHTML += '<td>'+object['client_id']+'</td>';
@@ -18,13 +19,16 @@ function loadTable() {
         trHTML += '<td>'+object['delivery_date']+'</td>';
         trHTML += "</tr>";
       }
-      document.getElementById("Table").innerHTML = trHTML;
+      document.getElementById("Table").innerHTML = trHTML; // Place the values into the table so called Table
     }
   };
 }
 
+// Load the table :)
 loadTable();
 
+
+// I'm still not working :(
 function SearchOrders() {
 
   var searchID = document.getElementById("SearchByID").value.toUpperCase();
@@ -69,6 +73,8 @@ function SearchOrders() {
   }
 }
 
+// Displays a popup with swal (sweet alert).
+// When pressing the button it runs the create function.
 function showCreateBox() {
   Swal.fire({
     title: 'Create order',
@@ -83,26 +89,29 @@ function showCreateBox() {
   })
 }
 
+// Gets the values introducted previously in the popup and posts them to the DB through the flask.
 function Create() {
+  // Constants for each value typed in the popup
   const client_id = document.getElementById("create0").value;
   const quantity = document.getElementById("create1").value;
   const delivery_date = document.getElementById("create2").value;
-    
+  
+  // The request
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "http://localhost:3080/orders");
-  xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xhttp.send(JSON.stringify([{ 
+  xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8"); //Specifies the format of the post
+  xhttp.send(JSON.stringify([{ //The format of the JSON sended
     client_id:client_id, quantity:quantity, delivery_date:delivery_date
   }]));
+  // When the request and the function succeed, it stops.
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       const objects = JSON.parse(this.responseText);
-      Swal.fire(objects['message']);
-      loadTable();
     }
   };
 }
 
+// Displays the popup asking for the order ID to delete
 function showDeleteBox() {
       Swal.fire({
         title: 'Select the order to delete:',
@@ -116,10 +125,11 @@ function showDeleteBox() {
   
 }
 
+// Gets the ID specified previously and deletes it from the DB
 function Delete(id) {
   var id_to_delete = document.getElementById("delete_id").value;
   const xhttp = new XMLHttpRequest();
-  xhttp.open("DELETE", "http://localhost:3080/orders/"+id_to_delete, "_self");
+  xhttp.open("DELETE", "http://localhost:3080/orders/"+id_to_delete, "_self"); // Adds the ID to the port link
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(JSON.stringify({}));
   xhttp.onreadystatechange = function() {
@@ -131,6 +141,7 @@ function Delete(id) {
   };
 }
 
+// Displays the popup asking for the order ID to edit
 function showEditBox() {
   Swal.fire({
     title: 'Select the order to edit:',
@@ -144,6 +155,8 @@ function showEditBox() {
 
 }
 
+// Gets the values attached to the selected order
+// Shows them in editable boxes for us to edit them
 function SecondEditBox(id) {
   var id_to_edit = document.getElementById("edit_id").value;
   const xhttp = new XMLHttpRequest();
@@ -172,6 +185,7 @@ function SecondEditBox(id) {
   };
 }
 
+// Posts the edited order to the database
 function Edit(id) {
   const or_id = document.getElementById("edit_id").value;
   const cl_id = document.getElementById("client_id").value;
