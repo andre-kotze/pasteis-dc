@@ -93,6 +93,7 @@ class orderJSON(db.Model):
     client_id = db.Column(db.Integer)
     quantity = db.Column(db.Integer)
     delivery_date = db.Column(db.Integer)
+    vehicle = db.Column(db.Integer)
 
     def __init__ (self, client_id, quantity, delivery_date):
       self.client_id = client_id
@@ -111,6 +112,7 @@ class jobsJSON(db.Model):
     delivery_date = db.Column(db.Date)
     address = db.Column(db.Text)
     client_name = db.Column(db.Text)
+    vehicle = db.Column(db.Integer)
 
 
 # matches routes table. For POST from vroom output
@@ -239,6 +241,15 @@ def get_jobs():
     del job.__dict__['_sa_instance_state']
     jobs.append(job.__dict__)
   return jsonify(jobs)
+
+# PUT method to edit existing route_orders
+@app.route('/route_orders/<id>', methods =['PUT']) 
+def assign_orders(id): 
+  body = request.get_json() 
+  db.session.query(orderJSON).filter_by(id=id).update( 
+    dict(vehicle=body['vehicle']))
+  db.session.commit() 
+  return "item updated"
 
 # GET method to retrieve one single order 
 @app.route('/orders/<id>', methods =['GET']) 
