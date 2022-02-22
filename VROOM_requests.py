@@ -70,7 +70,7 @@ def send_to_vroom(request):
     #response = get_all(VROOM_URL)
 
     response = requests.request("POST", VROOM_URL + '?Content-Type=application/json', headers=headers, data=payload)
-    print(response.text)
+    #print(response.text)
 
     return response
 
@@ -83,7 +83,7 @@ def add_date_to_vroom_result(result, delivery_date):
             step['delivery_date'] = delivery_date
         routes.append(thing)
     result['routes'] = routes
-    print(result)
+
     return result
 
 def upload_lines():
