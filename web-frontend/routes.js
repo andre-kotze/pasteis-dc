@@ -12,8 +12,8 @@ if (this.readyState == 4 && this.status == 200) {
                 case 0: return {color: "#ff0000"};
                 case 1: return {color: "#0000ff"};
                 case 2: return {color: "#00ff00"};
-                case 3: return {color: "#0000f0"};
-                case 4: return {color: "#f00000"}
+                case 3: return {color: "#00ffff"};
+                case 4: return {color: "#ffff00"}
              }
            }
      });
