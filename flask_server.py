@@ -155,13 +155,23 @@ class vehiclesJSON(db.Model):
     capacity = db.Column(db.Integer)
     location = db.Column(db.Text)
 
-# GET method to get all clients from the clients table
+# GET method to get all clients id from the clients table
 @app.route('/clientids', methods=['GET'])
-def get_clients():
-  clients = []
+def get_clientsid():
+  clientsid = []
   for client in db.session.query(clientsJSON).all():
     del client.__dict__['_sa_instance_state']
-    clients.append(client.__dict__['id'])
+    clientsid.append(client.__dict__['id'])
+  return jsonify(clientsid)
+
+# GET method to retrieve all clients
+@app.route('/clients', methods =['GET'])
+def get_clients():
+  clients = []
+  # populate list containing clients in a dictionary
+  for client in db.session.query(clientsJSON).all():
+    del client.__dict__['_sa_instance_state']
+    clients.append(client.__dict__)
   return jsonify(clients)
 
 # POST method to place orders
