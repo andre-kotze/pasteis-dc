@@ -126,12 +126,13 @@ class routesJSON(db.Model):
     delivery_date = db.Column(db.Date)
     geom = db.Column(db.Text)
 
-    def __init__ (self, vehicle, stops, packages, duration, distance, geom):
+    def __init__ (self, vehicle, stops, packages, duration, distance, date, geom):
       self.vehicle = vehicle
       self.stops = stops
       self.packages = packages
       self.duration = duration
       self.distance = distance
+      self.delivery_date = date
       self.geom = geom
 
 # matches routes_map view. For GET from frontend
@@ -289,8 +290,8 @@ def create_route():
       route['delivery'][0],
       route['duration'],
       route['distance'],
-      route['geometry'],
-      route['delivery_date']))
+      route['delivery_date'],
+      route['geometry']))
   db.session.commit()
   count = len(body)
   if count == 1:
