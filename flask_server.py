@@ -246,6 +246,8 @@ def get_jobs():
 @app.route('/route_orders/<id>', methods =['PUT']) 
 def assign_orders(id): 
   body = request.get_json() 
+  print(body)
+  print(type(body))
   db.session.query(orderJSON).filter_by(id=id).update( 
     dict(vehicle=body['vehicle']))
   db.session.commit() 
@@ -260,8 +262,8 @@ def get_one_order(id):
  
 # PUT method to edit existing orders 
 @app.route('/orders/<id>', methods =['PUT']) 
-def edit_orders(): 
-  body = request.get_json() 
+def edit_orders(id): 
+  body = request.get_json()
   db.session.query(orderJSON).filter_by(id=id).update( 
     dict(title=body['title'], content=body['content'])) 
   db.session.commit() 
