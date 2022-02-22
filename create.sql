@@ -64,12 +64,8 @@ CREATE TABLE pasteis.routes ( --NOT BEING USED AGORA.....
 create view pasteis.jobs as
 select o.*, 
 c.client_name,
-    c.addressline1,
-    c.addressline2,
-    c.city,
-    c.postalcode,
-    c.country,
-    c.geom
+    c.addressline1 as address,
+    st_asgeojson(c.geom) as geom
 from pasteis.orders as o join pasteis.clients as c on (c.id = o.client_id);
 
 create view pasteis.routes_map as
@@ -84,5 +80,5 @@ select r.id,
 	--st_linefromencodedpolyline(r.geom) as geom,
 	st_asGeoJSON(st_linefromencodedpolyline(r.geom)) as geojson,
 from pasteis.routes as r 
-	join pasteis.vehicles as v on (v.id = r.vehicle);
-	--join jobs as j on (r.);
+	join pasteis.vehicles as v on (v.id = r.vehicle)
+	join jobs as j on (r.);
