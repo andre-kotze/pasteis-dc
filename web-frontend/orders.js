@@ -29,13 +29,19 @@ loadTable();
 
 
 // I'm still not working :(
+
+
 function SearchOrders() {
+
+  const table = document.getElementById("Table");
+  // save all tr
+  const tr = table.getElementsByTagName("tr");
 
   var searchID = document.getElementById("SearchByID").value.toUpperCase();
   var searchCID = document.getElementById("SearchByCID").value.toUpperCase();
   var searchCN = document.getElementById("SearchByCN").value.toUpperCase();
   var searchD = document.getElementById("SearchByD").value.toUpperCase();
-  var selectS = document.getElementById("SelectST").value.toUpperCase();
+  var selectS = document.getElementById("selectST").value.toUpperCase();
 
   for (i = 1; i < tr.length; i++) {
 
@@ -48,19 +54,19 @@ function SearchOrders() {
 
     var isDiplay = true;
 
-    if ((searchID != 'ALL' && rowID != searchID) || (searchID == null)) {
+    if (searchID != 'ALL' && rowID != searchID) {
       isDiplay = false;
     }
-    if ((searchCID != 'ALL' && rowCID != searchCID) || (searchCID == null)) {
+    if (searchCID != 'ALL' && rowCID != searchCID) {
       isDiplay = false;
     }
-    if ((searchCN != 'ALL' && rowCN != searchCN) || (searchCN == null)) {
+    if (searchCN != 'ALL' && rowCN != searchCN) {
       isDiplay = false;
     }
-    if ((searchD != 'ALL' && rowD != searchD) || (searchD == null)) {
+    if (searchD != 'ALL' && rowD != searchD) {
       isDiplay = false;
     }
-    if ((selectS != 'ALL' && rowS != selectS) || (selectS == null)) {
+    if (selectS != 'ALL' && rowS != selectS) {
       isDiplay = false;
     }
     
