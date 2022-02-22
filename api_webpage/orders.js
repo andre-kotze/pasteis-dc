@@ -1,12 +1,13 @@
+// The GET function to get the table jobs from the DB via the flask
 function loadTable() {
-  const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "http://localhost:3080/jobs");
-  xhttp.send();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      console.log(this.responseText);
-      var trHTML = ''; 
-      const objects = JSON.parse(this.responseText);
+  const xhttp = new XMLHttpRequest(); // The request
+  xhttp.open("GET", "http://localhost:3080/jobs"); // Gets the information from this port
+  xhttp.send(); // Sends nothing back
+  xhttp.onreadystatechange = function() { // Activtes every time the status of the request changes
+    if (this.readyState == 4 && this.status == 200) { // Ready state 4 = done, request status 200 = success
+      console.log(this.responseText); // Output a message to the web console, containing the text recieved from the request
+      var trHTML = ''; // Defines the variable trHTML
+      const objects = JSON.parse(this.responseText); // 
       for (let object of objects) {
         trHTML += '<tr>'; 
         trHTML += '<td>'+object['id']+'</td>';
