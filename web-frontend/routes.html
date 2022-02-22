@@ -26,9 +26,6 @@
       <section>
         <div class="d-flex bd-highlight mb-3">
           <div class="me-auto p-0 bd-highlight"><h2>Routes</div>
-        <div class="p-2 bd-highlight">
-          <button type="button" class="btn btn-secondary" onclick="showCreateBox()">Create</button>
-        </div>
       </section>
       <section>
         <div class="me-auto p-0 bd-highlight"><h5>Filter by:</div>
@@ -38,26 +35,13 @@
         <div>  
           <input type="text" class="SearchBy" id="SearchByID" onkeyup="OrderIdSearch()" placeholder="Get unique Vehicle ID">
         </div>
-        <div class="me-auto p-0 bd-highlight"><h6>Client ID</div>
-        <div>  
-          <input type="text" class="SearchBy" id="SearchByCID" onkeyup="ClientIdSearch()" placeholder="Get unique Client ID">
-        </div>
-        <div class="me-auto p-0 bd-highlight"><h6>Client Name</div>
-        <div>  
-          <input type="text" class="SearchBy" id="SearchByCN" onkeyup="ClientNameSearch()" placeholder="Get unique Name">
-        </div>
-        <div class="me-auto p-0 bd-highlight"><h6>Quantity</div>
-          <div>  
-            <input type="text" class="SearchByS" id="LowTreshold" onkeyup="LowTreshold()" placeholder="Between">
-            <input type="text" class="SearchByS" id="HighTreshold" onkeyup="HighTreshold()" placeholder="Higher">
-          </div>
         <div class="me-auto p-0 bd-highlight"><h6>Delivery day</div>
         <div>  
           <input type="text" class="SearchBy" id="SearchByDate" onkeyup="CalendarSearch()" placeholder="Set date">
         </div>
       </section>
       <section>
-        <button type="button" class="btn half btn-secondary" onclick="loadRoutes()">Filter</button>
+        <button type="button" class="btn half btn-secondary" onclick="loadRoutes()">Load</button>
         <button type="button" class="btn half btn-outline-secondary" onclick="showCreateBox()">Clear</button>
       </section>
     </div>
