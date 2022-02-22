@@ -37,7 +37,8 @@ CREATE TABLE pasteis.orders (
     client_id INTEGER REFERENCES pasteis.clients(id),
     quantity INTEGER NOT NULL,
 	delivery_date DATE DEFAULT CURRENT_DATE + 1, 
-	status VARCHAR(50) CHECK (status IN ('To deliver','Delivered','Canceled','Delivery failed','To pick up','To return')) DEFAULT 'To deliver'
+	status VARCHAR(50) CHECK (status IN ('To deliver','Delivered','Canceled','Delivery failed','To pick up','To return')) DEFAULT 'To deliver',
+	vehicle INTEGER default null REFERENCES pasteis.vehicles(id)
 );
 
 CREATE TABLE pasteis.streets ( --NOT BEING USED AGORA.....

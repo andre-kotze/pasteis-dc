@@ -46,7 +46,7 @@ print(f'Bom dia. Today will have {daily_orders_count} orders to deliver:')
 daily_order = random.sample(PADARIA_IDS, daily_orders_count)
 
 # YYYY-MM-DD
-TOMORROW = (datetime.today() + timedelta(days=1)).strftime("%Y-%m-%d")
+TOMORROW = (datetime.today() + timedelta(days=4)).strftime("%Y-%m-%d")
 #YESTERDAY = (dt.datetime.now().date() - dt.timedelta(days = 1)).strftime("%Y-%m-%d")
 
 # generate list of dictionaries in ordersJSON format
