@@ -66,7 +66,6 @@ for padaria in daily_order:
  }
 '''
 
-#print(ORDERS_DICT)
 print(f'Total packages {sum(dic["quantity"] for dic in orders_list)}')
 
 # variable containing file with the date and time set for display
