@@ -10,15 +10,16 @@ import requests
 # datetime for manipulating dates and times
 from datetime import datetime
 
-# put server address into a variable
-FLASK_URL = "http://localhost:3080/"
-VROOM_URL = "http://localhost:3000/"
+# put server addresses into variables
+FLASK_URL = "http://localhost:3080/" # address of flask to DB
+VROOM_URL = "http://localhost:3000/" # address of local vroom server
 
-# function get list of clients IDs from the database
+# function to send requests
 def get_all(url, suffix='') -> list:
-    """ Get list of clients from the database (hosted in server)
+    """ Submit requests to via Flask or to vroom
 
     Args:
+        url = server address
         suffix = makes the function flexible (for orders, clients, etc)
     """
     r = requests.get(url + suffix)
@@ -66,17 +67,29 @@ def make_request(date):
 def send_to_vroom(request):
     payload = json.dumps(request)
     headers = {'Content-Type': 'application/json'}
+    #response = get_all(VROOM_URL)
 
-    response = get_all(VROOM_URL, '?Content-Type=application/json')
-
-    response = requests.request("POST", FLASK_URL, headers=headers, data=payload)
-
+    response = requests.request("POST", VROOM_URL + '?Content-Type=application/json', headers=headers, data=payload)
     print(response.text)
 
     return response
 
+def add_date_to_vroom_result(result, date):
+
+    return
+
+def upload_lines():
+    
+    return
+
+def upload_points():
+    
+    return
 
 
+
+'''
+# file maker for testing purposes
 # variable for setting the display name of the file
 #filename = 'requests/vroom' + datetime.now().strftime('%Y%m%d%H%M%S') + '.json'
 
@@ -96,3 +109,4 @@ def save_result(data , outfile) -> None:
 
 # calling the function using vroom dictionary and the filename variable for naming the outcome
 #save_result(vroom, filename)
+# '''
