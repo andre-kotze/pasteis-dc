@@ -308,7 +308,7 @@ def get_routes():
                                 'packages' : route.__dict__['packages'],
                                 'duration' : route.__dict__['duration'],
                                 'distance' : route.__dict__['distance'],
-                                'delivery_date' : datetime.strptime(route.__dict__['delivery_date'], "%Y-%m-%d")}
+                                'delivery_date' : route.__dict__['delivery_date']}
 
     new_route['geometry'] = json.loads(route.__dict__['geojson'])
     routes.append(new_route)
