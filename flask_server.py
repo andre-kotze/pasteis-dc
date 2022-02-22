@@ -123,6 +123,7 @@ class routesJSON(db.Model):
     packages = db.Column(db.Integer)
     duration = db.Column(db.Integer)
     distance = db.Column(db.Integer)
+    delivery_date = db.Column(db.Date)
     geom = db.Column(db.Text)
 
     def __init__ (self, vehicle, stops, packages, duration, distance, geom):
@@ -144,6 +145,7 @@ class routesGeoJSON(db.Model):
     packages = db.Column(db.Integer)
     duration = db.Column(db.Integer)
     distance = db.Column(db.Integer)
+    delivery_date = db.Column(db.Date)
     geojson = db.Column(db.Text)
 
 
