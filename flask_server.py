@@ -245,7 +245,7 @@ def get_days_routes(date):
   return jsonify(routes)
 
   # GET method to retrieve all routes filtered by vehicle
-@app.route('/routes/<vehicle>', methods =['GET'])
+@app.route('/routes_by_vehicle/<vehicle>', methods =['GET'])
 def get_vehicle_routes(vehicle):
   routes = []
   # populate list containing routes in a dictionary
@@ -312,7 +312,7 @@ def get_jobs():
   return jsonify(jobs)
 
 # GET method to retrieve all orders filtered by vehicle
-@app.route('/jobs/<vehicle>', methods =['GET'])
+@app.route('/jobs_by_vehicle/<vehicle>', methods =['GET'])
 def get_vehicles_jobs(vehicle):
   jobs = []
    # populate list containing date filtered orders in a dictionary

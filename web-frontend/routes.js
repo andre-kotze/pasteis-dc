@@ -1,21 +1,3 @@
-// refresh map to allow new layers to be loaded
-
-function refreshMap() {
-          // Creating map options
-          var mapOptions = {
-            center: [38.710905, -9.150467],
-            zoom: 12
-        }
-        // Creating a map object
-        var map = new L.map('map', mapOptions);
-        
-        // Creating a Layer object
-        var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-        
-        // Adding layer to the map
-        map.addLayer(layer);      
-}
-
 // set clours of geometries according to the vehicle
 
 function route_colours(feature) {
