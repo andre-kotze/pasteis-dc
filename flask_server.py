@@ -265,7 +265,8 @@ def get_one_order(id):
 def edit_orders(id): 
   body = request.get_json()
   db.session.query(orderJSON).filter_by(id=id).update( 
-    dict(title=body['title'], content=body['content'])) 
+    dict(client_id=body['client_id'], 
+    quantity=body['content'])) 
   db.session.commit() 
   return "item updated"
 
