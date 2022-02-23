@@ -236,11 +236,22 @@ def get_days_jobs(date):
 @app.route('/jobs', methods =['GET'])
 def get_jobs():
   jobs = []
-  # populate list containing orders in a dictionary
+  # populate list containing routes in a dictionary
   for job in db.session.query(jobsJSON).all():
-    del job.__dict__['_sa_instance_state']
-    jobs.append(job.__dict__)
-  return jsonify(jobs)
+    new_job = {}
+    new_job['type'] = 'Feature'
+    new_job['properties'] = {'id': job.__dict__['id'], 
+                                'client_name': job.__dict__['client_name'],
+                                'address' : job.__dict__['address'],
+                                'status' : job.__dict__['status'],
+                                'quantity' : job.__dict__['quantity'],
+                                'vehicle' : job.__dict__['vehicle'],
+                                'delivery_date' : job.__dict__['delivery_date']}
+
+    new_job['geometry'] = json.loads(job.__dict__['geom'])
+    jobs.append(new_job)
+    return jsonify(jobs)
+
 
 # PUT method to edit existing route_orders
 @app.route('/route_orders/<id>', methods =['PUT']) 
