@@ -1,3 +1,32 @@
+/* SQL TO POPULATE THE DATABASE */
+
+/*  CONTENTS
+
+	01 - CREATE WAREHOUSES
+    02 - CREATE VEHICLES
+    03 - CREATE THE TABLE CLIENTS AND POPULATE IT
+
+*/
+
+/* 01 - CREATE WAREHOUSES */
+INSERT INTO pasteis.warehouses ("geom" , "id", "name", "addressline1", "city", "country", "postalcode", "stock") 
+VALUES ('0101000020E6100000CE54D13C5F3822C0DC321BEBEF5C4340', '1', 'Armazem das Docas Locas', 'Rua da Cintura do Porto de Lisboa, 230','Lisboa', 'Portugal', '1950-323',400000);
+COMMIT;
+
+INSERT INTO pasteis.warehouses ("geom" , "id", "name", "addressline1", "city", "country", "postalcode", "stock") 
+VALUES ('0101000020E61000006150611C0A4D22C0564647F6FE5A4340', '1', 'Casa do Convento do Carmo', 'Rua das Poiais do San Bento, 21','Lisboa', 'Portugal', '1200-348',400000);
+COMMIT;
+
+/* 02 - CREATE VEHICLES */
+INSERT INTO pasteis.vehicles ("id", "type", "warehouse", "capacity", "avg_velocity") 
+VALUES ('3', 'limousine', 0, 160, 30);
+COMMIT;
+
+INSERT INTO pasteis.vehicles ("id", "type", "warehouse", "capacity", "avg_velocity") 
+VALUES ('4', 'hoverboard', 0, 80, 30);
+COMMIT;
+
+/* 03 - CREATE THE TABLE CLIENTS AND POPULATE IT */
 SET standard_conforming_strings = OFF;
 DROP TABLE IF EXISTS "pasteis"."clients" CASCADE;
 DELETE FROM geometry_columns WHERE f_table_name = 'clients' AND f_table_schema = 'pasteis';

@@ -1,7 +1,7 @@
 <h1 align="center"><b>Pasteis D.C. Lda: Optimised Pastel de Nata Distribution Company</b></h1>
 
 <p align="center"> 
-  <img src = "banner.jpg" alt = "Pasteis DC" width = "100%">
+  <img src = "./img/banner.jpg" alt = "Pasteis DC" width = "100%">
 </p>
 
 <hr>
@@ -35,7 +35,7 @@ Once we have a minimal working example we plan to attempt more complex problems,
 <!-- STRUCTURE -->
 <h2 id = "structure">2. Structure</h2>
 
-![alt text](https://github.com/andre-kotze/pasteis-dc/blob/main/DB-Workflow-V1.PNG)
+![alt text](https://github.com/andre-kotze/pasteis-dc/blob/main/img/DB-Workflow-V1.PNG)
 
 
 <hr>

@@ -1,6 +1,13 @@
-/*
-	To create the db anew
+/*  CONTENTS
+
+	01 - SQL TO CREATE ALL THE TABLES IN THE DATABASE
+	02 - SQL TO TRIGGER CLIENTS GEOMETRIES
+
+
 */
+
+/*  01 - SQL TO CREATE ALL THE TABLES IN THE DATABASE */
+
 CREATE TABLE pasteis.warehouses (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR(50) NOT NULL,
@@ -82,3 +89,12 @@ select r.id,
 from pasteis.routes as r 
 	join pasteis.vehicles as v on (v.id = r.vehicle)
 	join jobs as j on (r.);
+
+
+/*  02 - SQL TO TRIGGER CLIENTS GEOMETRIES */
+
+update pasteis.orders
+set geom = clients.geom
+from pasteis.clients --, pasteis.orders
+where pasteis.clients.id = pasteis.orders.client_id;
+
