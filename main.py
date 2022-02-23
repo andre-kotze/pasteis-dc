@@ -17,4 +17,4 @@ if __name__ == "__main__":
     vrm.upload_lines(result_date)
 
     #
-    vrm.upload_points(result_date)
+    #vrm.upload_points(result_date)

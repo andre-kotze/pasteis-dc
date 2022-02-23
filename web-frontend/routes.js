@@ -28,7 +28,7 @@ for (let object of objects) {
 
 function loadRoutes() {
     const xhttp = new XMLHttpRequest();
-xhttp.open("GET", "http://localhost:3080/routes");
+xhttp.open("GET", "http://localhost:3080/routes/2022-02-24");
 xhttp.send();
 xhttp.onreadystatechange = function() {
 if (this.readyState == 4 && this.status == 200) {

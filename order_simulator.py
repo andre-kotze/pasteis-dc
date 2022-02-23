@@ -15,6 +15,9 @@ from datetime import datetime, timedelta, date
 # put server address into a variable
 URL = "http://localhost:3080/"
 
+# YYYY-MM-DD
+TOMORROW = (datetime.today() + timedelta(days=2)).strftime("%Y-%m-%d")
+
 # function to get list of clients from the database
 def get_all(suffix) -> list:
     # Using request with GET method
@@ -28,45 +31,30 @@ def get_all(suffix) -> list:
     if r.status_code == 200:
         return r.json()
 
+def create_scenario(date):
 # get list of clients from the database using function
-clients = get_all("clientids")
-PADARIA_IDS = clients
+    PADARIA_IDS = get_all("clientids")
 
-# bounding parameters
-PADARIAS_COUNT = len(PADARIA_IDS)
-MAX_ORDER_SIZE = 40
-MIN_ORDERS, MAX_ORDERS = 20, 40
+    # bounding parameters
+    MAX_ORDER_SIZE = 30
+    MIN_ORDERS, MAX_ORDERS = 20, 40
 
-# create orders for a random distribution of clients (units distributed per order = *missing*)
-daily_orders_count = random.randint(MIN_ORDERS, MAX_ORDERS)
-print(f'Bom dia. Today will have {daily_orders_count} orders to deliver:')
+    # create orders for a random distribution of clients (units distributed per order = *missing*)
+    daily_orders_count = random.randint(MIN_ORDERS, MAX_ORDERS)
+    print(f'Bom dia. Today will have {daily_orders_count} orders to deliver:')
 
-# add dictionary with clients IDs as keys and quantity of boxes as value (which also needs to be generated randomly)
-# select a subset of padaria client IDs
-daily_order = random.sample(PADARIA_IDS, daily_orders_count)
+    # select a subset of padaria client IDs
+    daily_order = random.sample(PADARIA_IDS, daily_orders_count)
 
-# YYYY-MM-DD
-TOMORROW = (datetime.today() + timedelta(days=3)).strftime("%Y-%m-%d")
-#YESTERDAY = (dt.datetime.now().date() - dt.timedelta(days = 1)).strftime("%Y-%m-%d")
-
-# generate list of dictionaries in ordersJSON format
-orders_list = []
-for padaria in daily_order:
-    orders_list.append({"client_id" : padaria,
-                    "quantity": random.randint(1, MAX_ORDER_SIZE),
-                    "delivery_date" : TOMORROW
-                    })
-
-# JSON FORMAT FOR ORDERS POST 
-'''
-{
-  "client_id" : 0,
-  "quantity" : 10,
-  "delivery_date" : "2022-02-22"
- }
-'''
-
-print(f'Total packages {sum(dic["quantity"] for dic in orders_list)}')
+    # generate list of dictionaries in ordersJSON format
+    orders_list = []
+    for padaria in daily_order:
+        orders_list.append({"client_id" : padaria,
+                        "quantity": random.randint(1, MAX_ORDER_SIZE),
+                        "delivery_date" : date
+                        })
+    print(f'Total packages {sum(dic["quantity"] for dic in orders_list)}')
+    return orders_list
 
 # variable containing file with the date and time set for display
 filename = 'requests/orders_' + datetime.now().strftime('%Y%m%d%H%M%S') + '.json'
@@ -86,4 +74,20 @@ def save_result(data , outfile) -> None:
         print(e)
 
 # calling the function using orders dictionary and the .json 
-save_result(orders_list, filename)
+# save_result(orders_list, filename)
+
+def upload_orders(orders):
+    url = "http://localhost:3080/orders?Content-Type=application/json"
+    payload = json.dumps(orders)
+    headers = {
+    'Authorization': '5b3ce3597851110001cf624827861a30001c4ea7ac1a9dabbe858ce2',
+    'Content-Type': 'application/json'
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    print(response.text)
+
+
+new_orders = create_scenario(TOMORROW)
+
+upload_orders(new_orders)

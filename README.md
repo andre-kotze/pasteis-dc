@@ -4,94 +4,7 @@
   <img src = "caralho.jpg" alt = "Pasteis DC" width = "100%">
 </p>
 
-
 <hr>
-
-<pre>
-To Doo
-2. interpret VROOM results and display user-friendly output
-4. Interface for clients to log in w/ pass (after that, ID will be automatically assigned to the order) and select date and quantity.
-After confirmation, generate an order ID to save to our control and the client's (exportable as pdf).
-5. API:   Link the filters and make them activate only with the button.
-          Edit and delete buttons.
-          Limit number of rows and put buttons to go to next.
-          Replciate the Orders view for Clients, Vehicles...
-
-# JSON FORMAT FOR ORDERS POST
-{
-  "client_id" : 0,
-  "quantity" : 10,
-  "delivery_date" : "2022-02-22"
- }
-
-
- ==== API STRUCTURE ====
- 
- Is hard to create separated user sessions as it has to be in PHP and connected to the servers...
- Maybe the API can be just for the management. Then the structure would be:
- 
-HOMEPAGE
-  Different buttons to access all the tables in the database.
-  
-Tables page
-  Show all the entries to the page.
-  Filter by attributes, including a nice calendar filter by date
-  https://stackoverflow.com/questions/51597582/html-js-multi-choice-table-filter
-
-Orders and Clients Map Pages
-  Map display with all the clients, when selecting one in the map: display the possibility to edit it on telft handside.
-  Map display with all the orders, 
-
- ==== DONE THINGS ====
-[DONE] Locations extracted from OSM and stored in a DB
-[DONE] Generate a python program to randomly select the number of pastelarias and the quantities to be delivered daily.
-[DONE] Simulation algorithm to generate orders
-[DONE] Prepare test data
-[DONE] Create and populate database
-[DONE] fix PadariasLX.sql
-[DONE] test postman for posting Orders
-[DONE] running vroom
-[DONE] let flask post multiple orders
-[DONE] separate Orders and Jobs (for POST and GET)
-[DONE] create VIEW called Jobs
-[DONE] construct front-end for optimisation engine
-  
- ==== REFERENCE ====
-PORTS
-127.0.0.1:3000  Vroom
-127.0.0.1:3080  Flask
-127.0.0.1:5000  OSRM
-
- ==== VROOM SERVER ====
-vroom-docker = vroom-express on top of vroom on top of orsm-backend
-
-### start osrm server, passing the ROI data as an argument: 
-      docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/lisboa.osrm
-    #requests can now be sent to OSRM
-    
-### start vroom server:
-      docker start -a vroom
-
- ==== OSRM SERVER ====
- docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/car.lua /data/portugal-latest.osm.pbf
- docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/portugal-latest.osrm
- docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/portugal-latest.osrm
- docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/portugal-latest.osrm
- 
- ==== NOMES ALTERNATIVES ====
-  Palácio dos Pastéis
-  Pastéis que sim senhor
-  Trinidad Pastéis
-  Paraíso Pasteleiro
-  Marquês dos Pastéis
-  Pastéis Pecaminosos; ou, Pastéis de Pecado
-  Pastéis de Sade
-  Natéis Inc.
-  O Pastel Alarife
-  Planeta Pasteleiro
-  <del>Pastéis Macios Redondos e Grandes</del>
- 
-</pre>
 
 <!-- CONTENTS -->
 <h2 id = "contents">Contents</h2>
@@ -144,7 +57,7 @@ Rules:<br>
 <!-- API -->
 <h2 id = "api">4. API</h2>
 
-API bs
+The API is an essencial tool as it allows us to the CRUD operations. It covers the management side with the operations undertaken in clients, orders, vehicles or warehouses databases but also the delivery side, with a visualization of the daily routes and the distribution points.
 
 <hr>
 
@@ -157,7 +70,7 @@ Master's degree in Geospatial Technologies at <a href ="https://www.novaims.unl.
 </p>
 
 <b>Guillem Ulldemolins Jornet</b><br>
-BSc (Geography)<br>
+BSc (Geography) at <a href ="https://www.ub.edu/" target = "_blank">Universitat de Barcelona</a><br> 
 Master's degree in Geospatial Technologies at <a href ="https://www.novaims.unl.pt/" target = "_blank">NOVA University of Lisbon</a>, <a href ="https://www.uni-muenster.de/en/" target = "_blank">WWU Münster</a> and <a href ="https://www.uji.es/" target = "_blank">UJI</a><br>
 </p>
 
