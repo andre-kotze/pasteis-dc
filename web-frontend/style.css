@@ -47,9 +47,6 @@ td {
 .full {
   width: 100%;
   margin: 3px;
-  background-color: #75370d;
-  border: 1px solid rgb(75, 23, 14); /* Add a grey border */
-  border: 1px solid rgb(75, 23, 14); /* Add a grey border */
 }
 
 .sidebar{

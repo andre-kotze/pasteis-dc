@@ -26,52 +26,6 @@ function loadTable() {
 // Load the table :)
 loadTable();
 
-
-// I'm still not working :(
-function SearchOrders() {
-
-  var searchID = document.getElementById("SearchByID").value.toUpperCase();
-  var searchCID = document.getElementById("SearchByCID").value.toUpperCase();
-  var searchCN = document.getElementById("SearchByCN").value.toUpperCase();
-  var searchD = document.getElementById("SearchByD").value.toUpperCase();
-  var selectS = document.getElementById("SelectST").value.toUpperCase();
-
-  for (i = 1; i < tr.length; i++) {
-
-    var rowID = tr[i].getElementsByTagName("Table")[0].textContent.toUpperCase();
-    var rowCID = tr[i].getElementsByTagName("Table")[1].textContent.toUpperCase();
-    var rowCN = tr[i].getElementsByTagName("Table")[2].textContent.toUpperCase();
-    var rowQ = tr[i].getElementsByTagName("Table")[3].textContent.toUpperCase();
-    var rowS = tr[i].getElementsByTagName("Table")[4].textContent.toUpperCase();
-    var rowD = tr[i].getElementsByTagName("Table")[5].textContent.toUpperCase();
-
-    var isDiplay = true;
-
-    if ((searchID != 'ALL' && rowID != searchID) || (searchID == null)) {
-      isDiplay = false;
-    }
-    if ((searchCID != 'ALL' && rowCID != searchCID) || (searchCID == null)) {
-      isDiplay = false;
-    }
-    if ((searchCN != 'ALL' && rowCN != searchCN) || (searchCN == null)) {
-      isDiplay = false;
-    }
-    if ((searchD != 'ALL' && rowD != searchD) || (searchD == null)) {
-      isDiplay = false;
-    }
-    if ((selectS != 'ALL' && rowS != selectS) || (selectS == null)) {
-      isDiplay = false;
-    }
-    
-    if (isDiplay) {
-      tr[i].style.display = "";
-    } else {
-      tr[i].style.display = "none";
-    }
-
-  }
-}
-
 // Displays a popup with swal (sweet alert).
 // When pressing the button it runs the create function.
 function showCreateBox() {
