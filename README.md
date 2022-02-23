@@ -48,7 +48,7 @@ Rules:<br>
 · Orders belong to one and only one client.<br>
 · Orders can be distributed in one or more vehicles.<br>
 · A vehicle can distribute zero to multple orders.<br>
-· A vehicle belons to one and only one warehouse.<br>
+· A vehicle belongs to one and only one warehouse.<br>
 · Warehouses can hold one to multiple vehicles.<br>
 
 
