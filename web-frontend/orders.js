@@ -132,7 +132,7 @@ function Create() {
   // When the request and the function succeed, it stops.
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      const objects = JSON.parse(this.responseText);
+      const objects = this.responseText;
     }
   };
 }
@@ -194,10 +194,8 @@ function SecondEditBox(id) {
      
         Swal.fire({
           width: 800,
-          title: 'Edit order '+id_to_edit,
           html:
-            '<div class="me-auto p-0 bd-highlight"><h2>Edit order: </div>' +
-            '<div id="edit_id" class="me-auto p-0 bd-highlight"><h2>'+object.id+'</div>'+
+            '<div class="me-auto p-0 bd-highlight"><h2>Edit order: </div><input id="edit_id" class="swal2-input half" value="'+object.id+'">'+
             '<div class="me-auto p-0 bd-highlight"><h5>Client ID:</div>'+
             '<input id="client_id" class="swal2-input half" value="'+object.client_id+'">' +
             '<div class="me-auto p-0 bd-highlight"><h5>Quantity:</div>'+
@@ -224,7 +222,7 @@ function Edit(id) {
   xhttp.open("PUT", "http://localhost:3080/orders/"+or_id, "_self");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(JSON.stringify({ 
-    client_id:client_id,quantity:quantity,delivery_date:delivery_date
+    client_id:client_id,quantity:quantity,delivery_date:delivery_date,id_1:or_id
   }));
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
