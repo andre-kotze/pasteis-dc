@@ -241,6 +241,7 @@ def get_jobs():
     new_job = {}
     new_job['type'] = 'Feature'
     new_job['properties'] = {'id': job.__dict__['id'], 
+                                'client_id': job.__dict__['client_id'],
                                 'client_name': job.__dict__['client_name'],
                                 'address' : job.__dict__['address'],
                                 'status' : job.__dict__['status'],
@@ -276,8 +277,11 @@ def get_one_order(id):
 def edit_orders(id): 
   body = request.get_json()
   db.session.query(orderJSON).filter_by(id=id).update( 
-    dict(client_id=body['client_id'], 
-    quantity=body['content'])) 
+    dict(
+      client_id=body['client_id'], 
+      quantity=body['quantity'],
+      delivery_date=body['delivery_date']
+      )) 
   db.session.commit() 
   return "item updated"
 
