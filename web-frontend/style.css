@@ -12,6 +12,10 @@
   padding-bottom: 5%;
 }
 
+.homebody{
+  background-image: url('https://www.bestguide.pt/wp-content/uploads/2019/03/00azulejos700web.jpg');
+}
+
 .bg-mynav {
   background-color: #75370d;
 }
