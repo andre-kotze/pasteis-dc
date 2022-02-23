@@ -9,7 +9,7 @@ for (let object of objects) {
   var ft = L.geoJson(object,{
          pointToLayer: function(object, latlng){
            return L.circleMarker(latlng,{ 
-         radius: 3,
+         radius: 10,
          stroke: false,
          fillColor: '#4285F4',
          fillOpacity: 1})}

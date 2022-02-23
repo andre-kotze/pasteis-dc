@@ -35,7 +35,7 @@ Once we have a minimal working example we plan to attempt more complex problems,
 <!-- STRUCTURE -->
 <h2 id = "structure">2. Structure</h2>
 
-![alt text](https://github.com/andre-kotze/pasteis-do-caralho/blob/main/DB-Workflow-V1.PNG)
+![alt text](https://github.com/andre-kotze/pasteis-dc/blob/main/DB-Workflow-V1.PNG)
 
 
 <hr>
@@ -48,7 +48,7 @@ Rules:<br>
 · Orders belong to one and only one client.<br>
 · Orders can be distributed in one or more vehicles.<br>
 · A vehicle can distribute zero to multple orders.<br>
-· A vehicle belons to one and only one warehouse.<br>
+· A vehicle belongs to one and only one warehouse.<br>
 · Warehouses can hold one to multiple vehicles.<br>
 
 
