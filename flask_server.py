@@ -252,8 +252,19 @@ def get_days_jobs(date):
   print(filter_date)
    # populate list containing date filtered orders in a dictionary
   for job in db.session.query(jobsJSON).filter(jobsJSON.delivery_date == filter_date).all():
-    del job.__dict__['_sa_instance_state']
-    jobs.append(job.__dict__)
+    new_job = {}
+    new_job['type'] = 'Feature'
+    new_job['properties'] = {'id': job.__dict__['id'], 
+                                'client_id': job.__dict__['client_id'],
+                                'client_name': job.__dict__['client_name'],
+                                'address' : job.__dict__['address'],
+                                'status' : job.__dict__['status'],
+                                'quantity' : job.__dict__['quantity'],
+                                'vehicle' : job.__dict__['vehicle'],
+                                'delivery_date' : job.__dict__['delivery_date']}
+
+    new_job['geometry'] = json.loads(job.__dict__['geom'])
+    jobs.append(new_job)
   return jsonify(jobs)
 
 # GET method to retrieve all orders without date filter
@@ -262,6 +273,27 @@ def get_jobs():
   jobs = []
   # populate list containing routes in a dictionary
   for job in db.session.query(jobsJSON).all():
+    new_job = {}
+    new_job['type'] = 'Feature'
+    new_job['properties'] = {'id': job.__dict__['id'], 
+                                'client_id': job.__dict__['client_id'],
+                                'client_name': job.__dict__['client_name'],
+                                'address' : job.__dict__['address'],
+                                'status' : job.__dict__['status'],
+                                'quantity' : job.__dict__['quantity'],
+                                'vehicle' : job.__dict__['vehicle'],
+                                'delivery_date' : job.__dict__['delivery_date']}
+
+    new_job['geometry'] = json.loads(job.__dict__['geom'])
+    jobs.append(new_job)
+  return jsonify(jobs)
+
+# GET method to retrieve all orders filtered by vehicle
+@app.route('/jobs/<vehicle>', methods =['GET'])
+def get_vehicles_jobs(vehicle):
+  jobs = []
+   # populate list containing date filtered orders in a dictionary
+  for job in db.session.query(jobsJSON).filter(jobsJSON.vehicle == vehicle).all():
     new_job = {}
     new_job['type'] = 'Feature'
     new_job['properties'] = {'id': job.__dict__['id'], 
@@ -386,6 +418,27 @@ def get_days_routes(date):
   routes = []
   # populate list containing routes in a dictionary
   for route in db.session.query(routesGeoJSON).filter(routesGeoJSON.delivery_date == date).all():
+    new_route = {}
+    new_route['type'] = 'Feature'
+    new_route['properties'] = {'id': route.__dict__['id'], 
+                                'vehicle': route.__dict__['vehicle'],
+                                'capacity' : route.__dict__['capacity'],
+                                'stops' : route.__dict__['stops'],
+                                'packages' : route.__dict__['packages'],
+                                'duration' : route.__dict__['duration'],
+                                'distance' : route.__dict__['distance'],
+                                'delivery_date' : route.__dict__['delivery_date']}
+
+    new_route['geometry'] = json.loads(route.__dict__['geojson'])
+    routes.append(new_route)
+  return jsonify(routes)
+
+  # GET method to retrieve all routes filtered by vehicle
+@app.route('/routes/<vehicle>', methods =['GET'])
+def get_vehicle_routes(vehicle):
+  routes = []
+  # populate list containing routes in a dictionary
+  for route in db.session.query(routesGeoJSON).filter(routesGeoJSON.vehicle == vehicle).all():
     new_route = {}
     new_route['type'] = 'Feature'
     new_route['properties'] = {'id': route.__dict__['id'], 

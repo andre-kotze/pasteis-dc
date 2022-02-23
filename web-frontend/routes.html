@@ -34,11 +34,11 @@
       <section>
         <div class="me-auto p-0 bd-highlight"><h6>Vehicle ID</div>
         <div>  
-          <input type="text" class="SearchBy" id="SearchByID" onkeyup="OrderIdSearch()" placeholder="Get unique Vehicle ID">
+          <input type="text" class="SearchBy" id="SearchByID" onkeyup="VehicleIdSearch()" placeholder="Get unique Vehicle ID">
         </div>
         <div class="me-auto p-0 bd-highlight"><h6>Delivery day</div>
         <div>  
-          <input type="text" class="SearchBy" id="SearchByDate" onkeyup="CalendarSearch()" placeholder="Set date">
+          <input type="date" value="2022-02-22" class="SearchBy" id="SearchByDate" onkeyup="CalendarSearch()" placeholder="Set date">
         </div>
       </section>
       <section>
@@ -52,22 +52,8 @@
 
 
 
-    <div id="map" style="width:900px; height:580px"></div>
-    <script>
-  // Creating map options
-  var mapOptions = {
-            center: [38.710905, -9.150467],
-            zoom: 12
-         }
-         // Creating a map object
-         var map = new L.map('map', mapOptions);
-         
-         // Creating a Layer object
-         var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-         
-         // Adding layer to the map
-         map.addLayer(layer);      
-    </script>
+    <div id="map" style="width:1400px; height:720px"></div>
+
   </div>
 
   <div class="clearfix"></div>
