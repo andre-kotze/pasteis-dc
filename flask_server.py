@@ -203,44 +203,68 @@ def get_warehouses():
     warehouses.append(w.__dict__)
   return jsonify(warehouses)
 
-# POST method to place orders
-@app.route('/orders', methods =['POST'])
-def create_order():
-  body = request.get_json()
-  print(type(body))
-  print(body)
-  for order in body:
-    db.session.add(orderJSON(
-      order['client_id'],
-      order['quantity'],
-      order['delivery_date']))
-  db.session.commit()
-  count = len(body)
-  if count == 1:
-    return "Order created"
-  else:
-    return f"{count} orders created"
+# GET method to retrieve all routes without date filter
+@app.route('/routes', methods =['GET'])
+def get_routes():
+  routes = []
+  # populate list containing routes in a dictionary
+  for route in db.session.query(routesGeoJSON).all():
+    new_route = {}
+    new_route['type'] = 'Feature'
+    new_route['properties'] = {'id': route.__dict__['id'], 
+                                'vehicle': route.__dict__['vehicle'],
+                                'capacity' : route.__dict__['capacity'],
+                                'stops' : route.__dict__['stops'],
+                                'packages' : route.__dict__['packages'],
+                                'duration' : route.__dict__['duration'],
+                                'distance' : route.__dict__['distance'],
+                                'delivery_date' : route.__dict__['delivery_date']}
 
-# POST method to create clients
-@app.route('/clients', methods =['POST'])
-def create_client():
-  body = request.get_json()
-  for client in body:
-    db.session.add(clientsJSON(
-      client['client_name'], 
-      client['addressline1'],
-      client['addressline2'],
-      client['city'],
-      client['postalcode'],
-      client['country'],
-      client['geom'],
-      )) 
-  db.session.commit()
-  count = len(body)
-  if count == 1:
-    return "Client created"
-  else:
-    return f"{count} clients created"
+    new_route['geometry'] = json.loads(route.__dict__['geojson'])
+    routes.append(new_route)
+  return jsonify(routes)
+
+# GET method to retrieve all routes filtered by date
+@app.route('/routes/<date>', methods =['GET'])
+def get_days_routes(date):
+  routes = []
+  # populate list containing routes in a dictionary
+  for route in db.session.query(routesGeoJSON).filter(routesGeoJSON.delivery_date == date).all():
+    new_route = {}
+    new_route['type'] = 'Feature'
+    new_route['properties'] = {'id': route.__dict__['id'], 
+                                'vehicle': route.__dict__['vehicle'],
+                                'capacity' : route.__dict__['capacity'],
+                                'stops' : route.__dict__['stops'],
+                                'packages' : route.__dict__['packages'],
+                                'duration' : route.__dict__['duration'],
+                                'distance' : route.__dict__['distance'],
+                                'delivery_date' : route.__dict__['delivery_date']}
+
+    new_route['geometry'] = json.loads(route.__dict__['geojson'])
+    routes.append(new_route)
+  return jsonify(routes)
+
+  # GET method to retrieve all routes filtered by vehicle
+@app.route('/routes/<vehicle>', methods =['GET'])
+def get_vehicle_routes(vehicle):
+  routes = []
+  # populate list containing routes in a dictionary
+  for route in db.session.query(routesGeoJSON).filter(routesGeoJSON.vehicle == vehicle).all():
+    new_route = {}
+    new_route['type'] = 'Feature'
+    new_route['properties'] = {'id': route.__dict__['id'], 
+                                'vehicle': route.__dict__['vehicle'],
+                                'capacity' : route.__dict__['capacity'],
+                                'stops' : route.__dict__['stops'],
+                                'packages' : route.__dict__['packages'],
+                                'duration' : route.__dict__['duration'],
+                                'distance' : route.__dict__['distance'],
+                                'delivery_date' : route.__dict__['delivery_date']}
+
+    new_route['geometry'] = json.loads(route.__dict__['geojson'])
+    routes.append(new_route)
+  return jsonify(routes)
 
 # GET method to retrieve all orders filtered by date
 @app.route('/jobs/<date>', methods =['GET'])
@@ -309,18 +333,6 @@ def get_vehicles_jobs(vehicle):
     jobs.append(new_job)
   return jsonify(jobs)
 
-
-# PUT method to edit existing route_orders
-@app.route('/route_orders/<id>', methods =['PUT']) 
-def assign_orders(id): 
-  body = request.get_json() 
-  print(body)
-  print(type(body))
-  db.session.query(orderJSON).filter_by(id=id).update( 
-    dict(vehicle=body['vehicle']))
-  db.session.commit() 
-  return "item updated"
-
 # GET method to retrieve one single order 
 @app.route('/orders/<id>', methods =['GET']) 
 def get_one_order(id): 
@@ -328,19 +340,6 @@ def get_one_order(id):
   del ord.__dict__['_sa_instance_state'] 
   return jsonify(ord.__dict__) 
  
-# PUT method to edit existing orders 
-@app.route('/orders/<id>', methods =['PUT']) 
-def edit_orders(id): 
-  body = request.get_json()
-  db.session.query(orderJSON).filter_by(id=id).update( 
-    dict(
-      client_id=body['client_id'], 
-      quantity=body['quantity'],
-      delivery_date=body['delivery_date']
-      )) 
-  db.session.commit() 
-  return "item updated"
-
 # GET method to retreive vehicles
 @app.route('/vehicles', methods =['GET'])
 def get_vehicles():
@@ -350,26 +349,44 @@ def get_vehicles():
     vehicles.append(vehicle.__dict__)
   return jsonify(vehicles)
 
-# DELETE method to delete vehicles using their id
-@app.route('/vehicles/<id>', methods=['DELETE'])
-def delete_vehicles(id):
-  db.session.query(vehiclesJSON).filter_by(id=id).delete()
+# POST method to place orders
+@app.route('/orders', methods =['POST'])
+def create_order():
+  body = request.get_json()
+  print(type(body))
+  print(body)
+  for order in body:
+    db.session.add(orderJSON(
+      order['client_id'],
+      order['quantity'],
+      order['delivery_date']))
   db.session.commit()
-  return "vehicle deleted"
+  count = len(body)
+  if count == 1:
+    return "Order created"
+  else:
+    return f"{count} orders created"
 
-# DELETE method to delete jobs (delete the order, as jobs is a view) using their id
-@app.route('/orders/<id>', methods=['DELETE'])
-def delete_jobs(id):
-  db.session.query(orderJSON).filter_by(id=id).delete()
+# POST method to create clients
+@app.route('/clients', methods =['POST'])
+def create_client():
+  body = request.get_json()
+  for client in body:
+    db.session.add(clientsJSON(
+      client['client_name'], 
+      client['addressline1'],
+      client['addressline2'],
+      client['city'],
+      client['postalcode'],
+      client['country'],
+      client['geom'],
+      )) 
   db.session.commit()
-  return "ride deleted"
-
-# DELETE method to delete clients using their id
-@app.route('/clients/<id>', methods=['DELETE'])
-def delete_clients(id):
-  db.session.query(orderJSON).filter_by(id=id).delete()
-  db.session.commit()
-  return "ride deleted"
+  count = len(body)
+  if count == 1:
+    return "Client created"
+  else:
+    return f"{count} clients created"
 
 # POST method to load routes from vroom into db
 @app.route('/routes', methods =['POST'])
@@ -391,68 +408,50 @@ def create_route():
   else:
     return f"{count} routes created"
 
-# GET method to retrieve all routes without date filter
-@app.route('/routes', methods =['GET'])
-def get_routes():
-  routes = []
-  # populate list containing routes in a dictionary
-  for route in db.session.query(routesGeoJSON).all():
-    new_route = {}
-    new_route['type'] = 'Feature'
-    new_route['properties'] = {'id': route.__dict__['id'], 
-                                'vehicle': route.__dict__['vehicle'],
-                                'capacity' : route.__dict__['capacity'],
-                                'stops' : route.__dict__['stops'],
-                                'packages' : route.__dict__['packages'],
-                                'duration' : route.__dict__['duration'],
-                                'distance' : route.__dict__['distance'],
-                                'delivery_date' : route.__dict__['delivery_date']}
+# PUT method to edit existing route_orders
+@app.route('/route_orders/<id>', methods =['PUT']) 
+def assign_orders(id): 
+  body = request.get_json() 
+  print(body)
+  print(type(body))
+  db.session.query(orderJSON).filter_by(id=id).update( 
+    dict(vehicle=body['vehicle']))
+  db.session.commit() 
+  return "item updated"
 
-    new_route['geometry'] = json.loads(route.__dict__['geojson'])
-    routes.append(new_route)
-  return jsonify(routes)
+# PUT method to edit existing orders 
+@app.route('/orders/<id>', methods =['PUT']) 
+def edit_orders(id): 
+  body = request.get_json()
+  db.session.query(orderJSON).filter_by(id=id).update( 
+    dict(
+      client_id=body['client_id'], 
+      quantity=body['quantity'],
+      delivery_date=body['delivery_date']
+      )) 
+  db.session.commit() 
+  return "item updated"
 
-# GET method to retrieve all routes filtered by date
-@app.route('/routes/<date>', methods =['GET'])
-def get_days_routes(date):
-  routes = []
-  # populate list containing routes in a dictionary
-  for route in db.session.query(routesGeoJSON).filter(routesGeoJSON.delivery_date == date).all():
-    new_route = {}
-    new_route['type'] = 'Feature'
-    new_route['properties'] = {'id': route.__dict__['id'], 
-                                'vehicle': route.__dict__['vehicle'],
-                                'capacity' : route.__dict__['capacity'],
-                                'stops' : route.__dict__['stops'],
-                                'packages' : route.__dict__['packages'],
-                                'duration' : route.__dict__['duration'],
-                                'distance' : route.__dict__['distance'],
-                                'delivery_date' : route.__dict__['delivery_date']}
+# DELETE method to delete vehicles using their id
+@app.route('/vehicles/<id>', methods=['DELETE'])
+def delete_vehicles(id):
+  db.session.query(vehiclesJSON).filter_by(id=id).delete()
+  db.session.commit()
+  return "vehicle deleted"
 
-    new_route['geometry'] = json.loads(route.__dict__['geojson'])
-    routes.append(new_route)
-  return jsonify(routes)
+# DELETE method to delete jobs (delete the order, as jobs is a view) using their id
+@app.route('/orders/<id>', methods=['DELETE'])
+def delete_jobs(id):
+  db.session.query(orderJSON).filter_by(id=id).delete()
+  db.session.commit()
+  return "ride deleted"
 
-  # GET method to retrieve all routes filtered by vehicle
-@app.route('/routes/<vehicle>', methods =['GET'])
-def get_vehicle_routes(vehicle):
-  routes = []
-  # populate list containing routes in a dictionary
-  for route in db.session.query(routesGeoJSON).filter(routesGeoJSON.vehicle == vehicle).all():
-    new_route = {}
-    new_route['type'] = 'Feature'
-    new_route['properties'] = {'id': route.__dict__['id'], 
-                                'vehicle': route.__dict__['vehicle'],
-                                'capacity' : route.__dict__['capacity'],
-                                'stops' : route.__dict__['stops'],
-                                'packages' : route.__dict__['packages'],
-                                'duration' : route.__dict__['duration'],
-                                'distance' : route.__dict__['distance'],
-                                'delivery_date' : route.__dict__['delivery_date']}
-
-    new_route['geometry'] = json.loads(route.__dict__['geojson'])
-    routes.append(new_route)
-  return jsonify(routes)
+# DELETE method to delete clients using their id
+@app.route('/clients/<id>', methods=['DELETE'])
+def delete_clients(id):
+  db.session.query(orderJSON).filter_by(id=id).delete()
+  db.session.commit()
+  return "ride deleted"
 
 # statement to run the app in the specified server
 if __name__ == '__main__':
