@@ -63,18 +63,18 @@ The API is an essential tool as it allows us to the CRUD operations. It covers t
 <h2 id = "howto">5. How to Run</h2>
 
 You need an instance of Open-Source Routing Machince (OSRM) running, and an instance of the VROOM engine, and a Flask to the remote DB. 
-To start OSRM
-docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/lisboa.osrm
-To start VROOM
-docker container start vroom
-To start flask
-(api_example) python flask_server.py
+To start OSRM<br>
+`docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/lisboa.osrm`
+To start VROOM<br>
+`docker container start vroom`
+To start flask<br>
+`(api_example) python flask_server.py`
 
-To simulate orders
-python order_simulator --date YYYY-MM-DD
+To simulate orders<br>
+`python order_simulator --date YYYY-MM-DD`
 
-To run the analysis
-python main.py --date YYYY-MM-DD
+To run the analysis<br>
+`python main.py --date YYYY-MM-DD`
 <hr>
 
 <!-- AUTHORS -->
