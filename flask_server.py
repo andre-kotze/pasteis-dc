@@ -275,7 +275,7 @@ def get_jobs():
 
     new_job['geometry'] = json.loads(job.__dict__['geom'])
     jobs.append(new_job)
-    return jsonify(jobs)
+  return jsonify(jobs)
 
 
 # PUT method to edit existing route_orders
