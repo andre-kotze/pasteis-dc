@@ -16,6 +16,7 @@
     <li><a href = "#structure">Structure</a></li>
     <li><a href = "#database">Database</a></li>
     <li><a href = "#api">API</a></li>
+    <li><a href = "#howt">How to Run</a></li>
     <li><a href = "#authors">Authors</a></li>
   </ol>
 </details>
@@ -59,9 +60,25 @@ Rules:<br>
 The API is an essential tool as it allows us to the CRUD operations. It covers the management side with the operations undertaken in clients, orders, vehicles or warehouses databases but also the delivery side, with a visualization of the daily routes and the distribution points.
 
 <hr>
+<h2 id = "howto">5. How to Run</h2>
+
+You need an instance of Open-Source Routing Machince (OSRM) running, and an instance of the VROOM engine, and a Flask to the remote DB. 
+To start OSRM
+docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/lisboa.osrm
+To start VROOM
+docker container start vroom
+To start flask
+(api_example) python flask_server.py
+
+To simulate orders
+python order_simulator --date YYYY-MM-DD
+
+To run the analysis
+python main.py --date YYYY-MM-DD
+<hr>
 
 <!-- AUTHORS -->
-<h2 id = "authors">5. Authors</h2>
+<h2 id = "authors">6. Authors</h2>
 
 <b>Lucas Casuccio</b><br>
 BSc (Agronomy)<br>
