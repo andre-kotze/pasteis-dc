@@ -1,4 +1,4 @@
-<h1 align="center"><b>Pasteis D.C. Lda: Optimised Pastel de Nata Delivery Company</b></h1>
+<h1 align="center"><b>Pasteis D.C. Lda: Optimised Pastel de Nata Distribution Company</b></h1>
 
 <p align="center"> 
   <img src = "caralho.jpg" alt = "Pasteis DC" width = "100%">
