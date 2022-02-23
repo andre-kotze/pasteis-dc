@@ -11,12 +11,12 @@ function loadTable() {
       for (let object of objects) {
         // For each row get all the columns
         trHTML += '<tr>'; 
-        trHTML += '<td>'+object['id']+'</td>';
-        trHTML += '<td>'+object['client_id']+'</td>';
-        trHTML += '<td>'+object['client_name']+'</td>';
-        trHTML += '<td>'+object['quantity']+'</td>';
-        trHTML += '<td>'+object['status']+'</td>';
-        trHTML += '<td>'+object['delivery_date']+'</td>';
+        trHTML += '<td>'+object.properties['id']+'</td>';
+        trHTML += '<td>'+object.properties['client_id']+'</td>';
+        trHTML += '<td>'+object.properties['client_name']+'</td>';
+        trHTML += '<td>'+object.properties['quantity']+'</td>';
+        trHTML += '<td>'+object.properties['status']+'</td>';
+        trHTML += '<td>'+object.properties['delivery_date']+'</td>';
         trHTML += "</tr>";
       }
       document.getElementById("Table").innerHTML = trHTML; // Place the values into the table so called Table
@@ -27,9 +27,29 @@ function loadTable() {
 // Load the table :)
 loadTable();
 
-
+/*
 // I'm still not working :(
-
+  function myFunction() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("SearchByID");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("Table");
+    tr = table.getElementsByTagName("tr");
+  
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
 
 function SearchOrders() {
 
@@ -78,7 +98,7 @@ function SearchOrders() {
 
   }
 }
-
+*/
 // Displays a popup with swal (sweet alert).
 // When pressing the button it runs the create function.
 function showCreateBox() {
@@ -176,6 +196,8 @@ function SecondEditBox(id) {
           width: 800,
           title: 'Edit order '+id_to_edit,
           html:
+            '<div class="me-auto p-0 bd-highlight"><h2>Edit order: </div>' +
+            '<div id="edit_id" class="me-auto p-0 bd-highlight"><h2>'+object.id+'</div>'+
             '<div class="me-auto p-0 bd-highlight"><h5>Client ID:</div>'+
             '<input id="client_id" class="swal2-input half" value="'+object.client_id+'">' +
             '<div class="me-auto p-0 bd-highlight"><h5>Quantity:</div>'+
@@ -194,15 +216,15 @@ function SecondEditBox(id) {
 // Posts the edited order to the database
 function Edit(id) {
   const or_id = document.getElementById("edit_id").value;
-  const cl_id = document.getElementById("client_id").value;
-  const stat = document.getElementById("quantity").value;
-  const date = document.getElementById("delivery_date").value;
+  const client_id = document.getElementById("client_id").value;
+  const quantity = document.getElementById("quantity").value;
+  const delivery_date = document.getElementById("delivery_date").value;
     
   const xhttp = new XMLHttpRequest();
-  xhttp.open("PUT", "http://localhost:3080/orders");
+  xhttp.open("PUT", "http://localhost:3080/orders/"+or_id, "_self");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(JSON.stringify({ 
-    or_id:or_id,cl_id:cl_id,stat:stat,date:date
+    client_id:client_id,quantity:quantity,delivery_date:delivery_date
   }));
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {

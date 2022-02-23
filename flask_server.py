@@ -160,6 +160,20 @@ class vehiclesJSON(db.Model):
     capacity = db.Column(db.Integer)
     location = db.Column(db.Text)
 
+# create a warehouses view
+class warehousesJSON(db.Model):
+    __tablename__ = "warehouses"
+    __table_args__ = {"schema": "pasteis"}
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text)
+    addressline1 = db.Column(db.Text)
+    addressline2 = db.Column(db.Text)
+    city = db.Column(db.Text)
+    postalcode = db.Column(db.Integer)
+    country = db.Column(db.Text)
+    geom = db.Column(db.Text)
+    stock = db.Column(db.Integer)
+
 # GET method to get all clients id from the clients table
 @app.route('/clientids', methods=['GET'])
 def get_clientsid():
@@ -178,6 +192,16 @@ def get_clients():
     del client.__dict__['_sa_instance_state']
     clients.append(client.__dict__)
   return jsonify(clients)
+
+# GET method to retrieve all warehouses
+@app.route('/warehouses', methods =['GET'])
+def get_warehouses():
+  warehouses = []
+  # populate list containing clients in a dictionary
+  for w in db.session.query(warehousesJSON).all():
+    del w.__dict__['_sa_instance_state']
+    warehouses.append(w.__dict__)
+  return jsonify(warehouses)
 
 # POST method to place orders
 @app.route('/orders', methods =['POST'])
@@ -241,6 +265,7 @@ def get_jobs():
     new_job = {}
     new_job['type'] = 'Feature'
     new_job['properties'] = {'id': job.__dict__['id'], 
+                                'client_id': job.__dict__['client_id'],
                                 'client_name': job.__dict__['client_name'],
                                 'address' : job.__dict__['address'],
                                 'status' : job.__dict__['status'],
@@ -250,7 +275,7 @@ def get_jobs():
 
     new_job['geometry'] = json.loads(job.__dict__['geom'])
     jobs.append(new_job)
-    return jsonify(jobs)
+  return jsonify(jobs)
 
 
 # PUT method to edit existing route_orders
@@ -276,7 +301,11 @@ def get_one_order(id):
 def edit_orders(id): 
   body = request.get_json()
   db.session.query(orderJSON).filter_by(id=id).update( 
-    dict(title=body['title'], content=body['content'])) 
+    dict(
+      client_id=body['client_id'], 
+      quantity=body['quantity'],
+      delivery_date=body['delivery_date']
+      )) 
   db.session.commit() 
   return "item updated"
 
@@ -288,6 +317,13 @@ def get_vehicles():
     del vehicle.__dict__['_sa_instance_state']
     vehicles.append(vehicle.__dict__)
   return jsonify(vehicles)
+
+# DELETE method to delete vehicles using their id
+@app.route('/vehicles/<id>', methods=['DELETE'])
+def delete_vehicles(id):
+  db.session.query(vehiclesJSON).filter_by(id=id).delete()
+  db.session.commit()
+  return "vehicle deleted"
 
 # DELETE method to delete jobs (delete the order, as jobs is a view) using their id
 @app.route('/orders/<id>', methods=['DELETE'])

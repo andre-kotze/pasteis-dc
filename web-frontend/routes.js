@@ -7,7 +7,7 @@ if (this.readyState == 4 && this.status == 200) {
 const objects = JSON.parse(this.responseText);
 for (let object of objects) {
   var ft = L.geoJson(object,{
-         pointToLayer: function(feature, latlng){
+         pointToLayer: function(object, latlng){
            return L.circleMarker(latlng,{ 
          radius: 10,
          stroke: false,
@@ -28,7 +28,7 @@ for (let object of objects) {
 
 function loadRoutes() {
     const xhttp = new XMLHttpRequest();
-xhttp.open("GET", "http://localhost:3080/routes/2022-02-24");
+xhttp.open("GET", "http://localhost:3080/routes");
 xhttp.send();
 xhttp.onreadystatechange = function() {
 if (this.readyState == 4 && this.status == 200) {
