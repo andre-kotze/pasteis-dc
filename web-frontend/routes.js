@@ -1,20 +1,4 @@
-function refreshMap() {
-          // Creating map options
-          var mapOptions = {
-            center: [38.710905, -9.150467],
-            zoom: 12
-        }
-        // Creating a map object
-        var map = new L.map('map', mapOptions);
-        
-        // Creating a Layer object
-        var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-        
-        // Adding layer to the map
-        map.addLayer(layer);      
-}
-
-
+// set clours of geometries according to the vehicle
 
 function route_colours(feature) {
   switch (feature.properties.vehicle) {
@@ -26,12 +10,12 @@ function route_colours(feature) {
  }
 }
 
-
+// load jobs from the DB according to the search date
 
 function loadJobs() {
   const xhttp = new XMLHttpRequest();
   var date = document.getElementById("SearchByDate").value;
-  console.log(date)
+  
 xhttp.open("GET", "http://localhost:3080/jobs/"+date, "_self");
 xhttp.send();
 xhttp.onreadystatechange = function() {
@@ -59,9 +43,12 @@ for (let object of objects) {
 }}
 };
 
+// load jobs from the DB according to the search date
+
 function loadRoutes() {
     const xhttp = new XMLHttpRequest();
     var filter = document.getElementById("SearchByDate").value;
+    
 xhttp.open("GET", "http://localhost:3080/routes/"+filter, "_self");
 xhttp.send();
 xhttp.onreadystatechange = function() {

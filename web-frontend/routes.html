@@ -15,7 +15,7 @@
     <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="routes.js"></script>
   </head>
-  <body>
+  <body onload="refreshMap()">
     <nav class="navbar navbar-dark bg-mynav"> <!-- The navbar on top of the page -->
       <div class="container-fluid">
         <img src="../img/PdC.png" height="68px"><h2 style="color:whitesmoke; float: left;">Pasteis DC</h2>
@@ -34,7 +34,7 @@
       <section>
         <div class="me-auto p-0 bd-highlight"><h6>Vehicle ID</div>
         <div>  
-          <input type="text" class="SearchBy" id="SearchByID" onkeyup="VehicleIdSearch()" placeholder="Get unique Vehicle ID">
+          <input type="text" class="SearchBy" id="SearchByID" placeholder="Get unique Vehicle ID">
         </div>
         <div class="me-auto p-0 bd-highlight"><h6>Delivery day</div>
         <div>  
@@ -53,7 +53,21 @@
 
 
     <div id="map" style="width:1400px; height:720px"></div>
-
+      <script>
+          // Creating map options
+          var mapOptions = {
+            center: [38.710905, -9.150467],
+            zoom: 12
+        }
+        // Creating a map object
+        var map = new L.map('map', mapOptions);
+        
+        // Creating a Layer object
+        var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        
+        // Adding layer to the map
+        map.addLayer(layer);  
+      </script>
   </div>
 
   <div class="clearfix"></div>

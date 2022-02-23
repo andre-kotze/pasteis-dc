@@ -24,8 +24,7 @@
 
 <!-- ABOUT THE PROJECT -->
 <h2 id = "introduction">1. Introduction</h2>
-
-Our proposal is routing optimisation for a fleet of vehicles with varying capacities, to fulfill orders of Pasteis de Nata. The clients are a finite set of pastelarias, and the idea is that  different combinations of clients and different order sizes will be encountered daily. Initially the Pasteis will be delivered from a single warehouse. The program will have to generate the best possible delivery route every day, taking into account the locations, order sizes, vehicle capacities and vehicle availability. 
+This project enatails routing optimisation for a fleet of vehicles with varying capacities, to fulfil orders of Pasteis de Nata. The clients are a finite set of pastelarias, and the idea is that  different combinations of clients and different order sizes will be encountered daily. Initially the Pasteis will be delivered from a single warehouse. The program will have to generate the best possible delivery route every day, taking into account the locations, order sizes, vehicle capacities and vehicle availability. 
 The data will consist of streets and pastelarias (from OSM), the  vehicles comprising the fleet, and randomly generated orders. We plan to use or reimplement VROOM (Vehicle Routing Open-source Optimization Machine
 ), written in C++ and hosted at https://github.com/VROOM-Project/vroom.
 Once we have a minimal working example we plan to attempt more complex problems, involving several warehouses and failed deliveries that have to be carried over to the next day.
@@ -57,7 +56,7 @@ Rules:<br>
 <!-- API -->
 <h2 id = "api">4. API</h2>
 
-The API is an essencial tool as it allows us to the CRUD operations. It covers the management side with the operations undertaken in clients, orders, vehicles or warehouses databases but also the delivery side, with a visualization of the daily routes and the distribution points.
+The API is an essential tool as it allows us to the CRUD operations. It covers the management side with the operations undertaken in clients, orders, vehicles or warehouses databases but also the delivery side, with a visualization of the daily routes and the distribution points.
 
 <hr>
 
