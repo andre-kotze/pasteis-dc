@@ -85,7 +85,6 @@ class clientsJSON(db.Model):
 
 
 # matches orders table, only clientID and quantity need to be sent for POST
-#   maybe later, clients can specify a delivery date
 class orderJSON(db.Model):
     __tablename__ = "orders"
     __table_args__ = {"schema": "pasteis"}

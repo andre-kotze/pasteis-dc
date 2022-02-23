@@ -12,11 +12,18 @@ import requests
 # datetime for manipulating dates and times
 from datetime import datetime, timedelta, date
 
+import argparse
+
+parser = argparse.ArgumentParser(description="PdC Order Scenario Simulator")
+parser.add_argument('--date', required=True, help="Delivery date string, format YYYY-MM-DD e.g 2022-02-22")
+args = parser.parse_args()
+
 # put server address into a variable
 URL = "http://localhost:3080/"
 
 # YYYY-MM-DD
 TOMORROW = (datetime.today() + timedelta(days=2)).strftime("%Y-%m-%d")
+DATE = args.date
 
 # function to get list of clients from the database
 def get_all(suffix) -> list:
@@ -41,7 +48,7 @@ def create_scenario(date):
 
     # create orders for a random distribution of clients (units distributed per order = *missing*)
     daily_orders_count = random.randint(MIN_ORDERS, MAX_ORDERS)
-    print(f'Bom dia. Today will have {daily_orders_count} orders to deliver:')
+    print(f'Bom dia. {date} will have {daily_orders_count} orders to deliver:')
 
     # select a subset of padaria client IDs
     daily_order = random.sample(PADARIA_IDS, daily_orders_count)
@@ -53,7 +60,7 @@ def create_scenario(date):
                         "quantity": random.randint(1, MAX_ORDER_SIZE),
                         "delivery_date" : date
                         })
-    print(f'Total packages {sum(dic["quantity"] for dic in orders_list)}')
+    print(f'Total packages: {sum(dic["quantity"] for dic in orders_list)}')
     return orders_list
 
 # variable containing file with the date and time set for display
@@ -73,10 +80,10 @@ def save_result(data , outfile) -> None:
     except Exception as e:
         print(e)
 
-# calling the function using orders dictionary and the .json 
-# save_result(orders_list, filename)
+
 
 def upload_orders(orders):
+    print('\nUploading orders...\t', end='')
     url = "http://localhost:3080/orders?Content-Type=application/json"
     payload = json.dumps(orders)
     headers = {
@@ -84,10 +91,10 @@ def upload_orders(orders):
     'Content-Type': 'application/json'
     }
     response = requests.request("POST", url, headers=headers, data=payload)
-
+    print('[OK]')
     print(response.text)
 
 
-new_orders = create_scenario(TOMORROW)
+new_orders = create_scenario(DATE)
 
 upload_orders(new_orders)

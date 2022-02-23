@@ -13,8 +13,5 @@ if __name__ == "__main__":
     result = vrm.send_to_vroom(response)
     result_date = vrm.add_date_to_vroom_result(result.json(), args.date)
     
-    # 
+    # upload the routes to the DB
     vrm.upload_lines(result_date)
-
-    #
-    #vrm.upload_points(result_date)
